@@ -13,6 +13,7 @@
 #import "Player.h"
 #import "BulletCache.h"
 #import "Bullet.h"
+#import "Enemy.h"
 
 
 static void
@@ -119,6 +120,8 @@ static GameLayer* instanceOfGameLayer;
         */
         
         player = [[Player alloc] initWithGame:self];
+        enemy = [[Enemy alloc] initWithGame:self withEnemyType:kEnemySmall];
+        
         bulletCache = [[BulletCache alloc] initWithGame:self];
         
         [self schedule: @selector(step:)];

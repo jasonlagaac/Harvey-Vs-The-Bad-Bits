@@ -47,6 +47,7 @@ typedef enum
     // Game Entities
     Item *items[10];
     Enemy *enemies[30];
+    Enemy *enemy;
     Player *player;
     BulletCache *bulletCache;
     Level *level;

@@ -14,7 +14,6 @@
 @interface InputLayer (PrivateMethods)
 -(void) addButtons;
 -(void) addJoystick;
--(void) test;
 @end
 
 @implementation InputLayer
@@ -144,6 +143,8 @@
         
     // Determine the player's shooting position and direction and the proper shot origin
     [p playerAttack:fireButton.active nextShotTime:&nextShotTime totalTime:totalTime];
+    
+    //NSLog(@"velocity x: %f  y: %f", p.sprite.position.x, p.sprite.position.y);
     
 }
 

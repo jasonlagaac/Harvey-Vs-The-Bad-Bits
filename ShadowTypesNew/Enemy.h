@@ -36,7 +36,12 @@ typedef enum {
     CCSprite *sprite;
     EnemyType enemyType;
     int health;
-    int attack;
+    
+    float prevPos_x;
+    
+    // Sentinal Value
+    bool enemyFalling;
+    bool started;
     
     // Enemy Movement Values
     EnemyMovement direction;
@@ -49,16 +54,20 @@ typedef enum {
 @property (nonatomic, retain) CCSprite *sprite;
 @property (nonatomic, retain) GameLayer *theGame;
 
-
 @property (nonatomic, readwrite) EnemyType enemyType;
 @property (nonatomic, readwrite) EnemyMovement direction;
 
-@property (nonatomic, readwrite) CCAction *enemyWalkAction;
+@property (nonatomic, retain) CCAction *enemyWalkAction;
 
+@property (nonatomic, readwrite) cpBody  *body;
+@property (nonatomic, readwrite) cpShape *shape;
+
+@property (nonatomic, readwrite) bool enemyFalling;
+@property (nonatomic, readwrite) bool started;
 
 @property (nonatomic, readwrite) int health;
 @property (nonatomic, readwrite) int points;
-@property (nonatomic, readwrite) int attack;
+@property (nonatomic, readwrite) float prevPos_x;
 
 -(id) initWithGame:(GameLayer *)game withEnemyType:(EnemyType)enemy;
 

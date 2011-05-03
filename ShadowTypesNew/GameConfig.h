@@ -1,8 +1,8 @@
 //
 //  GameConfig.h
-//  ShadowTypesNew
+//  ShadowTypes
 //
-//  Created by neurologik on 22/04/11.
+//  Created by neurologik on 20/03/11.
 //  Copyright __MyCompanyName__ 2011. All rights reserved.
 //
 
@@ -22,7 +22,7 @@
 //
 // Define here the type of autorotation that you want for your game
 //
-#define GAME_AUTOROTATION kGameAutorotationUIViewController
+#define GAME_AUTOROTATION kGameAutorotationNone
 
 
 #endif // __GAME_CONFIG_H

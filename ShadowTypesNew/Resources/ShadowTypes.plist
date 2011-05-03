@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>Bullet.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{499, 2}, {10, 6}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {10, 6}}</string>
+			<key>sourceSize</key>
+			<string>{10, 6}</string>
+		</dict>
+		<key>MachineGun1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{256, 2}, {42, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {42, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>MachineGun2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{134, 44}, {42, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {42, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>MachineGun3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{90, 44}, {42, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {42, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>MachineGun4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{300, 2}, {42, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {42, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>MachineGunStill.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2, 44}, {42, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {42, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>Phaser1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2, 2}, {40, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {40, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>Phaser2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{128, 2}, {40, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {40, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>Phaser3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{44, 2}, {40, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {40, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>Phaser4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{170, 2}, {40, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {40, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>PhaserBullet.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{476, 2}, {21, 9}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {21, 9}}</string>
+			<key>sourceSize</key>
+			<string>{21, 9}</string>
+		</dict>
+		<key>PhaserStill.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{86, 2}, {40, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {40, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>Pistol1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{226, 44}, {46, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {46, 40}}</string>
+			<key>sourceSize</key>
+			<string>{46, 40}</string>
+		</dict>
+		<key>Pistol2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{370, 44}, {46, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {46, 40}}</string>
+			<key>sourceSize</key>
+			<string>{46, 40}</string>
+		</dict>
+		<key>Pistol3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{274, 44}, {46, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {46, 40}}</string>
+			<key>sourceSize</key>
+			<string>{46, 40}</string>
+		</dict>
+		<key>Pistol4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{178, 44}, {46, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {46, 40}}</string>
+			<key>sourceSize</key>
+			<string>{46, 40}</string>
+		</dict>
+		<key>PistolStill.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{322, 44}, {46, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {46, 40}}</string>
+			<key>sourceSize</key>
+			<string>{46, 40}</string>
+		</dict>
+		<key>Shotgun1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{212, 2}, {42, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {42, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>Shotgun2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{388, 2}, {42, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {42, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>Shotgun3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{46, 44}, {42, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {42, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>Shotgun4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{344, 2}, {42, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {42, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>ShotgunStill.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{432, 2}, {42, 40}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {42, 40}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{512, 128}</string>
+	</dict>
+</dict>
+</plist>

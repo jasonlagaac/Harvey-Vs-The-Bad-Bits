@@ -1,8 +1,8 @@
 //
 //  AppDelegate.m
-//  ShadowTypesNew
+//  ShadowTypes
 //
-//  Created by neurologik on 22/04/11.
+//  Created by neurologik on 20/03/11.
 //  Copyright __MyCompanyName__ 2011. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 #import "AppDelegate.h"
 #import "GameConfig.h"
-#import "HelloWorldLayer.h"
+#import "GameScene.h"
 #import "RootViewController.h"
 
 @implementation AppDelegate
@@ -66,6 +66,7 @@
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
 	
+    [glView setMultipleTouchEnabled:YES];
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
 	
@@ -104,13 +105,18 @@
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
-
+    [[CCTextureCache sharedTextureCache] addImageAsync:[NSString stringWithFormat:@"ShadowTypes.png"] target:self selector:@selector(imageLoaded:)];
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: [GameLayer scene]];
+}
+
+-(void)imageLoaded:(CCTexture2D *)texture
+{
+	NSLog(@"ShadowTypes.png Loaded!");
 }
 
 

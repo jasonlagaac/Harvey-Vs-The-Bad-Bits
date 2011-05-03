@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="16" tilewidth="20" tileheight="20">
+ <tileset firstgid="1" name="Black &amp; White Tiles" tilewidth="20" tileheight="20" spacing="2" margin="2">
+  <image source="Tileset.png" width="64" height="32"/>
+ </tileset>
+ <layer name="Background" width="24" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gUj+JRPOIwAIk8AYE=
+  </data>
+ </layer>
+ <layer name="Level" width="24" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYCICowNi9MAwI43wYDCfEKCG+8kxmxTzyY03eoU/IUBu3FCafodC+ic37EgxH1+ZMRjSD63NJ7b8JCbMyMXogFh9AA9LAcE=
+  </data>
+ </layer>
+ <objectgroup name="Object Layer" width="24" height="16">
+  <object x="20" y="20" width="180"/>
+  <object x="20" y="20" height="260"/>
+  <object x="20" y="280" width="180"/>
+  <object x="280" y="280" width="180"/>
+  <object x="460" y="20" height="260"/>
+  <object x="280" y="20" width="180"/>
+  <object x="180" y="100" width="120"/>
+  <object x="180" y="220" width="120"/>
+  <object x="20" y="160" width="160"/>
+  <object x="300" y="160" width="160"/>
+  <object x="200" y="0" height="20"/>
+  <object x="280" y="0" height="20"/>
+  <object x="200" y="280" height="40"/>
+  <object x="280" y="280" height="40"/>
+ </objectgroup>
+</map>

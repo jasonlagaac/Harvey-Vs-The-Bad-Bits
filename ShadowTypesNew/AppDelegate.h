@@ -1,8 +1,8 @@
 //
 //  AppDelegate.h
-//  ShadowTypesNew
+//  ShadowTypes
 //
-//  Created by neurologik on 22/04/11.
+//  Created by neurologik on 20/03/11.
 //  Copyright __MyCompanyName__ 2011. All rights reserved.
 //
 

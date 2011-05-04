@@ -15,8 +15,6 @@
 @interface EnemyCache : CCNode {
     GameLayer *theGame;
     CCArray *enemies;
-    
-    
 }
 
 @end

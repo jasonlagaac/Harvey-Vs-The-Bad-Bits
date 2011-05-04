@@ -9,6 +9,18 @@
 #import "Enemy.h"
 
 
+@interface Enemy (private)
+-(void) loadDefaultSprite;
+-(void) loadAnimations;
+-(void) loadPhysics;
+
+-(void) moveEnemy;
+-(void) switchMoveDirection;
+-(void) enemyFall;
+-(void) enemyRespawn;
+@end
+
+
 @implementation Enemy
 
 @synthesize sprite;
@@ -59,7 +71,7 @@
         [enemySmallWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"EnemySmall%d.png", i]]];
     }
     
-    CCAnimation *enemySmallWalkAnim = [CCAnimation animationWithFrames:enemySmallWalkFrames delay:0.09f];
+    CCAnimation *enemySmallWalkAnim = [CCAnimation animationWithFrames:enemySmallWalkFrames delay:0.07f];
     
     self.enemyWalkAction  = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:enemySmallWalkAnim]];
     
@@ -103,7 +115,21 @@
         self.theGame = game;
 
         self.enemyType = kEnemySmall;
-        self.direction = kEnemyMoveLeft;
+        
+        if (arc4random() % kNumEnemyMovements) {
+            self.sprite.flipX = YES;
+            self.direction = kEnemyMoveRight;
+        } else {
+            self.sprite.flipX = NO;
+            self.direction = kEnemyMoveLeft;
+        } 
+         
+         
+        self.prevPos_x = (int)sprite.position.x;
+        
+        enemyFalling = NO;
+        started = NO;
+
         [self loadDefaultSprite];
         [self loadAnimations];
         [self loadPhysics];
@@ -170,13 +196,36 @@
     }
 }
 
+-(void)enemyRespawn {
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    if (arc4random() % kNumEnemyMovements) {
+        self.sprite.flipX = YES;
+        self.direction = kEnemyMoveRight;
+    } else {
+        self.sprite.flipX = NO;
+        self.direction = kEnemyMoveLeft;
+    }
+    
+    self.body->p = CGPointMake(screenSize.width / 2, screenSize.height + 10);
+    self.prevPos_x = (int)sprite.position.x;
+    
+    enemyFalling = NO;
+    started = NO;
+
+}
+
 #pragma mark -
 #pragma mark Enemy Update Method 
 -(void) update:(ccTime)delta {
-    NSLog(@"Being called");
     [self moveEnemy];
     [self switchMoveDirection];
     [self enemyFall];
+    
+    if (self.sprite.position.y < -30.0f)
+        [self enemyRespawn];
+    
+    NSLog(@"pos y:%f", self.sprite.position.y);
 }
 
 

@@ -92,9 +92,7 @@
     
     // Determine the scatter pattern of the bullet when fired from a specific weapon
     switch (weaponType) {
-        case kPlayerWeaponPistol:
-            randYVel = 0;
-            break;
+        
     
         case kPlayerWeaponMachineGun:
             randYVel = ((arc4random() % 6));
@@ -108,6 +106,10 @@
             
             randYVel = (arc4random() % 2) ? abs(randYVel) : -abs(randYVel);
             randYVel *= 0.5f;
+            break;
+            
+        default:
+            randYVel = 0;
             break;
     }
     

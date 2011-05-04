@@ -18,7 +18,7 @@
 #import "SneakyJoystick.h"
 #import "SneakyJoystickSkinnedBase.h"
 
-#define MAX_JUMP_COUNT 12
+#define MAX_JUMP_COUNT 4
 
 @class GameLayer;
 @class Player;
@@ -38,9 +38,6 @@
     // Weapon firing rate control time variables
     ccTime totalTime;
 	ccTime nextShotTime;
-    
-    
-    
 }
 
 @end

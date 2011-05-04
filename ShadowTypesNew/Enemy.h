@@ -19,7 +19,8 @@ typedef enum {
 
 typedef enum {
     kEnemyMoveRight,
-    kEnemyMoveLeft
+    kEnemyMoveLeft,
+    kNumEnemyMovements
 } EnemyMovement;
 
 @class GameLayer;

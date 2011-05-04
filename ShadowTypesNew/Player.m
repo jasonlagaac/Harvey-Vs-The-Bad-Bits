@@ -10,9 +10,22 @@
 #import "BulletCache.h"
 
 @interface Player (private)
+// Player Initialisation
 -(void) loadAnimations;
 -(void) loadDefaultSprite;
 -(void) loadPhysics;
+
+// Player General Actions
+-(void) playerAnimateMove;
+-(void) playerStopAnimations;
+-(void) playerJumpFallSprite;
+-(void) playerJumpingFalling;
+-(void) playerLanded;
+-(void) playerAttack:(bool)fireButtonActive nextShotTime:(float*)nextShotTime totalTime:(float)totalTime;
+-(void)playerRespawn;
+
+
+
 @end
 
 @implementation Player
@@ -41,7 +54,7 @@
 -(void) loadSprites {
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
 
-    self.weapon = kPlayerWeaponShotgun;
+    self.weapon = kPlayerWeaponPhaser;
     
     [self loadDefaultSprite];
     [[self.sprite texture] setAliasTexParameters];
@@ -145,6 +158,10 @@
         [self loadSprites];
         [self loadAnimations];
         [self loadPhysics];
+        
+        [game addChild:self z:5];
+        
+        [self scheduleUpdate];
     }
     
     return self;
@@ -232,28 +249,64 @@
 }
 
 -(void) playerAnimateMovement:(float)velocity_x {
-    if (velocity_x < -100 || velocity_x > 100 && !self.playerJumping) {
-        if (self.playerMoving == NO) {
+    if (velocity_x < -100 || velocity_x > 100) {
+        if (self.playerMoving == NO && !self.playerJumping) {
             self.playerMoving = YES;
             [self playerAnimateMove];
         }
     } else  {
-        if (self.playerMoving == YES) {
+        if (self.playerMoving == YES || self.playerJumping) {
             self.playerMoving = NO;
             [self playerStopAnimations];
-            [self restoreDefaultSprite];
+            
+            if (!self.playerJumping)
+                [self restoreDefaultSprite];
         }
     }
 }
 
+-(void) playerJumpFallSprite {
+    switch (self.weapon) {
+        case kPlayerWeaponPistol:
+            [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"PistolJump.png"]];
+            break;
+            
+        case kPlayerWeaponMachineGun:
+            [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"MachineGunJump.png"]];
+            break;
+            
+        case kPlayerWeaponShotgun:
+            [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"ShotgunJump.png"]];
+            break;
+            
+        case kPlayerWeaponPhaser:
+            [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"PhaserJump.png"]];
+            break;
+    }
+}
+
+
+-(void) playerJumpingFalling {
+    if (self.body->v.y != 0) {
+        [self playerJumpFallSprite];
+        [self playerStopAnimations];
+    } else {
+        [self restoreDefaultSprite];
+    }
+}
+
+
 -(void) playerJump {
     self.body->v.y = 300.0f;
-    self.playerJumping = YES;
+    self.playerJumping = YES; 
+    [self playerJumpFallSprite];
 }
 
 -(void) playerLanded {
-    cpBodyResetForces(self.body);
-    self.playerJumping = NO;
+    if (self.playerJumping) {
+        cpBodyResetForces(self.body);
+        self.playerJumping = NO;
+    }
 }
 
 -(void) playerAttack:(bool)fireButtonActive nextShotTime:(float*)nextShotTime totalTime:(float)totalTime {
@@ -320,6 +373,24 @@
          
     } 
     
+}
+
+-(void)playerRespawn {
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+
+    body->p = CGPointMake(screenSize.width / 2, screenSize.height +10);
+}
+
+
+#pragma mark -
+#pragma mark Update actions
+
+-(void)update:(ccTime)delta {
+    [self playerJumpingFalling];
+    
+    if (self.sprite.position.y < -30.0f) {
+        [self playerRespawn];
+    }
 }
 
 

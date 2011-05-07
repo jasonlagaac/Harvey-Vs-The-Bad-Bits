@@ -62,7 +62,7 @@
     self.sprite.flipX = NO;    
     self.direction = kPlayerMoveRight;
     self.sprite.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
-    [theGame addChild:sprite z:5];
+    [theGame addChild:sprite z:6];
 
     
 }

@@ -20,10 +20,7 @@
 @synthesize startPos;
 @synthesize  weaponType;
 
-/*****************************************
-         Initialisation Methods
- *****************************************/
-#pragma mark Initialisation Methods
+#pragma mark Initialisation and Singleton Methods
 
 +(id) bullet {
     return [[[self alloc] initWithBulletImage] autorelease];
@@ -44,9 +41,7 @@
 	[super dealloc];
 }
 
-/*****************************************
-            Public Methods
- *****************************************/
+
 #pragma mark Public Methods
 
 -(void) shootBulletAt:(CGPoint)startPosition direction:(int)direction frameName:(NSString*)frameName weaponType:(int)weapon

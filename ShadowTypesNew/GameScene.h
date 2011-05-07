@@ -22,7 +22,6 @@
 #define K_BulletCache 1
 
 #define MAX_ITEMS 10
-#define MAX_ENEMIES 30
 
 typedef enum
 {
@@ -36,6 +35,7 @@ typedef enum
 @class Enemy;
 @class Player;
 @class BulletCache;
+@class EnemyCache;
 @class Level;
 
 // HelloWorldLayer
@@ -46,7 +46,7 @@ typedef enum
     
     // Game Entities
     Item *items[10];
-    Enemy *enemies[30];
+    EnemyCache *enemyCache;
     Enemy *enemy;
     Player *player;
     BulletCache *bulletCache;
@@ -66,6 +66,8 @@ typedef enum
 
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, retain) BulletCache *bulletCache;
+@property (nonatomic, retain) EnemyCache *enemyCache;
+
 @property (nonatomic, retain) Level *level;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

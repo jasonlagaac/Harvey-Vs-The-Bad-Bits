@@ -14,7 +14,7 @@
 @synthesize bullets;
 
 
--(id) initWithGame:(GameLayer *) game;
+-(id) initWithGame:(GameLayer *) game
 {
 	if ((self = [super init]))
 	{
@@ -24,7 +24,7 @@
         for (int i = 0; i < MAX_NUM_BULLETS; i++) {
             Bullet *b = [Bullet bullet];
             [[self bullets] addObject:b];
-            [game addChild:b z:5];
+            [game addChild:b z:7];
         }
 	}
 	
@@ -54,15 +54,17 @@
             break;
             
         case kPlayerWeaponShotgun:
-            for (int i = 0; i < 5; i++) {
-                b = [bullets objectAtIndex:nextInactiveBullet + i];
-                [b shootBulletAt:startPosition direction:direction  frameName:frameName weaponType:weapon];
-            }
-            if (nextInactiveBullet >= [bullets count])
+            
+            if ((nextInactiveBullet + 5) >= [bullets count])
             {
                 nextInactiveBullet = 0;
             } else {
                 nextInactiveBullet += 5;
+            }
+            
+            for (int i = 0; i < 5; i++) {
+                b = [bullets objectAtIndex:nextInactiveBullet + i];
+                [b shootBulletAt:startPosition direction:direction  frameName:frameName weaponType:weapon];
             }
             
             break;

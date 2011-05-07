@@ -13,11 +13,6 @@
 -(void) loadDefaultSprite;
 -(void) loadAnimations;
 -(void) loadPhysics;
-
--(void) moveEnemy;
--(void) switchMoveDirection;
--(void) enemyFall;
--(void) enemyRespawn;
 @end
 
 
@@ -33,16 +28,40 @@
 @synthesize points;
 
 @synthesize prevPos_x;
-
+@synthesize spawnPos;
 
 @synthesize body;
 @synthesize shape;
 
 @synthesize enemyFalling;
 @synthesize started;
+@synthesize active;
 
 @synthesize enemyWalkAction;
 
+
+#pragma mark -
+#pragma mark Init/Dealloc and Singleton Methods
+
++(id)enemy {
+    return [[[self alloc] init] autorelease];
+}
+
+-(id) init {
+	if ((self = [super init])) {
+        
+	}	
+	return self;
+}
+
+-(void) dealloc
+{
+	// don't forget to call "super dealloc"
+    cpBodyFree(body);
+    cpShapeFree(shape);
+    [theGame release];
+	[super dealloc];
+}
 
 #pragma mark -
 #pragma mark Enemy Attribute Initialisation
@@ -57,11 +76,8 @@
             break;
     }
     
-    CGSize screenSize = [[CCDirector sharedDirector] winSize];
-
-    
-    self.sprite.position = CGPointMake(screenSize.width / 2, screenSize.height + 10);
-    [theGame addChild:sprite z:10];
+    self.sprite.position = self.spawnPos;
+    [theGame addChild:sprite z:5];
 }
 
 -(void) loadAnimations {
@@ -105,57 +121,36 @@
     cpSpaceAddShape(theGame.space, shape);
     
 }
-
-
-#pragma mark -
-#pragma mark Alloc / Init / Dealloc
-
--(id) initWithGame:(GameLayer *)game withEnemyType:(EnemyType)enemy {    
-    if( (self=[super init])) {
-        self.theGame = game;
-
-        self.enemyType = kEnemySmall;
-        
-        if (arc4random() % kNumEnemyMovements) {
-            self.sprite.flipX = YES;
-            self.direction = kEnemyMoveRight;
-        } else {
-            self.sprite.flipX = NO;
-            self.direction = kEnemyMoveLeft;
-        } 
-         
-         
-        self.prevPos_x = (int)sprite.position.x;
-        
-        enemyFalling = NO;
-        started = NO;
-
-        [self loadDefaultSprite];
-        [self loadAnimations];
-        [self loadPhysics];
+-(void) LoadIntoGame:(GameLayer *)game withEnemyType:(EnemyType)type withSpawnPoint:(CGPoint) spawn withOrder:(int)order {    
+    self.theGame = game;
+    self.enemyType = type;
+    self.spawnPos = spawn;
     
-        [[self sprite] runAction:enemyWalkAction];
-        self.prevPos_x = (int)sprite.position.x;
-        
-        enemyFalling = NO;
-        started = NO;
-        
-        [game addChild:self z:5];
-                
-		[self scheduleUpdate];
-    }
-    return self;
+    if (arc4random() % kNumEnemyMovements) {
+        self.sprite.flipX = YES;
+        self.direction = kEnemyMoveRight;
+    } else {
+        self.sprite.flipX = NO;
+        self.direction = kEnemyMoveLeft;
+    } 
+    
+    
+    self.prevPos_x = (int)sprite.position.x;
+    
+    enemyFalling = NO;
+    started = NO;
+    
+    [self loadDefaultSprite];
+    [self loadAnimations];
+    [self loadPhysics];
+    
+    [[self sprite] runAction:enemyWalkAction];
+    self.prevPos_x = (int)sprite.position.x;
+    
+    enemyFalling = NO;
+    started = NO;
+    self.active = YES;
 }
-
--(void) dealloc
-{
-	// don't forget to call "super dealloc"
-    cpBodyFree(body);
-    cpShapeFree(shape);
-    [theGame release];
-	[super dealloc];
-}
-
 
 #pragma mark - 
 #pragma mark Enemy Movement
@@ -217,7 +212,7 @@
 
 #pragma mark -
 #pragma mark Enemy Update Method 
--(void) update:(ccTime)delta {
+-(void) update:(ccTime)delta { 
     [self moveEnemy];
     [self switchMoveDirection];
     [self enemyFall];

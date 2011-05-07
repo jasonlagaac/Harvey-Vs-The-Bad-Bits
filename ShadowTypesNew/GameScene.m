@@ -12,6 +12,7 @@
 #import "Item.h"
 #import "Player.h"
 #import "BulletCache.h"
+#import "EnemyCache.h"
 #import "Bullet.h"
 #import "Enemy.h"
 
@@ -45,6 +46,7 @@ eachShape(void *ptr, void* unused)
 @synthesize remainingTime;
 @synthesize player;
 @synthesize bulletCache;
+@synthesize enemyCache;
 @synthesize space;
 @synthesize level;
 
@@ -89,7 +91,6 @@ static GameLayer* instanceOfGameLayer;
 	if( (self = [super initWithColor:ccc4(255,255,255,255)] )) {
         
         // Initialise Chipmunk
-		CGSize wins = [[CCDirector sharedDirector] winSize];
 		cpInitChipmunk();
 		
         // Define the space
@@ -111,20 +112,20 @@ static GameLayer* instanceOfGameLayer;
         // Load the items and images into the framecache
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ShadowTypes.plist"];
 
-        // Initialise items
-        /*
-        for (int i = 0; i < MAX_ITEMS; i++) {
-            items[i] = [[Item alloc] initWithGame:self];
-            [items[i] loadObj:3 spawnTime:60 removeTime:-1];
-        }
-        */
+
         
         player = [[Player alloc] initWithGame:self];
-        enemy = [[Enemy alloc] initWithGame:self withEnemyType:kEnemySmall];
+
+        NSMutableArray *spawnPos = [[NSMutableArray alloc] init];
+        CGPoint pos = CGPointMake(240.0f, 340.0f);
         
+        [spawnPos addObject:[NSData dataWithBytes:&pos length:sizeof(CGPoint)]];
+        
+        enemyCache = [[EnemyCache alloc] initWithGame:self withLevel:1 withStartPoints:spawnPos];
         bulletCache = [[BulletCache alloc] initWithGame:self];
         
         [self schedule: @selector(step:)];
+        [self schedule:@selector(update:) interval:1.0];
         
 	}
 	return self;
@@ -169,6 +170,16 @@ static GameLayer* instanceOfGameLayer;
 	}
 	cpSpaceHashEach(space->activeShapes, &eachShape, nil);
 	cpSpaceHashEach(space->staticShapes, &eachShape, nil);
+    
+    [[self enemyCache] runEnemyActions];
+
+}
+
+-(void) update: (ccTime) delta {
+//    if (arc4random() % 2) {
+        [[self enemyCache] spawnEnemy];
+    NSLog(@"Spawned");
+  //  }
 }
 
 @end

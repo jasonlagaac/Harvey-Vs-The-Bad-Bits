@@ -525,7 +525,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		59847E0713717E23007C301E /* Cache Elements */ = {
+		59847E0713717E23007C301E /* Cache Classes */ = {
 			isa = PBXGroup;
 			children = (
 				599DE43413614D6100FD2E2E /* BulletCache.h */,
@@ -533,7 +533,7 @@
 				59847E0813717FA7007C301E /* EnemyCache.h */,
 				59847E0913717FA7007C301E /* EnemyCache.m */,
 			);
-			name = "Cache Elements";
+			name = "Cache Classes";
 			sourceTree = "<group>";
 		};
 		599DE1DF13612D0600FD2E2E = {
@@ -905,8 +905,8 @@
 				599DE3DD1361328600FD2E2E /* GameConfig.h */,
 				599DE3DE1361328600FD2E2E /* RootViewController.h */,
 				599DE3DF1361328600FD2E2E /* RootViewController.m */,
-				59847E0713717E23007C301E /* Cache Elements */,
-				599DE3B31361315E00FD2E2E /* Game Elements */,
+				59847E0713717E23007C301E /* Cache Classes */,
+				599DE3B31361315E00FD2E2E /* Game Classes */,
 				599DE3B21361314E00FD2E2E /* Protocols */,
 				599DE3B11361313D00FD2E2E /* Layers */,
 				599DE3B01361312F00FD2E2E /* SneakyInput */,
@@ -950,7 +950,7 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
-		599DE3B31361315E00FD2E2E /* Game Elements */ = {
+		599DE3B31361315E00FD2E2E /* Game Classes */ = {
 			isa = PBXGroup;
 			children = (
 				599DE423136140F800FD2E2E /* Bullet.h */,
@@ -966,7 +966,7 @@
 				599DE426136145AA00FD2E2E /* Player.h */,
 				599DE427136145AA00FD2E2E /* Player.m */,
 			);
-			name = "Game Elements";
+			name = "Game Classes";
 			sourceTree = "<group>";
 		};
 		599DE43D13614F7300FD2E2E /* Resources */ = {

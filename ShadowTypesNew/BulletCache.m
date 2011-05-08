@@ -32,6 +32,23 @@
 }
 
 
+-(void)bulletEnemyCollision {
+    
+    EnemyCache *ec = [[self theGame] enemyCache];
+    
+    for (int i = 0; i < MAX_ENEMIES; i++) {
+        Enemy *e = [[ec enemies] objectAtIndex:i];   
+        for (int j = 0; i < MAX_NUM_BULLETS; j++) {
+            Bullet *b = [bullets objectAtIndex:j];
+            if (ccpDistance(b.position, e.sprite.position) < 70) {
+                NSLog(@"Hit");
+                [e enemyDamage:b.damage];
+                [b bulletReinit];
+            }
+        }
+    }
+}
+
 -(void) shootBulletFrom:(CGPoint)startPosition playerDirection:(PlayerMovement)direction 
               frameName:(NSString*)frameName weaponType:(PlayerWeapon)weapon {
     

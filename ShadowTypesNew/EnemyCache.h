@@ -12,7 +12,7 @@
 #import "GameScene.h"
 #import "Enemy.h"
 
-#define MAX_ENEMIES 20
+#define MAX_ENEMIES 4
 
 @interface EnemyCache : CCNode {
     GameLayer *theGame;
@@ -31,5 +31,6 @@
 -(id) initWithGame:(GameLayer *)game withLevel:(int)level withStartPoints:(NSMutableArray *)startPointList;
 -(void)spawnEnemy;
 -(void) runEnemyActions;
+-(void) runDeadEnemyCleanup;
 
 @end

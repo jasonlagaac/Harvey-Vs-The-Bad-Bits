@@ -8,11 +8,26 @@
 
 #import "Enemy.h"
 
+// Cocos2d unloading function to cleanup bodies and shapes
+// This function is called during the cpSpaceAddPostStepCallback function
+static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
+    CCSprite *enemySprite = (CCSprite *) shape->data;
+    GameLayer *game = [GameLayer sharedGameLayer];
+    
+    cpSpaceRemoveBody(space, shape->body);
+	cpSpaceRemoveShape(space, shape);
+    cpBodyFree(shape->body);
+    cpShapeFree(shape);
+    
+    [game removeChild:enemySprite cleanup:YES];
+}
 
 @interface Enemy (private)
 -(void) loadDefaultSprite;
 -(void) loadAnimations;
 -(void) loadPhysics;
+
+-(void)enemyDeath;
 @end
 
 
@@ -35,7 +50,8 @@
 
 @synthesize enemyFalling;
 @synthesize started;
-@synthesize active;
+@synthesize activeInGame;
+@synthesize dead;
 
 @synthesize enemyWalkAction;
 
@@ -70,6 +86,7 @@
     switch (self.enemyType) {
         case kEnemySmall:
             self.sprite = [CCSprite spriteWithSpriteFrameName:@"EnemySmall2.png"];
+            self.health = 5;
             break;
         case kEnemyLarge:
             self.sprite = [CCSprite spriteWithSpriteFrameName:@"EnemyLarge.png"];
@@ -126,6 +143,8 @@
     self.enemyType = type;
     self.spawnPos = spawn;
     
+    
+    // Determine the enemy's movement direction
     if (arc4random() % kNumEnemyMovements) {
         self.sprite.flipX = YES;
         self.direction = kEnemyMoveRight;
@@ -139,17 +158,21 @@
     
     enemyFalling = NO;
     started = NO;
+    dead = NO;
     
+    // Load all the necessary attributes
     [self loadDefaultSprite];
     [self loadAnimations];
     [self loadPhysics];
     
+
+    // Start running actions
     [[self sprite] runAction:enemyWalkAction];
     self.prevPos_x = (int)sprite.position.x;
     
     enemyFalling = NO;
     started = NO;
-    self.active = YES;
+    activeInGame = YES;
 }
 
 #pragma mark - 
@@ -179,7 +202,6 @@
     prevPos_x = (int)self.sprite.position.x;
 }
 
-// FIXME: Need to fix this damn thing. Freezes the whole thing!
 -(void) enemyFall {
     if (self.body->v.y != 0 && enemyFalling == NO) {
         [[self sprite] stopAllActions];
@@ -210,17 +232,24 @@
 
 }
 
-#pragma mark -
-#pragma mark Enemy Update Method 
--(void) update:(ccTime)delta { 
-    [self moveEnemy];
-    [self switchMoveDirection];
-    [self enemyFall];
+// Enemy Death operation
+-(void) enemyDeath {
+    self.dead = YES;
+    self.activeInGame = NO;  
+    [[self sprite] stopAllActions];
+
+    // Cocos2d must run this after the step that all bodies are accounted for
+    // and that they are all cleaned up
+    cpSpaceAddPostStepCallback(theGame.space, (cpPostStepFunc)enemyUnload, self.shape, nil);
+}
+
+-(void)enemyDamage:(int)damage {
+    self.health -= damage;
     
-    if (self.sprite.position.y < -30.0f)
-        [self enemyRespawn];
-    
-    NSLog(@"pos y:%f", self.sprite.position.y);
+    //NSLog(@"Damage %d", self.health);
+    if (self.health <= 0) {
+        [self enemyDeath];
+    }
 }
 
 

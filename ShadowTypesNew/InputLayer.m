@@ -146,6 +146,8 @@
     
     //NSLog(@"velocity x: %f  y: %f", p.sprite.position.x, p.sprite.position.y);
     
+    //[game release];
+    
 }
 
 @end

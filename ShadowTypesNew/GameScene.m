@@ -168,18 +168,20 @@ static GameLayer* instanceOfGameLayer;
 	for(int i=0; i<steps; i++){
 		cpSpaceStep(space, dt);
 	}
+
+    //[[self enemyCache] runDeadEnemyCleanup];
 	cpSpaceHashEach(space->activeShapes, &eachShape, nil);
 	cpSpaceHashEach(space->staticShapes, &eachShape, nil);
     
     [[self enemyCache] runEnemyActions];
-
+    
+    
 }
 
 -(void) update: (ccTime) delta {
-//    if (arc4random() % 2) {
+    if (arc4random() % 2) {
         [[self enemyCache] spawnEnemy];
-    NSLog(@"Spawned");
-  //  }
+    }
 }
 
 @end

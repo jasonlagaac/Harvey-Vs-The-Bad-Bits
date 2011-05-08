@@ -27,5 +27,6 @@
 
 -(void) shootBulletFrom:(CGPoint)startPosition playerDirection:(PlayerMovement)direction 
               frameName:(NSString*)frameName weaponType:(PlayerWeapon)weapon;
+-(void)bulletEnemyCollision;
 
 @end

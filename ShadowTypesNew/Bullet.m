@@ -18,7 +18,8 @@
 
 @synthesize velocity;
 @synthesize startPos;
-@synthesize  weaponType;
+@synthesize weaponType;
+@synthesize damage;
 
 #pragma mark Initialisation and Singleton Methods
 
@@ -41,6 +42,14 @@
 	[super dealloc];
 }
 
+-(void)bulletReinit {
+    self.visible = NO;
+    self.weaponType = 0;
+    self.startPos = CGPointZero;
+    [self stopAllActions];
+    [self unscheduleAllSelectors];
+}
+
 
 #pragma mark Public Methods
 
@@ -50,16 +59,20 @@
     switch (weapon) {
         case kPlayerWeaponPistol:
             self.velocity = CGPointMake(6, 0);
+            self.damage = 1;
             break;
         case kPlayerWeaponMachineGun:
             self.velocity = CGPointMake(9, 0);
+            self.damage = 3;
             break;
             
         case kPlayerWeaponShotgun:
             self.velocity = CGPointMake((arc4random() % 8 + 5), 0);
+            self.damage = 1;
             break;
         case kPlayerWeaponPhaser:
             self.velocity = CGPointMake(15, 0);
+            self.damage = 5;
             break;
     }
     
@@ -78,6 +91,21 @@
 	
 	[self scheduleUpdate];
 
+}
+
+-(void)bulletEnemyCollision {
+    GameLayer *game = [GameLayer sharedGameLayer];
+    EnemyCache *ec = [game enemyCache];    
+    
+    for (int i = 0; i < MAX_ENEMIES; i++) {
+        Enemy *e = [[ec enemies] objectAtIndex:i];   
+        if (e.activeInGame) {
+            if (ccpDistance(self.position, e.sprite.position) < 10) {
+                [e enemyDamage:self.damage];
+                [self bulletReinit];
+            }
+        }
+    }
 }
 
 
@@ -120,24 +148,18 @@
             if (self.position.x > (self.startPos.x + 100) || self.position.x < (self.startPos.x - 100) 
                 || self.position.x > screenSize.width  || self.position.x < 0)
             {
-                self.visible = NO;
-                self.weaponType = 0;
-                self.startPos = CGPointZero;
-                [self stopAllActions];
-                [self unscheduleAllSelectors];
+                [self bulletReinit];
             }
             break;
             
         default:
             if (self.position.x > screenSize.width || self.position.x < 0)
             {
-                self.visible = NO;
-                self.weaponType = 0;
-                self.startPos = CGPointZero;
-                [self stopAllActions];
-                [self unscheduleAllSelectors];
+                [self bulletReinit];
             }
     }
+    
+    [self bulletEnemyCollision];
 }
 
 

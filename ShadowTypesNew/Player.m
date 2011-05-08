@@ -54,7 +54,7 @@
 -(void) loadSprites {
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
 
-    self.weapon = kPlayerWeaponPhaser;
+    self.weapon = kPlayerWeaponMachineGun;
     
     [self loadDefaultSprite];
     [[self.sprite texture] setAliasTexParameters];

@@ -40,7 +40,7 @@
     
     for (int i = 0; i < MAX_ENEMIES; i++) {
         Enemy *e = [enemies objectAtIndex:i];
-        if (![e active]) {
+        if (![e activeInGame]) {
             [e LoadIntoGame:self.theGame withEnemyType:kEnemySmall withSpawnPoint:spawnPos withOrder:(i+5)];
             break;
         }
@@ -51,7 +51,7 @@
 -(void) runEnemyActions {
     for (int i = 0; i < MAX_ENEMIES; i++) {
         Enemy *e = [enemies objectAtIndex:i];
-        if ([e active]) {
+        if ([e activeInGame]) {
             [e moveEnemy];
             [e switchMoveDirection];
             [e enemyFall];
@@ -59,6 +59,10 @@
             if (e.sprite.position.y < -30.0f)
                 [e enemyRespawn];
         }
+        
     }
 }
+
+
+
 @end

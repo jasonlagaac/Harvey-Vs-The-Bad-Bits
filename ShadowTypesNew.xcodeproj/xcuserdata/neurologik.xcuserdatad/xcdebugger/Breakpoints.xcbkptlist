@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "ShadowTypesNew/Enemy.m"
-         timestampString = "326367103.485608"
+         timestampString = "326565126.596181"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "87"
-         endingLineNumber = "87"
+         startingLineNumber = "103"
+         endingLineNumber = "103"
          landmarkName = "-loadAnimations"
          landmarkType = "5">
       </FileBreakpoint>
@@ -57,6 +57,20 @@
          startingLineNumber = "147"
          endingLineNumber = "147"
          landmarkName = "@implementation GameLayer"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "ShadowTypesNew/Enemy.m"
+         timestampString = "326565126.596181"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "33"
+         endingLineNumber = "33"
+         landmarkName = "@implementation Enemy"
          landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>

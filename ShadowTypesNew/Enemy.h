@@ -42,9 +42,10 @@ typedef enum {
     float prevPos_x;
     
     // Sentinal Value
-    bool active;
+    bool activeInGame;
     bool enemyFalling;
     bool started;
+    bool dead;
     
     // Enemy Movement Values
     EnemyMovement direction;
@@ -69,7 +70,8 @@ typedef enum {
 
 @property (nonatomic, readwrite) bool enemyFalling;
 @property (nonatomic, readwrite) bool started;
-@property (nonatomic, readwrite) bool active;
+@property (nonatomic, readwrite) bool activeInGame;
+@property (nonatomic, readwrite) bool dead;
 
 
 @property (nonatomic, readwrite) int health;
@@ -87,5 +89,6 @@ typedef enum {
 -(void) switchMoveDirection;
 -(void) enemyFall;
 -(void) enemyRespawn;
+-(void) enemyDamage:(int)damage;
 
 @end

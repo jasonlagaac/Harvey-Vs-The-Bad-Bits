@@ -89,6 +89,7 @@ typedef enum  {
 
 -(void) playerJump;
 -(void) playerLanded;
+-(void) playerEnemyCollision;
 
 
 @end

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		592AE7DD1377EE9900C88B10 /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7DB1377EE9900C88B10 /* ShadowTypes.png */; };
+		592AE7DE1377EE9900C88B10 /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7DC1377EE9900C88B10 /* ShadowTypes.plist */; };
+		592AE7E71377F81400C88B10 /* Tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7E51377F81400C88B10 /* Tileset.png */; };
+		592AE7EC1378317000C88B10 /* Level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7EB1378317000C88B10 /* Level1.tmx */; };
 		5939F5D41367C24D00BC74D2 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 5939F5D31367C24D00BC74D2 /* Level.m */; };
-		59847DF5137111C7007C301E /* Tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 59847DF3137111C7007C301E /* Tileset.png */; };
-		59847DF6137111C7007C301E /* Level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 59847DF4137111C7007C301E /* Level1.tmx */; };
-		59847E05137118CB007C301E /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 59847E03137118CB007C301E /* ShadowTypes.png */; };
-		59847E06137118CB007C301E /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59847E04137118CB007C301E /* ShadowTypes.plist */; };
 		59847E0A13717FA7007C301E /* EnemyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59847E0913717FA7007C301E /* EnemyCache.m */; };
 		599DE1EF13612D0600FD2E2E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599DE1EE13612D0600FD2E2E /* QuartzCore.framework */; };
 		599DE1F113612D0600FD2E2E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599DE1F013612D0600FD2E2E /* OpenGLES.framework */; };
@@ -176,12 +176,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		592AE7DB1377EE9900C88B10 /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
+		592AE7DC1377EE9900C88B10 /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
+		592AE7E51377F81400C88B10 /* Tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tileset.png; sourceTree = "<group>"; };
+		592AE7EB1378317000C88B10 /* Level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level1.tmx; sourceTree = "<group>"; };
 		5939F5D21367C24C00BC74D2 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		5939F5D31367C24D00BC74D2 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
-		59847DF3137111C7007C301E /* Tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tileset.png; sourceTree = "<group>"; };
-		59847DF4137111C7007C301E /* Level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level1.tmx; sourceTree = "<group>"; };
-		59847E03137118CB007C301E /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
-		59847E04137118CB007C301E /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
 		59847E0813717FA7007C301E /* EnemyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyCache.h; sourceTree = "<group>"; };
 		59847E0913717FA7007C301E /* EnemyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyCache.m; sourceTree = "<group>"; };
 		599DE1EA13612D0600FD2E2E /* ShadowTypesNew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowTypesNew.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -972,10 +972,10 @@
 		599DE43D13614F7300FD2E2E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				59847E03137118CB007C301E /* ShadowTypes.png */,
-				59847E04137118CB007C301E /* ShadowTypes.plist */,
-				59847DF3137111C7007C301E /* Tileset.png */,
-				59847DF4137111C7007C301E /* Level1.tmx */,
+				592AE7EB1378317000C88B10 /* Level1.tmx */,
+				592AE7E51377F81400C88B10 /* Tileset.png */,
+				592AE7DB1377EE9900C88B10 /* ShadowTypes.png */,
+				592AE7DC1377EE9900C88B10 /* ShadowTypes.plist */,
 				599DE45C1361546000FD2E2E /* reloadButtonPressed.png */,
 				599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */,
 				599DE4521361543800FD2E2E /* fireButtonPressed.png */,
@@ -1056,10 +1056,10 @@
 				599DE4591361543800FD2E2E /* Joystick.png in Resources */,
 				599DE45E1361546000FD2E2E /* reloadButtonPressed.png in Resources */,
 				599DE45F1361546000FD2E2E /* reloadButtonUnpressed.png in Resources */,
-				59847DF5137111C7007C301E /* Tileset.png in Resources */,
-				59847DF6137111C7007C301E /* Level1.tmx in Resources */,
-				59847E05137118CB007C301E /* ShadowTypes.png in Resources */,
-				59847E06137118CB007C301E /* ShadowTypes.plist in Resources */,
+				592AE7DD1377EE9900C88B10 /* ShadowTypes.png in Resources */,
+				592AE7DE1377EE9900C88B10 /* ShadowTypes.plist in Resources */,
+				592AE7E71377F81400C88B10 /* Tileset.png in Resources */,
+				592AE7EC1378317000C88B10 /* Level1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

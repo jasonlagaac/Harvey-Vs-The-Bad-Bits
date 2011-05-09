@@ -51,6 +51,8 @@ typedef enum
     Player *player;
     BulletCache *bulletCache;
     Level *level;
+    Item *cartridge;
+    Item *ammoBox;
     
     int playerLevel;
     int score;
@@ -69,10 +71,12 @@ typedef enum
 @property (nonatomic, retain) EnemyCache *enemyCache;
 
 @property (nonatomic, retain) Level *level;
+@property (nonatomic, retain) Item *cartridge;
+@property (nonatomic, retain) Item *ammoBox;
+
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
--(void) checkItemSpawnTime;
 +(GameLayer*) sharedGameLayer;
 
 

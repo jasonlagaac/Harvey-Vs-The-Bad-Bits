@@ -54,7 +54,7 @@
 -(void) loadSprites {
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
 
-    self.weapon = kPlayerWeaponMachineGun;
+    self.weapon = kPlayerWeaponPistol;
     
     [self loadDefaultSprite];
     [[self.sprite texture] setAliasTexParameters];
@@ -375,12 +375,26 @@
     
 }
 
--(void)playerRespawn {
+-(void) playerRespawn {
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
 
     body->p = CGPointMake(screenSize.width / 2, screenSize.height +10);
 }
 
+-(void) playerEnemyCollision {
+    EnemyCache *ec = [self.theGame enemyCache];
+    
+    for (int i = 0; i < MAX_ENEMIES; i++) {
+        Enemy *e = [[ec enemies] objectAtIndex:i];
+        if ([e activeInGame]) {
+            if (ccpDistance(self.sprite.position, e.sprite.position) < 10) {
+                //NSLog(@"Player Hit");
+                
+                // Player death action should happen here
+            }
+        }
+    }
+}
 
 #pragma mark -
 #pragma mark Update actions

@@ -49,6 +49,8 @@ eachShape(void *ptr, void* unused)
 @synthesize enemyCache;
 @synthesize space;
 @synthesize level;
+@synthesize ammoBox;
+@synthesize cartridge;
 
 static GameLayer* instanceOfGameLayer;
 
@@ -113,7 +115,8 @@ static GameLayer* instanceOfGameLayer;
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ShadowTypes.plist"];
 
 
-        
+        cartridge = [[Item alloc] initWithGame:self withType:kCartridge];
+        ammoBox = [[Item alloc] initWithGame:self withType:kAmmoPack];
         player = [[Player alloc] initWithGame:self];
 
         NSMutableArray *spawnPos = [[NSMutableArray alloc] init];
@@ -144,22 +147,10 @@ static GameLayer* instanceOfGameLayer;
 	[super onEnter];
 }
 
-#pragma mark -
-#pragma mark Item Spawn Operation
--(void) checkItemSpawnTime {
-    for (int i = 0; i < MAX_ITEMS; i++) {
-        if ([items[i] timeToSpawn] == remainingTime) {
-            [items[i] loadIntoLayer];
-        } else if ([items[i] timeRemove] == remainingTime) {
-            [items[i] removeFromLayer];
-        }        
-    }
-    
-    remainingTime--;
-}
+
 
 #pragma mark -
-#pragma mark Physics Step Operation
+#pragma mark Game Step Operation
 -(void) step: (ccTime) delta
 {
 	int steps = 2;
@@ -168,13 +159,13 @@ static GameLayer* instanceOfGameLayer;
 	for(int i=0; i<steps; i++){
 		cpSpaceStep(space, dt);
 	}
-
-    //[[self enemyCache] runDeadEnemyCleanup];
 	cpSpaceHashEach(space->activeShapes, &eachShape, nil);
 	cpSpaceHashEach(space->staticShapes, &eachShape, nil);
     
     [[self enemyCache] runEnemyActions];
-    
+    [[self player] playerEnemyCollision];
+    [[self cartridge] checkItemCollision];
+    [[self ammoBox] checkItemCollision];
     
 }
 

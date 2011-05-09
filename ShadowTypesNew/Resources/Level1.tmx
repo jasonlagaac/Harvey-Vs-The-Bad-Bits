@@ -26,7 +26,12 @@
   <object x="300" y="160" width="160"/>
   <object x="200" y="0" height="20"/>
   <object x="280" y="0" height="20"/>
-  <object x="200" y="300" height="20"/>
-  <object x="280" y="300" height="20"/>
+  <object x="200" y="280" height="40"/>
+  <object x="280" y="280" height="40"/>
  </objectgroup>
+ <layer name="Item Spawn" width="24" height="16" opacity="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBj+gBkHHikAl/8JhQO5+oYbGPX/aPoZrgAAotcAhQ==
+  </data>
+ </layer>
 </map>

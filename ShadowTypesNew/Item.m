@@ -11,44 +11,41 @@
 
 @interface Item (private) 
 -(CGPoint) genRandPos;
--(CGRect) setItemSprite;
+-(void) setItemSprite;
+-(void) loadPhysics;
 @end
 
 @implementation Item
 
 @synthesize item;
 @synthesize collected;
-@synthesize timeRemove;
+
+@synthesize body;
+@synthesize shape;
+
 
 /*****************************************
     Implementation of Private Methods 
 *****************************************/
 -(CGPoint) genRandPos {
-    return ccp(arc4random() % 400, 40);
+    NSMutableArray *spawnPoints = [[theGame level] itemSpawnPos];
+    int totalSpawnPoints = [spawnPoints count];
+    NSLog(@"%d",totalSpawnPoints);
+    return [[spawnPoints objectAtIndex:(arc4random() % totalSpawnPoints)] CGPointValue];
 }
 
--(CGRect) setItemSprite{
-    CGRect itemSprite;
-    
-    
+-(void) setItemSprite {    
     switch (self.item) {
-		case kMedPack:
-            itemSprite = CGRectMake(432, 238, 44, 44);
+		case kCartridge:
+            self.sprite = [CCSprite spriteWithSpriteFrameName:@"Cartridge2.png"];
 			break;
         case kAmmoPack:
-            itemSprite = CGRectMake(2,384, 47, 31);
+            self.sprite = [CCSprite spriteWithSpriteFrameName:@"AmmoBox.png"];
 			break;
-            
-        // All weapons should be boxes
-        case kWeaponPistol:
-        case kWeaponShotgun:
-        case kWeaponSMG:
-            itemSprite = CGRectMake(348, 258, 82, 56);
-
-            break;
+        break;
 	}
     
-    return itemSprite;
+    [self.theGame addChild:self.sprite z:5];
 }
 
 
@@ -58,10 +55,16 @@
 
 // Initialisation and object loading
 
--(id) initWithGame:(GameLayer *)game {    
+-(id) initWithGame:(GameLayer *)game withType:(ItemType)objType {    
     if( (self=[super init])) {
         self.theGame = game;
+        self.item = objType;
         self.collected = NO;
+        
+        [self setItemSprite];
+        self.sprite.position = [self genRandPos];
+        NSLog(@"%f, %f", self.sprite.position.x, self.sprite.position.y);
+        [self loadPhysics];        
         
         [game addChild:self];
     }
@@ -69,19 +72,72 @@
     return self;
 }
 
--(void) loadObj:(int)objType spawnTime:(float)sTime removeTime:(float)rTime {
-    self.timeToSpawn = sTime;
-    self.timeRemove = rTime;
+-(void) loadPhysics {
+    int numVert = 4;
+    CGPoint verts[4];
     
-    CCSpriteBatchNode *s = (CCSpriteBatchNode *) [theGame getChildByTag:K_SSheet1];
+    if (self.item == kCartridge) {
+        verts[0] = ccp(-8, -9);
+        verts[1] = ccp(-8,  9);
+        verts[2] = ccp( 8,  9);
+        verts[3] = ccp( 8, -9);
+    } else if (self.item == kAmmoPack) {
+        verts[0] = ccp(-13, -10);
+        verts[1] = ccp(-13,  10);
+        verts[2] = ccp( 13,  10);
+        verts[3] = ccp( 13, -10);
+    }
     
-    self.item = objType;
-    self.sprite = [CCSprite spriteWithBatchNode:s rect:[self setItemSprite]];
-    [self.sprite setPosition:[self genRandPos]];
+    // Define the mass and movement of intertia
+    body = cpBodyNew(1.0f, cpMomentForPoly(1.0f, numVert, verts, CGPointZero));
+    body->p = self.sprite.position;
+    body->data = self;
+    cpSpaceAddBody(theGame.space, body);
+    
+    // Define the polygonal shape
+    shape = cpPolyShapeNew(body, numVert, verts, CGPointZero);
+    shape->e = 0.0;
+    shape->u = 1.0;
+    shape->data = self.sprite;
+    shape->group = 1;
+    shape->collision_type = 0;
+    cpBodySetMoment(shape->body, INFINITY);
+    cpSpaceAddShape(theGame.space, shape);
 }
 
--(void)loadObj:(int)objType spawnTime:(float)sTime {
-    [self loadObj:objType spawnTime:sTime removeTime:-1];
+-(void) reloadObject {
+    [sprite setOpacity:0];
+    [self.sprite setPosition:[self genRandPos]];
+    self.body->p = self.sprite.position;
+    [sprite runAction:[CCFadeIn actionWithDuration:0.5]];
+}
+
+-(void) checkItemCollision {
+    EnemyCache *ec = theGame.enemyCache;
+    Player *p = theGame.player;
+    
+    
+    if (ccpDistance(p.sprite.position, self.sprite.position) < 15) {
+        [self reloadObject];
+    }
+    
+    //NSLog(@"%f", ccpDistance(p.sprite.position, self.sprite.position));
+
+    
+    if (self.item == kCartridge) {
+    
+        for (int i = 0; i < MAX_ENEMIES; i++) {
+            Enemy *e = [ec.enemies objectAtIndex:i];
+        
+            if (e.activeInGame) {
+                if (ccpDistance(self.sprite.position, e.sprite.position) < 10) {
+                    [self reloadObject];
+                    break;
+                }
+            }
+        }
+        
+    }
 }
 
 - (void) dealloc
@@ -93,28 +149,5 @@
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }
-
-// Loading and removing sprite from scene
-
--(void) loadIntoLayer {
-    CCSpriteBatchNode *s = (CCSpriteBatchNode *) [theGame getChildByTag:K_SSheet1];
-    [sprite setOpacity:0];
-    [[sprite texture] setAliasTexParameters];
-    [s addChild:sprite z:3]; // Add sheet to layer
-    [sprite runAction:[CCFadeIn actionWithDuration:5]];
-    NSLog(@"%f",sprite.position.x);
-    
-    // Should animate fade in and schedule bounce
-}        
-
--(void) removeFromLayer {
-    [sprite runAction:[CCSequence actions:[CCFadeOut actionWithDuration:5],[CCCallFuncN actionWithTarget:self selector:@selector(removeSprite)],nil]];    
-}
-
--(void) removeSprite {
-    CCSpriteBatchNode *s = (CCSpriteBatchNode *) [theGame getChildByTag:K_SSheet1];
-    [s removeChild:sprite cleanup:YES];
-}
-
 
 @end

@@ -86,7 +86,7 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
     switch (self.enemyType) {
         case kEnemySmall:
             self.sprite = [CCSprite spriteWithSpriteFrameName:@"EnemySmall2.png"];
-            self.health = 5;
+            self.health = 2;
             break;
         case kEnemyLarge:
             self.sprite = [CCSprite spriteWithSpriteFrameName:@"EnemyLarge.png"];
@@ -138,6 +138,7 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
     cpSpaceAddShape(theGame.space, shape);
     
 }
+
 -(void) LoadIntoGame:(GameLayer *)game withEnemyType:(EnemyType)type withSpawnPoint:(CGPoint) spawn withOrder:(int)order {    
     self.theGame = game;
     self.enemyType = type;

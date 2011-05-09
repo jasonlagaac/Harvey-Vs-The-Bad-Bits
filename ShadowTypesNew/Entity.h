@@ -15,11 +15,9 @@
 @interface Entity : CCNode {
     CCSprite *sprite;
     GameLayer *theGame;
-    float timeToSpawn;
 }
 
 @property (nonatomic, retain) CCSprite *sprite;
 @property (nonatomic, retain) GameLayer *theGame;
-@property (nonatomic, readwrite) float timeToSpawn;
 
 @end

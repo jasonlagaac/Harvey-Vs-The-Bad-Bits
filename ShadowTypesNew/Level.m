@@ -14,6 +14,8 @@
 
 @implementation Level
 @synthesize theGame;
+@synthesize itemSpawnPos;
+
 
 #pragma mark -
 #pragma mark Alloc / Dealloc
@@ -24,13 +26,14 @@
 
         // Save Instance of Game
         self.theGame = game;
+        self.itemSpawnPos = [[NSMutableArray alloc] init];
         
         // Loading Tilemap
         CCTMXTiledMap *map = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"Level%d.tmx",levelNum]];
         [game addChild: map];
         
         CCTMXLayer *level = [map layerNamed:@"Level"];
-        
+
         [game reorderChild:level z:1];
         
         CCTMXObjectGroup *levelObj = [map objectGroupNamed:@"Object Layer"];
@@ -40,6 +43,14 @@
             [self loadLevelObjWith:pos height:[[d valueForKey:@"height"] floatValue] width: [[d valueForKey:@"width"] floatValue]];
         }
         
+        CCTMXLayer *itemSpawnPoints = [map layerNamed:@"Item Spawn"];        
+        CGSize s = [itemSpawnPoints layerSize];
+        
+        for( int x=0; x<s.width;x++) {
+            for( int y=0; y< s.height; y++ ) 
+                if ([itemSpawnPoints tileAt:ccp(x,y)])
+                    [itemSpawnPos addObject:[NSValue valueWithCGPoint:[itemSpawnPoints tileAt:ccp(x,y)].position]];
+        }
     }
     
     return self;

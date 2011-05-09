@@ -11,7 +11,6 @@
 
 @implementation Entity
 
-@synthesize timeToSpawn;
 @synthesize sprite;
 @synthesize theGame;
 

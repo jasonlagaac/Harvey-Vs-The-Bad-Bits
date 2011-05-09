@@ -31,6 +31,5 @@
 -(id) initWithGame:(GameLayer *)game withLevel:(int)level withStartPoints:(NSMutableArray *)startPointList;
 -(void)spawnEnemy;
 -(void) runEnemyActions;
--(void) runDeadEnemyCleanup;
 
 @end

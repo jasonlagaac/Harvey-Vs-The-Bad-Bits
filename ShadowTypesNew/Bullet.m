@@ -62,12 +62,12 @@
             self.damage = 1;
             break;
         case kPlayerWeaponMachineGun:
-            self.velocity = CGPointMake(9, 0);
+            self.velocity = CGPointMake(7, 0);
             self.damage = 3;
             break;
             
         case kPlayerWeaponShotgun:
-            self.velocity = CGPointMake((arc4random() % 8 + 5), 0);
+            self.velocity = CGPointMake((arc4random() % 6 + 5), 0);
             self.damage = 1;
             break;
         case kPlayerWeaponPhaser:

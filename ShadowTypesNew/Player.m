@@ -47,6 +47,8 @@
 @synthesize shotgunWalkAction;
 @synthesize phaserWalkAction;
 
+@synthesize points;
+
 
 #pragma mark - 
 #pragma mark Player Attribute Initialisation
@@ -297,7 +299,7 @@
 
 
 -(void) playerJump {
-    self.body->v.y = 300.0f;
+    self.body->v.y = 400.0f;
     self.playerJumping = YES; 
     [self playerJumpFallSprite];
 }
@@ -375,10 +377,29 @@
     
 }
 
+
 -(void) playerRespawn {
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
 
     body->p = CGPointMake(screenSize.width / 2, screenSize.height +10);
+}
+
+-(void) playerChangeWeapon {
+    PlayerWeapon chosenWeapon = kPlayerWeaponPistol;
+    
+    while (true) {
+        chosenWeapon = (arc4random() % kPlayerWeaponCount);
+        
+        if (chosenWeapon == kPlayerWeaponPistol)
+            chosenWeapon++;
+        
+        if (chosenWeapon != self.weapon) 
+            break;
+    }
+    
+    self.weapon = chosenWeapon;
+    [self stopAllActions];
+    [self restoreDefaultSprite];
 }
 
 -(void) playerEnemyCollision {
@@ -388,12 +409,20 @@
         Enemy *e = [[ec enemies] objectAtIndex:i];
         if ([e activeInGame]) {
             if (ccpDistance(self.sprite.position, e.sprite.position) < 10) {
-                //NSLog(@"Player Hit");
-                
+                self.points = 0;
+                [theGame updateScore];
                 // Player death action should happen here
             }
         }
     }
+}
+
+# pragma mark -
+# pragma mark Player Statistics Actions
+
+-(void) playerAddPoint {
+    self.points++;
+    [theGame updateScore];
 }
 
 #pragma mark -
@@ -405,6 +434,7 @@
     if (self.sprite.position.y < -30.0f) {
         [self playerRespawn];
     }
+    
 }
 
 

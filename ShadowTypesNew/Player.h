@@ -15,7 +15,8 @@ typedef enum  {
     kPlayerWeaponPistol,
     kPlayerWeaponMachineGun,
     kPlayerWeaponShotgun,
-    kPlayerWeaponPhaser
+    kPlayerWeaponPhaser,
+    kPlayerWeaponCount
 } PlayerWeapon;
 
 typedef enum  {
@@ -75,6 +76,8 @@ typedef enum  {
 @property (nonatomic, retain) CCAction *shotgunWalkAction;
 @property (nonatomic, retain) CCAction *phaserWalkAction;
 
+@property (nonatomic, readwrite) int points;
+
 -(void) restoreDefaultSprite;
 -(void) playerAnimateMove;
 -(void) playerStopAnimations;
@@ -90,6 +93,9 @@ typedef enum  {
 -(void) playerJump;
 -(void) playerLanded;
 -(void) playerEnemyCollision;
+-(void) playerChangeWeapon;
+
+-(void) playerAddPoint;
 
 
 @end

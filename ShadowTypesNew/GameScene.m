@@ -92,6 +92,9 @@ static GameLayer* instanceOfGameLayer;
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self = [super initWithColor:ccc4(255,255,255,255)] )) {
         
+        // Need the screen window size for iPad and iPhone differentiation 
+        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+        
         // Initialise Chipmunk
 		cpInitChipmunk();
 		
@@ -113,6 +116,13 @@ static GameLayer* instanceOfGameLayer;
         
         // Load the items and images into the framecache
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ShadowTypes.plist"];
+        
+        // Initialise the Score Label
+        CCLabelAtlas *scoreLabel = [CCLabelAtlas labelWithString:@"0" charMapFile:@"ScoreNumbers.png" itemWidth:25 itemHeight:23 startCharMap:'.'];
+        
+        [self addChild:scoreLabel z:12 tag:K_ScoreLabel];
+        [scoreLabel setPosition:CGPointMake((screenSize.width / 2), (screenSize.height - 30))];
+        [scoreLabel setAnchorPoint:ccp(0.5,0)];
 
 
         cartridge = [[Item alloc] initWithGame:self withType:kCartridge];
@@ -147,6 +157,10 @@ static GameLayer* instanceOfGameLayer;
 	[super onEnter];
 }
 
+-(void) updateScore {
+    CCLabelAtlas *l = (CCLabelAtlas *)[self getChildByTag:K_ScoreLabel];
+    [l setString:[NSString stringWithFormat:@"%d", [player points]]];
+}
 
 
 #pragma mark -
@@ -165,8 +179,7 @@ static GameLayer* instanceOfGameLayer;
     [[self enemyCache] runEnemyActions];
     [[self player] playerEnemyCollision];
     [[self cartridge] checkItemCollision];
-    [[self ammoBox] checkItemCollision];
-    
+    [[self ammoBox] checkItemCollision];    
 }
 
 -(void) update: (ccTime) delta {

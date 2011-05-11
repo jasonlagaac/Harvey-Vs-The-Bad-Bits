@@ -20,6 +20,7 @@
 
 #define K_SSheet1 0
 #define K_BulletCache 1
+#define K_ScoreLabel 2
 
 #define MAX_ITEMS 10
 
@@ -78,6 +79,7 @@ typedef enum
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 +(GameLayer*) sharedGameLayer;
+-(void) updateScore;
 
 
 @end

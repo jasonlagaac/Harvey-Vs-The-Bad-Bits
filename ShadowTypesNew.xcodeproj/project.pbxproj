@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		592AE7DD1377EE9900C88B10 /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7DB1377EE9900C88B10 /* ShadowTypes.png */; };
-		592AE7DE1377EE9900C88B10 /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7DC1377EE9900C88B10 /* ShadowTypes.plist */; };
 		592AE7E71377F81400C88B10 /* Tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7E51377F81400C88B10 /* Tileset.png */; };
 		592AE7EC1378317000C88B10 /* Level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7EB1378317000C88B10 /* Level1.tmx */; };
+		592AE7EF137925EA00C88B10 /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7ED137925EA00C88B10 /* ShadowTypes.png */; };
+		592AE7F0137925EA00C88B10 /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7EE137925EA00C88B10 /* ShadowTypes.plist */; };
 		5939F5D41367C24D00BC74D2 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 5939F5D31367C24D00BC74D2 /* Level.m */; };
 		59847E0A13717FA7007C301E /* EnemyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59847E0913717FA7007C301E /* EnemyCache.m */; };
 		599DE1EF13612D0600FD2E2E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599DE1EE13612D0600FD2E2E /* QuartzCore.framework */; };
@@ -173,13 +173,14 @@
 		599DE4591361543800FD2E2E /* Joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE4541361543800FD2E2E /* Joystick.png */; };
 		599DE45E1361546000FD2E2E /* reloadButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE45C1361546000FD2E2E /* reloadButtonPressed.png */; };
 		599DE45F1361546000FD2E2E /* reloadButtonUnpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */; };
+		59E96D71137A8274008CA66D /* ScoreNumbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E96D70137A8274008CA66D /* ScoreNumbers.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		592AE7DB1377EE9900C88B10 /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
-		592AE7DC1377EE9900C88B10 /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
 		592AE7E51377F81400C88B10 /* Tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tileset.png; sourceTree = "<group>"; };
 		592AE7EB1378317000C88B10 /* Level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level1.tmx; sourceTree = "<group>"; };
+		592AE7ED137925EA00C88B10 /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
+		592AE7EE137925EA00C88B10 /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
 		5939F5D21367C24C00BC74D2 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		5939F5D31367C24D00BC74D2 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		59847E0813717FA7007C301E /* EnemyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyCache.h; sourceTree = "<group>"; };
@@ -504,6 +505,7 @@
 		599DE4541361543800FD2E2E /* Joystick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Joystick.png; sourceTree = "<group>"; };
 		599DE45C1361546000FD2E2E /* reloadButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadButtonPressed.png; sourceTree = "<group>"; };
 		599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadButtonUnpressed.png; sourceTree = "<group>"; };
+		59E96D70137A8274008CA66D /* ScoreNumbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScoreNumbers.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -973,9 +975,8 @@
 			isa = PBXGroup;
 			children = (
 				592AE7EB1378317000C88B10 /* Level1.tmx */,
+				59E96D70137A8274008CA66D /* ScoreNumbers.png */,
 				592AE7E51377F81400C88B10 /* Tileset.png */,
-				592AE7DB1377EE9900C88B10 /* ShadowTypes.png */,
-				592AE7DC1377EE9900C88B10 /* ShadowTypes.plist */,
 				599DE45C1361546000FD2E2E /* reloadButtonPressed.png */,
 				599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */,
 				599DE4521361543800FD2E2E /* fireButtonPressed.png */,
@@ -988,6 +989,8 @@
 				599DE44213614F7300FD2E2E /* Icon-Small.png */,
 				599DE44313614F7300FD2E2E /* Icon-Small@2x.png */,
 				599DE44413614F7300FD2E2E /* Icon.png */,
+				592AE7ED137925EA00C88B10 /* ShadowTypes.png */,
+				592AE7EE137925EA00C88B10 /* ShadowTypes.plist */,
 				599DE44513614F7300FD2E2E /* Icon@2x.png */,
 				599DE44613614F7300FD2E2E /* Info.plist */,
 				599DE44713614F7300FD2E2E /* iTunesArtwork */,
@@ -1056,10 +1059,11 @@
 				599DE4591361543800FD2E2E /* Joystick.png in Resources */,
 				599DE45E1361546000FD2E2E /* reloadButtonPressed.png in Resources */,
 				599DE45F1361546000FD2E2E /* reloadButtonUnpressed.png in Resources */,
-				592AE7DD1377EE9900C88B10 /* ShadowTypes.png in Resources */,
-				592AE7DE1377EE9900C88B10 /* ShadowTypes.plist in Resources */,
 				592AE7E71377F81400C88B10 /* Tileset.png in Resources */,
 				592AE7EC1378317000C88B10 /* Level1.tmx in Resources */,
+				592AE7EF137925EA00C88B10 /* ShadowTypes.png in Resources */,
+				592AE7F0137925EA00C88B10 /* ShadowTypes.plist in Resources */,
+				59E96D71137A8274008CA66D /* ScoreNumbers.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

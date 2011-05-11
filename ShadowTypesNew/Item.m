@@ -30,8 +30,16 @@
 -(CGPoint) genRandPos {
     NSMutableArray *spawnPoints = [[theGame level] itemSpawnPos];
     int totalSpawnPoints = [spawnPoints count];
-    NSLog(@"%d",totalSpawnPoints);
-    return [[spawnPoints objectAtIndex:(arc4random() % totalSpawnPoints)] CGPointValue];
+    CGPoint newSpawnPoint = CGPointZero;
+    
+    while (true) {
+        newSpawnPoint = [[spawnPoints objectAtIndex:(arc4random() % totalSpawnPoints)] CGPointValue];
+        
+        if (newSpawnPoint.x != self.sprite.position.x && newSpawnPoint.y != self.sprite.position.y)
+            break;
+    }
+    
+    return newSpawnPoint;
 }
 
 -(void) setItemSprite {    
@@ -63,7 +71,6 @@
         
         [self setItemSprite];
         self.sprite.position = [self genRandPos];
-        NSLog(@"%f, %f", self.sprite.position.x, self.sprite.position.y);
         [self loadPhysics];        
         
         [game addChild:self];
@@ -113,17 +120,21 @@
 }
 
 -(void) checkItemCollision {
-    EnemyCache *ec = theGame.enemyCache;
+    //EnemyCache *ec = theGame.enemyCache;
     Player *p = theGame.player;
     
     
-    if (ccpDistance(p.sprite.position, self.sprite.position) < 15) {
+    if (ccpDistance(p.sprite.position, self.sprite.position) < 25) {
+        if (self.item == kAmmoPack) {
+            [p playerChangeWeapon];
+        } else {
+            [p playerAddPoint];
+        }
+        
         [self reloadObject];
     }
-    
-    //NSLog(@"%f", ccpDistance(p.sprite.position, self.sprite.position));
-
-    
+  
+    /*
     if (self.item == kCartridge) {
     
         for (int i = 0; i < MAX_ENEMIES; i++) {
@@ -138,6 +149,7 @@
         }
         
     }
+     */
 }
 
 - (void) dealloc

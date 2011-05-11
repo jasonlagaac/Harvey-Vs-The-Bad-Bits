@@ -71,7 +71,7 @@
             self.damage = 1;
             break;
         case kPlayerWeaponPhaser:
-            self.velocity = CGPointMake(15, 0);
+            self.velocity = CGPointMake(9, 0);
             self.damage = 5;
             break;
     }
@@ -100,7 +100,7 @@
     for (int i = 0; i < MAX_ENEMIES; i++) {
         Enemy *e = [[ec enemies] objectAtIndex:i];   
         if (e.activeInGame) {
-            if (ccpDistance(self.position, e.sprite.position) < 10) {
+            if (ccpDistance(self.position, e.sprite.position) < 15) {
                 [e enemyDamage:self.damage];
                 [self bulletReinit];
             }

@@ -28,7 +28,10 @@
 @property (nonatomic, readwrite) int gameLevel;
 
 
--(id) initWithGame:(GameLayer *)game withLevel:(int)level withStartPoints:(NSMutableArray *)startPointList;
+-(id) initWithGame:(GameLayer *)game 
+         withLevel:(int)level 
+   withStartPoints:(NSMutableArray *)startPointList;
+
 -(void)spawnEnemy;
 -(void) runEnemyActions;
 

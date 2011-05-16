@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 #import "GameScene.h"
 
-
+// Weapon Types
 typedef enum  {
     kPlayerWeaponPistol,
     kPlayerWeaponMachineGun,
@@ -19,6 +19,7 @@ typedef enum  {
     kPlayerWeaponCount
 } PlayerWeapon;
 
+// Movement Directions
 typedef enum  {
     kPlayerMoveRight,
     kPlayerMoveLeft
@@ -29,24 +30,22 @@ typedef enum  {
 
 @interface Player : CCNode {
     // Game Entities
-    GameLayer *theGame;
+    GameLayer *theGame;    // Pointer instance of the game
     
     // Phyiscs Attribs
-    cpBody *body;
-    cpShape *shape;
+    cpBody *body;          // Physics body
+    cpShape *shape;        // Physics shape
     
     // Player Attribs
-    CCSprite *sprite;
-    PlayerWeapon weapon; 
-    int hp;
-    int points;
+    CCSprite *sprite;      // Player sprite
+    PlayerWeapon weapon;   // Weapon type
+    int points;            // Player's score
     
     
     // Movement values;
-    PlayerMovement direction;
-    BOOL playerMoving;
-    BOOL playerAttacking;
-    BOOL playerJumping;
+    PlayerMovement direction;   // Direction of movment by player
+    BOOL playerAttacking;       // Determine if the player is in attack mode
+    BOOL playerJumping;         // Determine if the player is jumping
     
     
     // Animation Actions
@@ -62,7 +61,6 @@ typedef enum  {
 @property (nonatomic, readwrite) PlayerWeapon weapon;
 
 @property (nonatomic, readwrite) PlayerMovement direction;
-@property (nonatomic, readwrite) BOOL playerMoving;
 @property (nonatomic, readwrite) BOOL playerAttacking;
 @property (nonatomic, readwrite) BOOL playerJumping;
 
@@ -78,24 +76,24 @@ typedef enum  {
 
 @property (nonatomic, readwrite) int points;
 
--(void) restoreDefaultSprite;
--(void) playerAnimateMove;
--(void) playerStopAnimations;
+- (void)restoreDefaultSprite;
+- (void)animateMove;
+- (void)stopAnimations;
 
--(void) playerMovementX:(float)velocity_x;
--(void) playerFacingDirection:(float)velocity_x;
--(void) playerAnimateMovement:(float)velocity_x;
+- (void)move_x:(float)velocity_x activeFireButton:(bool)fireButtonActive;
+- (void)facingDirection:(float)velocity_x;
+- (void)animateMovement:(float)velocity_x;
 
--(void) playerAttack:(bool)fireButtonActive 
-        nextShotTime:(float*)nextShotTime 
-           totalTime:(float)totalTime;
+- (void)attack:(bool)fireButtonActive 
+  nextShotTime:(float*)nextShotTime 
+     totalTime:(float)totalTime;
 
--(void) playerJump;
--(void) playerLanded;
--(void) playerEnemyCollision;
--(void) playerChangeWeapon;
+- (void)jump;
+- (void)land;
+- (void)checkEnemyCollision;
+- (void)changeWeapon;
 
--(void) playerAddPoint;
+- (void)addPoint;
 
 
 @end

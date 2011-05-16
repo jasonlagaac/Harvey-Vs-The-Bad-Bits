@@ -28,7 +28,7 @@ typedef enum
 {
 	GameSceneLayerTagGame = 1,
 	GameSceneLayerTagInput,
-    GameSceneNodeTagBulletCache,
+  GameSceneNodeTagBulletCache,
 	
 } GameSceneLayerTags;
 
@@ -40,24 +40,24 @@ typedef enum
 @class Level;
 
 // HelloWorldLayer
-@interface GameLayer : CCColorLayer
+@interface GameLayer : CCLayer
 {
-    // Physics Entities
-    cpSpace *space;
-    
-    // Game Entities
-    Item *items[10];
-    EnemyCache *enemyCache;
-    Enemy *enemy;
-    Player *player;
-    BulletCache *bulletCache;
-    Level *level;
-    Item *cartridge;
-    Item *ammoBox;
-    
-    int playerLevel;
-    int score;
-    int remainingTime;
+  // Physics Entities
+  cpSpace *space;
+  
+  // Game Entities
+  Item *items[10];
+  EnemyCache *enemyCache;
+  Enemy *enemy;
+  Player *player;
+  BulletCache *bulletCache;
+  Level *level;
+  Item *cartridge;
+  Item *ammoBox;
+  
+  int playerLevel;
+  int score;
+  int remainingTime;
 }
 
 @property (nonatomic, readwrite) int playerLevel;

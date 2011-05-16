@@ -13,46 +13,46 @@
 
 
 typedef enum {
-    kEnemySmall,
-    kEnemyLarge
+  kEnemySmall,
+  kEnemyLarge
 } EnemyType;
 
 typedef enum {
-    kEnemyMoveRight,
-    kEnemyMoveLeft,
-    kNumEnemyMovements
+  kEnemyMoveRight,
+  kEnemyMoveLeft,
+  kNumEnemyMovements
 } EnemyMovement;
 
 @class GameLayer;
 
 @interface Enemy : CCNode {
-    // Game Entities
-    GameLayer *theGame;
-    
-    // Physics Attribs
-    cpBody *body;
-    cpShape *shape;
-    
-    // Enemy Attributes
-    CCSprite *sprite;
-    EnemyType enemyType;
-    CGPoint spawnPos;
-    int health;
-    
-    float prevPos_x;
-    
-    // Sentinal Value
-    bool activeInGame;
-    bool enemyFalling;
-    bool started;
-    bool dead;
-    
-    // Enemy Movement Values
-    EnemyMovement direction;
-    
-    // Animation Actions
-    CCAction *enemyWalkAction;
-    
+  // Game Entities
+  GameLayer *theGame;
+  
+  // Physics Attribs
+  cpBody *body;
+  cpShape *shape;
+  
+  // Enemy Attributes
+  CCSprite *sprite;
+  EnemyType enemyType;
+  CGPoint spawnPos;
+  int health;
+  
+  float prevPos_x;
+  
+  // Sentinal Value
+  bool activeInGame;
+  bool enemyFalling;
+  bool started;
+  bool dead;
+  
+  // Enemy Movement Values
+  EnemyMovement direction;
+  
+  // Animation Actions
+  CCAction *enemyWalkAction;
+  
 }
 
 @property (nonatomic, retain) CCSprite *sprite;
@@ -78,17 +78,17 @@ typedef enum {
 @property (nonatomic, readwrite) int points;
 @property (nonatomic, readwrite) float prevPos_x;
 
-+(id)enemy;
++ (id)enemy;
 
--(void) LoadIntoGame:(GameLayer *)game 
-       withEnemyType:(EnemyType)type 
-      withSpawnPoint:(CGPoint)spawnPoint
-           withOrder:(int)order;
+- (void) loadIntoGame:(GameLayer *)game 
+        withEnemyType:(EnemyType)type 
+       withSpawnPoint:(CGPoint)spawnPoint
+            withOrder:(int)order;
 
--(void) moveEnemy;
--(void) switchMoveDirection;
--(void) enemyFall;
--(void) enemyRespawn;
--(void) enemyDamage:(int)damage;
+- (void)move;
+- (void)switchMoveDirection;
+- (void)fall;
+- (void)respawn;
+- (void)damage:(int)damage;
 
 @end

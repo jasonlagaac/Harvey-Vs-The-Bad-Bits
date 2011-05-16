@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "ShadowTypesNew/Player.m"
-         timestampString = "326729226.245112"
+         timestampString = "327254850.156555"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "329"
-         endingLineNumber = "329"
+         startingLineNumber = "353"
+         endingLineNumber = "353"
          landmarkName = "-playerAttack:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -58,20 +58,6 @@
          endingLineNumber = "33"
          landmarkName = "@implementation Enemy"
          landmarkType = "3">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "ShadowTypesNew/Item.m"
-         timestampString = "326732011.444647"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "85"
-         endingLineNumber = "85"
-         landmarkName = "-loadPhysics"
-         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"

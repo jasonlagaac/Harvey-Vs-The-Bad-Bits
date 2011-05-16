@@ -14,11 +14,11 @@
 #import "EnemyCache.h"
 
 @interface Bullet : CCSprite {
-    CGPoint velocity;
-    CGPoint startPos;
-    float outsideScreen;
-    int weaponType;
-    int damage;
+  CGPoint velocity;
+  CGPoint startPos;
+  float outsideScreen;
+  int weaponType;
+  int damage;
 }
 
 @property (readwrite, nonatomic) CGPoint velocity;
@@ -26,9 +26,12 @@
 @property (readwrite, nonatomic) int weaponType;
 @property (readwrite, nonatomic) int damage;
 
-+(id)bullet;
--(void) shootBulletAt:(CGPoint)startPosition direction:(int)direction 
-            frameName:(NSString*)frameName weaponType:(int)weapon;
--(void)bulletReinit;
++ (id)bullet;
+- (void)shootBulletAt:(CGPoint)startPosition 
+            direction:(int)direction 
+            frameName:(NSString*)frameName 
+           weaponType:(int)weapon;
+
+- (void)bulletReinit;
 
 @end

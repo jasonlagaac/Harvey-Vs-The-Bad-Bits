@@ -14,7 +14,4 @@
 @synthesize sprite;
 @synthesize theGame;
 
-
-
-
 @end

@@ -17,50 +17,50 @@
 @synthesize gameLevel;
 
 -(id) initWithGame:(GameLayer *)game withLevel:(int)level withStartPoints:(NSMutableArray *)startPointList {
-    if ((self = [super init])) {
-        self.theGame = game;
-        self.enemies = [CCArray arrayWithCapacity:MAX_ENEMIES];
-        self.startPoints = startPointList;
-        self.gameLevel = level;
-        
-        for (int i = 0; i < MAX_ENEMIES; i++) {
-            Enemy *e = [Enemy enemy];
-            [[self enemies] addObject:e];
-        }
-    }
+  if ((self = [super init])) {
+    self.theGame = game;
+    self.enemies = [CCArray arrayWithCapacity:MAX_ENEMIES];
+    self.startPoints = startPointList;
+    self.gameLevel = level;
     
-    return self;
+    for (int i = 0; i < MAX_ENEMIES; i++) {
+      Enemy *e = [Enemy enemy];
+      [[self enemies] addObject:e];
+    }
+  }
+  
+  return self;
 }
 
 
 -(void) spawnEnemy { 
-    int numSpawnPoints = [[self startPoints] count];
-    
-    CGPoint spawnPos = *(CGPoint *) [startPoints objectAtIndex:(arc4random() % numSpawnPoints)];
-    
-    for (int i = 0; i < MAX_ENEMIES; i++) {
-        Enemy *e = [enemies objectAtIndex:i];
-        if (![e activeInGame]) {
-            [e LoadIntoGame:self.theGame withEnemyType:kEnemySmall withSpawnPoint:spawnPos withOrder:(i+5)];
-            break;
-        }
+  int numSpawnPoints = [[self startPoints] count];
+  
+  CGPoint spawnPos = *(CGPoint *) [startPoints objectAtIndex:(arc4random() % numSpawnPoints)];
+  
+  for (int i = 0; i < MAX_ENEMIES; i++) {
+    Enemy *enemy = [enemies objectAtIndex:i];
+    if (![enemy activeInGame]) {
+      [enemy loadIntoGame:self.theGame withEnemyType:kEnemySmall withSpawnPoint:spawnPos withOrder:(i+5)];
+      break;
     }
+  }
 }
 
 
 -(void) runEnemyActions {
-    for (int i = 0; i < MAX_ENEMIES; i++) {
-        Enemy *e = [enemies objectAtIndex:i];
-        if ([e activeInGame]) {
-            [e moveEnemy];
-            [e switchMoveDirection];
-            [e enemyFall];
-            
-            if (e.sprite.position.y < -30.0f)
-                [e enemyRespawn];
-        }
-        
+  for (int i = 0; i < MAX_ENEMIES; i++) {
+    Enemy *enemy = [enemies objectAtIndex:i];
+    if ([enemy activeInGame]) {
+      [enemy move];
+      [enemy switchMoveDirection];
+      [enemy fall];
+      
+      if (enemy.sprite.position.y < -30.0f)
+        [enemy respawn];
     }
+    
+  }
 }
 
 

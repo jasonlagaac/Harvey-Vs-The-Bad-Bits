@@ -19,7 +19,7 @@
 @implementation InputLayer
 
 
--(id) init
+- (id)init
 {
 	if ((self = [super init]))
 	{
@@ -34,12 +34,12 @@
 	return self;
 }
 
--(void) dealloc
+- (void)dealloc
 {
 	[super dealloc];
 }
 
--(void) addButtons {
+- (void)addButtons {
     float buttonRadius = 50.0;
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
@@ -111,9 +111,9 @@
     [self addChild:skinJoystick];
 }
 
--(void) update:(ccTime)delta {    
+- (void)update:(ccTime)delta {    
     GameLayer *game = [GameLayer sharedGameLayer];
-    Player *p = [game player];
+    Player *player = [game player];
     
     totalTime += delta;
         
@@ -123,26 +123,26 @@
     // in that specific direction
     
     // Player movement in the x-axis
-    [p playerMovementX:velocity.x];
+    [player move_x:velocity.x activeFireButton:fireButton.active];
 
     // Player facing direction
-    [p playerFacingDirection:velocity.x];
+    [player facingDirection:velocity.x];
 
     
     // Animate the walking motion of the sprite
-    [p playerAnimateMovement:velocity.x];
+    [player animateMovement:velocity.x];
     
     // Jumping action
     if (reloadButton.active && jumpButtonActiveCount < MAX_JUMP_COUNT) {
         jumpButtonActiveCount++;
-        [p playerJump];
-    } else if (!reloadButton.active && p.body->v.y == 0) {
+        [player jump];
+    } else if (!reloadButton.active && player.body->v.y == 0) {
         jumpButtonActiveCount = 0;
-        [p playerLanded];
+        [player land];
     }
         
     // Determine the player's shooting position and direction and the proper shot origin
-    [p playerAttack:fireButton.active nextShotTime:&nextShotTime totalTime:totalTime];
+    [player attack:fireButton.active nextShotTime:&nextShotTime totalTime:totalTime];
     
     //NSLog(@"velocity x: %f  y: %f", p.sprite.position.x, p.sprite.position.y);
     

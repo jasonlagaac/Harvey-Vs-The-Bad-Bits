@@ -34,12 +34,15 @@ eachShape(void *ptr, void* unused)
 	}
 }
 
-/***************************************
- 
-    GameLayer implementation
- 
-****************************************/
- @implementation GameLayer
+
+@interface GameLayer (private) 
+
+- (void)updateScore;
+- (void)spawnEnemy;
+@end
+
+
+@implementation GameLayer
 
 @synthesize playerLevel;
 @synthesize score;
@@ -67,8 +70,8 @@ static GameLayer* instanceOfGameLayer;
 	
 	// add layer as a child to scene
 	[scene addChild:layer z:0 tag:GameSceneLayerTagGame];
-    
-    InputLayer* inputLayer = [InputLayer node];
+  
+  InputLayer* inputLayer = [InputLayer node];
 	[scene addChild:inputLayer z:1 tag:GameSceneLayerTagInput];
 	
 	// return the scene
@@ -78,8 +81,8 @@ static GameLayer* instanceOfGameLayer;
 // Return the instance of the gamelayer
 +(GameLayer *)sharedGameLayer
 {
-	NSAssert(instanceOfGameLayer != nil, @"GameScene instance not yet initialized!");
-	return instanceOfGameLayer;
+  NSAssert(instanceOfGameLayer != nil, @"GameScene instance not yet initialized!");
+  return instanceOfGameLayer;
 }
 
 #pragma mark -
@@ -88,84 +91,87 @@ static GameLayer* instanceOfGameLayer;
 // on "init" you need to initialize your instance
 -(id) init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super" return value
-	if( (self = [super initWithColor:ccc4(255,255,255,255)] )) {
-        
-        // Need the screen window size for iPad and iPhone differentiation 
-        CGSize screenSize = [[CCDirector sharedDirector] winSize];
-        
-        // Initialise Chipmunk
-		cpInitChipmunk();
-		
-        // Define the space
-		space = cpSpaceNew();
-		cpSpaceResizeStaticHash(space, 400.0f, 40);
-		cpSpaceResizeActiveHash(space, 100, 600);
-		
-		space->gravity = ccp(0, -600);
-        
-        // Load the level
-        level = [[Level alloc] initWithLevel:1 game:self];
-        
-        // Assign gamelayer instance
-        instanceOfGameLayer = self;
-        
-        self.playerLevel = 0; // Assign the player game level
-        self.remainingTime = 75; // remaining time in seconds
-        
-        // Load the items and images into the framecache
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ShadowTypes.plist"];
-        
-        // Initialise the Score Label
-        CCLabelAtlas *scoreLabel = [CCLabelAtlas labelWithString:@"0" charMapFile:@"ScoreNumbers.png" itemWidth:25 itemHeight:23 startCharMap:'.'];
-        
-        [self addChild:scoreLabel z:12 tag:K_ScoreLabel];
-        [scoreLabel setPosition:CGPointMake((screenSize.width / 2), (screenSize.height - 30))];
-        [scoreLabel setAnchorPoint:ccp(0.5,0)];
-
-
-        cartridge = [[Item alloc] initWithGame:self withType:kCartridge];
-        ammoBox = [[Item alloc] initWithGame:self withType:kAmmoPack];
-        player = [[Player alloc] initWithGame:self];
-
-        NSMutableArray *spawnPos = [[NSMutableArray alloc] init];
-        CGPoint pos = CGPointMake(240.0f, 340.0f);
-        
-        [spawnPos addObject:[NSData dataWithBytes:&pos length:sizeof(CGPoint)]];
-        
-        enemyCache = [[EnemyCache alloc] initWithGame:self withLevel:1 withStartPoints:spawnPos];
-        bulletCache = [[BulletCache alloc] initWithGame:self];
-        
-        [self schedule: @selector(step:)];
-        [self schedule:@selector(update:) interval:1.0];
-        
-	}
-	return self;
+  // always call "super" init
+  // Apple recommends to re-assign "self" with the "super" return value
+  if( (self = [super init])) {
+    
+    // Need the screen window size for iPad and iPhone differentiation 
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    // Initialise Chipmunk
+    cpInitChipmunk();
+    
+    // Define the space
+    space = cpSpaceNew();
+    cpSpaceResizeStaticHash(space, 400.0f, 40);
+    cpSpaceResizeActiveHash(space, 100, 600);
+    
+    space->gravity = ccp(0, -600);
+    
+    // Load the level
+    level = [[Level alloc] initWithLevel:1 game:self];
+    
+    // Assign gamelayer instance
+    instanceOfGameLayer = self;
+    
+    self.playerLevel = 0; // Assign the player game level
+    self.remainingTime = 75; // remaining time in seconds
+    
+    // Load the items and images into the framecache
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ShadowTypes.plist"];
+    
+    // Initialise the Score Label
+    CCLabelAtlas *scoreLabel = [CCLabelAtlas labelWithString:@"0" charMapFile:@"ScoreNumbers.png" itemWidth:25 itemHeight:23 startCharMap:'.'];
+    
+    [self addChild:scoreLabel z:12 tag:K_ScoreLabel];
+    [scoreLabel setPosition:CGPointMake((screenSize.width / 2), (screenSize.height - 30))];
+    [scoreLabel setAnchorPoint:ccp(0.5,0)];
+    
+    
+    cartridge = [[Item alloc] initWithGame:self withType:kCartridge];
+    ammoBox = [[Item alloc] initWithGame:self withType:kAmmoPack];
+    player = [[Player alloc] initWithGame:self];
+    
+    NSMutableArray *spawnPos = [[NSMutableArray alloc] init];
+    CGPoint pos = CGPointMake(240.0f, 340.0f);
+    
+    [spawnPos addObject:[NSData dataWithBytes:&pos length:sizeof(CGPoint)]];
+    
+    enemyCache = [[EnemyCache alloc] initWithGame:self withLevel:1 withStartPoints:spawnPos];
+    bulletCache = [[BulletCache alloc] initWithGame:self];
+    
+    [self schedule: @selector(step:)];
+    
+  }
+  return self;
 }
 
 // on "dealloc" you need to release all your retained objects
-- (void) dealloc
-{	
+- (void)dealloc {	
 	// don't forget to call "super dealloc"
-    cpSpaceFree(space);
+  cpSpaceFree(space);
 	[super dealloc];
 }
 
--(void) onEnter
-{
+- (void)onEnter {
 	[super onEnter];
 }
 
--(void) updateScore {
-    CCLabelAtlas *l = (CCLabelAtlas *)[self getChildByTag:K_ScoreLabel];
-    [l setString:[NSString stringWithFormat:@"%d", [player points]]];
+- (void)updateScore {
+  CCLabelAtlas *l = (CCLabelAtlas *)[self getChildByTag:K_ScoreLabel];
+  [l setString:[NSString stringWithFormat:@"%d", [player points]]];
+}
+
+- (void)spawnEnemy {
+  if (arc4random() % 2) {
+    [[self enemyCache] spawnEnemy];
+  }
 }
 
 
 #pragma mark -
 #pragma mark Game Step Operation
--(void) step: (ccTime) delta
+- (void)step:(ccTime)delta
 {
 	int steps = 2;
 	CGFloat dt = delta/(CGFloat)steps;
@@ -175,17 +181,13 @@ static GameLayer* instanceOfGameLayer;
 	}
 	cpSpaceHashEach(space->activeShapes, &eachShape, nil);
 	cpSpaceHashEach(space->staticShapes, &eachShape, nil);
-    
-    [[self enemyCache] runEnemyActions];
-    [[self player] playerEnemyCollision];
-    [[self cartridge] checkItemCollision];
-    [[self ammoBox] checkItemCollision];    
-}
-
--(void) update: (ccTime) delta {
-    if (arc4random() % 2) {
-        [[self enemyCache] spawnEnemy];
-    }
+  
+  [[self enemyCache] runEnemyActions];
+  [[self player] checkEnemyCollision];
+  [[self cartridge] checkItemCollision];
+  [[self ammoBox] checkItemCollision];    
+  
+  [self spawnEnemy];
 }
 
 @end

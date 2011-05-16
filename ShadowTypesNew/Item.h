@@ -14,18 +14,18 @@
 #import "EntityActions.h"
 
 typedef enum {
-    kCartridge,
-    kAmmoPack
+  kCartridge,
+  kAmmoPack
 } ItemType;
 
 @interface Item : Entity {
-    ItemType item;
-    bool collected;
-    
-    // Physics Attribs
-    cpBody *body;
-    cpShape *shape;
-
+  ItemType item;
+  bool collected;
+  
+  // Physics Attribs
+  cpBody *body;
+  cpShape *shape;
+  
 }
 
 @property (nonatomic, readwrite) ItemType item;
@@ -36,6 +36,6 @@ typedef enum {
 
 -(id) initWithGame:(GameLayer *)game withType:(ItemType)objType;
 -(void) checkItemCollision;
--(void) reloadObject;
+-(void) reload;
 
 @end

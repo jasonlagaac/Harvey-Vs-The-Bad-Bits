@@ -12,9 +12,13 @@
 
 @class GameLayer;
 
+/* Entity Class: Base Class for basic entities */
 @interface Entity : CCNode {
-    CCSprite *sprite;
-    GameLayer *theGame;
+  /* Entity sprite */
+  CCSprite *sprite;
+  
+  /* Game Instance */
+  GameLayer *theGame;
 }
 
 @property (nonatomic, retain) CCSprite *sprite;

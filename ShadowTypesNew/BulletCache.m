@@ -10,8 +10,8 @@
 #import "GameScene.h"
 
 @implementation BulletCache
-@synthesize theGame;
-@synthesize bullets;
+
+@synthesize theGame;        @synthesize bullets;
 
 /* Initialise the game */
 -(id) initWithGame:(GameLayer *) game
@@ -32,6 +32,11 @@
 	return self;
 }
 
+- (void)dealloc {
+  [theGame release];
+  [super dealloc];
+}
+
 /* Determine if any bullets in the cache have collided with an enemy */
 -(void)bulletEnemyCollision {
   
@@ -44,7 +49,7 @@
       if (ccpDistance(bullet.position, enemy.sprite.position) < 70) {
         NSLog(@"Hit");
         [enemy damage:bullet.damage];
-        [bullet bulletReinit];
+        [bullet reinit];
       }
     }
   }
@@ -60,13 +65,13 @@
   switch (weapon) {
     case kPlayerWeaponPistol:
       bullet = [bullets objectAtIndex:nextInactiveBullet];
-      [bullet shootBulletAt:startPosition direction:direction frameName:frameName weaponType:weapon];
+      [bullet fire:startPosition direction:direction frameName:frameName weaponType:weapon];
       nextInactiveBullet++;
       
       break;
     case kPlayerWeaponMachineGun:
       bullet = [bullets objectAtIndex:nextInactiveBullet];
-      [bullet shootBulletAt:startPosition direction:direction frameName:frameName weaponType:weapon];
+      [bullet fire:startPosition direction:direction frameName:frameName weaponType:weapon];
       nextInactiveBullet++;
       
       break;
@@ -82,14 +87,14 @@
       // Fire the next five bullets;
       for (int i = 0; i < 5; i++) {
         bullet = [bullets objectAtIndex:nextInactiveBullet + i];
-        [bullet shootBulletAt:startPosition direction:direction  frameName:frameName weaponType:weapon];
+        [bullet fire:startPosition direction:direction  frameName:frameName weaponType:weapon];
         nextInactiveBullet++;
       }
       
       break;
     case kPlayerWeaponPhaser:
       bullet = [bullets objectAtIndex:nextInactiveBullet];
-      [bullet shootBulletAt:startPosition direction:direction frameName:frameName weaponType:weapon];
+      [bullet fire:startPosition direction:direction frameName:frameName weaponType:weapon];
       nextInactiveBullet++;
       
       break;
@@ -98,7 +103,7 @@
       break;
   }
   
-	if (nextInactiveBullet >= [bullets count])
+	if (nextInactiveBullet >= [bullets count] || (nextInactiveBullet + 5) >= [bullets count])
 	{
 		nextInactiveBullet = 0;
 	}

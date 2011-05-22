@@ -30,23 +30,36 @@
 			<key>sourceSize</key>
 			<string>{10, 6}</string>
 		</dict>
-		<key>Cartridge2.png</key>
+		<key>Cartridge1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{42, 82}, {26, 26}}</string>
+			<string>{{313, 82}, {16, 18}}</string>
 			<key>offset</key>
 			<string>{0, -0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {26, 26}}</string>
+			<string>{{0, 0}, {16, 18}}</string>
 			<key>sourceSize</key>
-			<string>{26, 26}</string>
+			<string>{16, 18}</string>
+		</dict>
+		<key>Cartridge2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{331, 82}, {16, 18}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {16, 18}}</string>
+			<key>sourceSize</key>
+			<string>{16, 18}</string>
 		</dict>
 		<key>EnemySmall1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{93, 82}, {21, 36}}</string>
+			<string>{{204, 82}, {21, 36}}</string>
 			<key>offset</key>
 			<string>{0, -0}</string>
 			<key>rotated</key>
@@ -59,7 +72,7 @@
 		<key>EnemySmall2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{70, 82}, {21, 36}}</string>
+			<string>{{227, 82}, {21, 36}}</string>
 			<key>offset</key>
 			<string>{0, -0}</string>
 			<key>rotated</key>
@@ -72,7 +85,7 @@
 		<key>EnemySmall3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{158, 82}, {19, 36}}</string>
+			<string>{{250, 82}, {19, 36}}</string>
 			<key>offset</key>
 			<string>{-1, -0}</string>
 			<key>rotated</key>
@@ -85,7 +98,7 @@
 		<key>EnemySmall4.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{116, 82}, {19, 36}}</string>
+			<string>{{292, 82}, {19, 36}}</string>
 			<key>offset</key>
 			<string>{-1, -0}</string>
 			<key>rotated</key>
@@ -98,7 +111,7 @@
 		<key>EnemySmall5.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{137, 82}, {19, 36}}</string>
+			<string>{{271, 82}, {19, 36}}</string>
 			<key>offset</key>
 			<string>{-1, -0}</string>
 			<key>rotated</key>
@@ -108,20 +121,85 @@
 			<key>sourceSize</key>
 			<string>{21, 36}</string>
 		</dict>
-		<key>MachineGun1.png</key>
+		<key>Juggernaut1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{374, 2}, {40, 38}}</string>
+			<string>{{144, 82}, {28, 46}}</string>
 			<key>offset</key>
-			<string>{1, -1}</string>
+			<string>{-2, -0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{2, 2}, {40, 38}}</string>
+			<string>{{0, 0}, {28, 46}}</string>
 			<key>sourceSize</key>
-			<string>{42, 40}</string>
+			<string>{32, 46}</string>
 		</dict>
-		<key>MachineGun2.png</key>
+		<key>Juggernaut2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{174, 82}, {28, 46}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{2, 0}, {28, 46}}</string>
+			<key>sourceSize</key>
+			<string>{32, 46}</string>
+		</dict>
+		<key>Juggernaut3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{42, 82}, {32, 46}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {32, 46}}</string>
+			<key>sourceSize</key>
+			<string>{32, 46}</string>
+		</dict>
+		<key>Juggernaut4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{76, 82}, {32, 46}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {32, 46}}</string>
+			<key>sourceSize</key>
+			<string>{32, 46}</string>
+		</dict>
+		<key>Juggernaut5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{110, 82}, {32, 46}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {32, 46}}</string>
+			<key>sourceSize</key>
+			<string>{32, 46}</string>
+		</dict>
+		<key>JumpCloud.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{484, 64}, {16, 12}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{2, 4}, {16, 12}}</string>
+			<key>sourceSize</key>
+			<string>{20, 20}</string>
+		</dict>
+		<key>MachineGun1.png</key>
 		<dict>
 			<key>frame</key>
 			<string>{{2, 42}, {40, 38}}</string>
@@ -134,33 +212,20 @@
 			<key>sourceSize</key>
 			<string>{42, 40}</string>
 		</dict>
+		<key>MachineGun2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{374, 2}, {40, 38}}</string>
+			<key>offset</key>
+			<string>{1, -1}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{2, 2}, {40, 38}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
 		<key>MachineGun3.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{416, 2}, {40, 38}}</string>
-			<key>offset</key>
-			<string>{1, -1}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{2, 2}, {40, 38}}</string>
-			<key>sourceSize</key>
-			<string>{42, 40}</string>
-		</dict>
-		<key>MachineGun4.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{332, 2}, {40, 38}}</string>
-			<key>offset</key>
-			<string>{1, -1}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{2, 2}, {40, 38}}</string>
-			<key>sourceSize</key>
-			<string>{42, 40}</string>
-		</dict>
-		<key>MachineGunJump.png</key>
 		<dict>
 			<key>frame</key>
 			<string>{{290, 2}, {40, 38}}</string>
@@ -173,7 +238,7 @@
 			<key>sourceSize</key>
 			<string>{42, 40}</string>
 		</dict>
-		<key>MachineGunStill.png</key>
+		<key>MachineGun4.png</key>
 		<dict>
 			<key>frame</key>
 			<string>{{458, 2}, {40, 38}}</string>
@@ -186,10 +251,49 @@
 			<key>sourceSize</key>
 			<string>{42, 40}</string>
 		</dict>
+		<key>MachineGunJump.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{416, 2}, {40, 38}}</string>
+			<key>offset</key>
+			<string>{1, -1}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{2, 2}, {40, 38}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>MachineGunStill.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{332, 2}, {40, 38}}</string>
+			<key>offset</key>
+			<string>{1, -1}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{2, 2}, {40, 38}}</string>
+			<key>sourceSize</key>
+			<string>{42, 40}</string>
+		</dict>
+		<key>Particle.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{500, 10}, {10, 10}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {10, 10}}</string>
+			<key>sourceSize</key>
+			<string>{10, 10}</string>
+		</dict>
 		<key>Phaser1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{44, 42}, {38, 38}}</string>
+			<string>{{2, 82}, {38, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -202,7 +306,7 @@
 		<key>Phaser2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{284, 42}, {38, 38}}</string>
+			<string>{{244, 42}, {38, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -215,7 +319,7 @@
 		<key>Phaser3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{444, 42}, {38, 38}}</string>
+			<string>{{164, 42}, {38, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -241,7 +345,7 @@
 		<key>PhaserBullet.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{484, 64}, {14, 6}}</string>
+			<string>{{349, 82}, {14, 6}}</string>
 			<key>offset</key>
 			<string>{0, -0}</string>
 			<key>rotated</key>
@@ -254,7 +358,7 @@
 		<key>PhaserJump.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{164, 42}, {38, 38}}</string>
+			<string>{{204, 42}, {38, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -267,7 +371,7 @@
 		<key>PhaserStill.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{324, 42}, {38, 38}}</string>
+			<string>{{124, 42}, {38, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -280,7 +384,7 @@
 		<key>Pistol1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2, 2}, {46, 38}}</string>
+			<string>{{242, 2}, {46, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -293,7 +397,7 @@
 		<key>Pistol2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{194, 2}, {46, 38}}</string>
+			<string>{{2, 2}, {46, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -306,7 +410,7 @@
 		<key>Pistol3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{242, 2}, {46, 38}}</string>
+			<string>{{50, 2}, {46, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -319,7 +423,7 @@
 		<key>Pistol4.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{50, 2}, {46, 38}}</string>
+			<string>{{194, 2}, {46, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -332,7 +436,7 @@
 		<key>PistolJump.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{146, 2}, {46, 38}}</string>
+			<string>{{98, 2}, {46, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -345,7 +449,7 @@
 		<key>PistolStill.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{98, 2}, {46, 38}}</string>
+			<string>{{146, 2}, {46, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -358,7 +462,7 @@
 		<key>Shotgun1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2, 82}, {38, 38}}</string>
+			<string>{{444, 42}, {38, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -384,7 +488,7 @@
 		<key>Shotgun3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{404, 42}, {38, 38}}</string>
+			<string>{{324, 42}, {38, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -397,7 +501,7 @@
 		<key>Shotgun4.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{124, 42}, {38, 38}}</string>
+			<string>{{44, 42}, {38, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -410,7 +514,7 @@
 		<key>ShotgunJump.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{204, 42}, {38, 38}}</string>
+			<string>{{404, 42}, {38, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -423,7 +527,7 @@
 		<key>ShotgunStill.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{244, 42}, {38, 38}}</string>
+			<string>{{284, 42}, {38, 38}}</string>
 			<key>offset</key>
 			<string>{0, -1}</string>
 			<key>rotated</key>
@@ -439,7 +543,7 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>size</key>
-		<string>{512, 128}</string>
+		<string>{512, 256}</string>
 	</dict>
 </dict>
 </plist>

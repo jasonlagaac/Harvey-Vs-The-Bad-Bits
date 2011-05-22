@@ -13,6 +13,7 @@
 // Player Initialisation
 - (void)loadAnimations;
 - (void)loadDefaultSprite;
+- (void)loadSound;
 - (void)loadPhysics;
 
 // Player General Actions
@@ -22,6 +23,10 @@
 - (void)landedCheck;
 - (void)respawn;
 - (int)weaponRecoil;
+
+- (void)facingDirection:(float)velocity_x;
+- (void)animateMovement:(float)velocity_x;
+
 - (void)attack:(bool)fireButtonActive 
   nextShotTime:(float*)nextShotTime 
      totalTime:(float)totalTime;
@@ -29,23 +34,13 @@
 
 @implementation Player
 
-@synthesize theGame;
-@synthesize sprite;
-@synthesize weapon;
-@synthesize direction;
-@synthesize playerAttacking;
-@synthesize playerJumping;
-
-@synthesize body;
-@synthesize shape;
-
-@synthesize knifeWalkAction;
-@synthesize pistolWalkAction;
-@synthesize machineGunWalkAction;
-@synthesize shotgunWalkAction;
-@synthesize phaserWalkAction;
-
-@synthesize points;
+@synthesize theGame;                @synthesize sprite;
+@synthesize weapon;                 @synthesize direction;
+@synthesize playerAttacking;        @synthesize playerJumping;
+@synthesize body;                   @synthesize shape;
+@synthesize knifeWalkAction;        @synthesize pistolWalkAction;
+@synthesize machineGunWalkAction;   @synthesize shotgunWalkAction;
+@synthesize phaserWalkAction;       @synthesize points;
 
 
 #pragma mark - 
@@ -120,6 +115,16 @@
 }
 
 
+/* Preload the sound files */
+-(void) loadSound {
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Pistol.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"MachineGun.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Phaser.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Shotgun.m4a"];
+  
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayerJump.m4a"];
+}
+
 -(void) loadPhysics {    
   int numVert = 4;
   
@@ -160,6 +165,7 @@
     
     [self loadSprites];
     [self loadAnimations];
+    [self loadSound];
     [self loadPhysics];
     
     [game addChild:self z:5];
@@ -240,12 +246,14 @@
 #pragma mark - 
 #pragma mark Player Movement Actions
 
--(void) move_x:(float)velocity_x activeFireButton:(bool)fireButtonActive {
+-(void) move:(float)velocity_x activeFireButton:(bool)fireButtonActive {
   int recoil = 0;
   
   if (fireButtonActive)
     recoil = [self weaponRecoil];
   
+  [self facingDirection:velocity_x];
+  [self animateMovement:velocity_x];
   
   if (velocity_x >= 10) {
     body->v.x = playerJumping ? (200 - recoil) :  (250 - recoil);
@@ -320,6 +328,22 @@
 
 
 -(void) jump {
+  
+  if (!self.playerJumping) {
+    [[SimpleAudioEngine sharedEngine]playEffect:@"PlayerJump.m4a"];
+  
+    /* Particle Effects */
+    CCParticleSystem *jump;
+  
+    jump = [CCParticleSystemPoint particleWithFile:@"PlayerJump.plist"];
+    jump.autoRemoveOnFinish = YES;
+  
+    [self.theGame addChild:jump z:7];
+    CGPoint jumpSpot = CGPointMake(self.sprite.position.x, (self.sprite.position.y - 10.0f));
+    
+    [jump setPosition:jumpSpot];
+  }
+  
   self.body->v.y = 400.0f;
 }
 
@@ -348,6 +372,7 @@
         [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
                            frameName:@"Bullet.png" weaponType:self.weapon];
         
+        [[SimpleAudioEngine sharedEngine]playEffect:@"Pistol.m4a"];
       } else if (!fireButtonActive && playerAttacking) {
         playerAttacking = NO;
       }
@@ -361,6 +386,7 @@
         [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
                            frameName:@"Bullet.png" weaponType:self.weapon];
         
+        [[SimpleAudioEngine sharedEngine]playEffect:@"MachineGun.m4a"];
       } else if (!fireButtonActive && playerAttacking) {
         playerAttacking = NO;
         nextShotTime = 0;
@@ -379,6 +405,9 @@
         
         [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
                            frameName:@"Bullet.png" weaponType:self.weapon];
+        
+        [[SimpleAudioEngine sharedEngine]playEffect:@"Shotgun.m4a"];
+
       } else if (!fireButtonActive && playerAttacking == YES) {
         playerAttacking = NO;
       }
@@ -393,6 +422,7 @@
         [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
                            frameName:@"PhaserBullet.png" weaponType:self.weapon];
         
+        [[SimpleAudioEngine sharedEngine]playEffect:@"Phaser.m4a"];
       } else if (!fireButtonActive && playerAttacking) {
         playerAttacking = NO;
       }
@@ -468,6 +498,12 @@
 #pragma mark Update actions
 
 -(void)update:(ccTime)delta {    
+  CGSize screenSize = [[CCDirector sharedDirector] winSize];
+
+  if (self.sprite.position.y > (screenSize.height + 5)) {
+   self.body->p  = CGPointMake(self.sprite.position.x, screenSize.height + 5);
+  }
+  
   if (self.sprite.position.y < -30.0f) {
     [self respawn];
   }

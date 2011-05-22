@@ -24,19 +24,19 @@
 @class Player;
 
 @interface InputLayer : CCLayer {
-    // Button definitions
-    SneakyButton *fireButton;
-    SneakyButton *reloadButton;
-    
-    // Gotta make a dpad for this game
-    SneakyJoystick *joystick;
-    
-    // Control variables
-    BOOL playerAttacked;
-    int jumpButtonActiveCount;
-    
-    // Weapon firing rate control time variables
-    ccTime totalTime;
+  // Button definitions
+  SneakyButton *fireButton;
+  SneakyButton *reloadButton;
+  
+  // Gotta make a dpad for this game
+  SneakyJoystick *joystick;
+  
+  // Control variables
+  BOOL playerAttacked;
+  int jumpButtonActiveCount;
+  
+  // Weapon firing rate control time variables
+  ccTime totalTime;
 	ccTime nextShotTime;
 }
 

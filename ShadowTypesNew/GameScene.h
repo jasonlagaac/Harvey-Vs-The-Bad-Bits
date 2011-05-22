@@ -58,7 +58,10 @@ typedef enum
   int playerLevel;
   int score;
   int remainingTime;
+
+  ccTime nextSpawnTime;
 }
+
 
 @property (nonatomic, readwrite) int playerLevel;
 @property (nonatomic, readwrite) int score;

@@ -9,10 +9,24 @@
 /* Begin PBXBuildFile section */
 		592AE7E71377F81400C88B10 /* Tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7E51377F81400C88B10 /* Tileset.png */; };
 		592AE7EC1378317000C88B10 /* Level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7EB1378317000C88B10 /* Level1.tmx */; };
-		592AE7EF137925EA00C88B10 /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7ED137925EA00C88B10 /* ShadowTypes.png */; };
-		592AE7F0137925EA00C88B10 /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7EE137925EA00C88B10 /* ShadowTypes.plist */; };
 		5939F5D41367C24D00BC74D2 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 5939F5D31367C24D00BC74D2 /* Level.m */; };
+		594965EA1383B0AB00C1B064 /* MachineGun.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 594965E91383B0AB00C1B064 /* MachineGun.m4a */; };
+		594965EC1383B38800C1B064 /* Phaser.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 594965EB1383B38800C1B064 /* Phaser.m4a */; };
+		594965EE1383B49D00C1B064 /* Shotgun.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 594965ED1383B49D00C1B064 /* Shotgun.m4a */; };
+		594965F01383B5AB00C1B064 /* Pistol.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 594965EF1383B5AB00C1B064 /* Pistol.m4a */; };
+		594965FF13852DD600C1B064 /* PlayerJump.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 594965FE13852DD600C1B064 /* PlayerJump.m4a */; };
 		59847E0A13717FA7007C301E /* EnemyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59847E0913717FA7007C301E /* EnemyCache.m */; };
+		59851F48138793C6007AB4BB /* weaponFeedback.png in Resources */ = {isa = PBXBuildFile; fileRef = 59851F46138793C6007AB4BB /* weaponFeedback.png */; };
+		59851F49138793C6007AB4BB /* weaponFeedback.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 59851F47138793C6007AB4BB /* weaponFeedback.fnt */; };
+		59851F6213881051007AB4BB /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 59851F6013881051007AB4BB /* ShadowTypes.png */; };
+		59851F6313881051007AB4BB /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59851F6113881051007AB4BB /* ShadowTypes.plist */; };
+		59851F701388156D007AB4BB /* WeaponPickup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59851F6D1388156D007AB4BB /* WeaponPickup.plist */; };
+		59851F711388156D007AB4BB /* PlayerJump.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59851F6E1388156D007AB4BB /* PlayerJump.plist */; };
+		59851F721388156D007AB4BB /* EnemyExplode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59851F6F1388156D007AB4BB /* EnemyExplode.plist */; };
+		598D54CD13855E80008F2FEF /* EnemyHit.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 598D54CC13855E80008F2FEF /* EnemyHit.m4a */; };
+		598D54CF13855F0A008F2FEF /* EnemyDeath.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 598D54CE13855F0A008F2FEF /* EnemyDeath.m4a */; };
+		598D54D213856307008F2FEF /* CartridgePickup.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 598D54D013856307008F2FEF /* CartridgePickup.m4a */; };
+		598D54D313856307008F2FEF /* WeaponPickup.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 598D54D113856307008F2FEF /* WeaponPickup.m4a */; };
 		599DE1EF13612D0600FD2E2E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599DE1EE13612D0600FD2E2E /* QuartzCore.framework */; };
 		599DE1F113612D0600FD2E2E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599DE1F013612D0600FD2E2E /* OpenGLES.framework */; };
 		599DE1F313612D0600FD2E2E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599DE1F213612D0600FD2E2E /* OpenAL.framework */; };
@@ -179,12 +193,26 @@
 /* Begin PBXFileReference section */
 		592AE7E51377F81400C88B10 /* Tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tileset.png; sourceTree = "<group>"; };
 		592AE7EB1378317000C88B10 /* Level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level1.tmx; sourceTree = "<group>"; };
-		592AE7ED137925EA00C88B10 /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
-		592AE7EE137925EA00C88B10 /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
 		5939F5D21367C24C00BC74D2 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		5939F5D31367C24D00BC74D2 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		594965E91383B0AB00C1B064 /* MachineGun.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = MachineGun.m4a; sourceTree = "<group>"; };
+		594965EB1383B38800C1B064 /* Phaser.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Phaser.m4a; sourceTree = "<group>"; };
+		594965ED1383B49D00C1B064 /* Shotgun.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Shotgun.m4a; sourceTree = "<group>"; };
+		594965EF1383B5AB00C1B064 /* Pistol.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pistol.m4a; sourceTree = "<group>"; };
+		594965FE13852DD600C1B064 /* PlayerJump.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = PlayerJump.m4a; sourceTree = "<group>"; };
 		59847E0813717FA7007C301E /* EnemyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyCache.h; sourceTree = "<group>"; };
 		59847E0913717FA7007C301E /* EnemyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyCache.m; sourceTree = "<group>"; };
+		59851F46138793C6007AB4BB /* weaponFeedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weaponFeedback.png; sourceTree = "<group>"; };
+		59851F47138793C6007AB4BB /* weaponFeedback.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = weaponFeedback.fnt; sourceTree = "<group>"; };
+		59851F6013881051007AB4BB /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
+		59851F6113881051007AB4BB /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
+		59851F6D1388156D007AB4BB /* WeaponPickup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WeaponPickup.plist; sourceTree = "<group>"; };
+		59851F6E1388156D007AB4BB /* PlayerJump.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlayerJump.plist; sourceTree = "<group>"; };
+		59851F6F1388156D007AB4BB /* EnemyExplode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnemyExplode.plist; sourceTree = "<group>"; };
+		598D54CC13855E80008F2FEF /* EnemyHit.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = EnemyHit.m4a; sourceTree = "<group>"; };
+		598D54CE13855F0A008F2FEF /* EnemyDeath.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = EnemyDeath.m4a; sourceTree = "<group>"; };
+		598D54D013856307008F2FEF /* CartridgePickup.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = CartridgePickup.m4a; sourceTree = "<group>"; };
+		598D54D113856307008F2FEF /* WeaponPickup.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = WeaponPickup.m4a; sourceTree = "<group>"; };
 		599DE1EA13612D0600FD2E2E /* ShadowTypesNew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowTypesNew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		599DE1EE13612D0600FD2E2E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		599DE1F013612D0600FD2E2E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -527,6 +555,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		593D68E01386384800C6BDA0 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				59851F46138793C6007AB4BB /* weaponFeedback.png */,
+				59851F47138793C6007AB4BB /* weaponFeedback.fnt */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
+		594965E41383B04300C1B064 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				592AE7EB1378317000C88B10 /* Level1.tmx */,
+				592AE7E51377F81400C88B10 /* Tileset.png */,
+			);
+			name = Levels;
+			sourceTree = "<group>";
+		};
+		594965E61383B05A00C1B064 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				59E96D70137A8274008CA66D /* ScoreNumbers.png */,
+				599DE45C1361546000FD2E2E /* reloadButtonPressed.png */,
+				599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */,
+				599DE4521361543800FD2E2E /* fireButtonPressed.png */,
+				599DE4531361543800FD2E2E /* fireButtonUnpressed.png */,
+				599DE4541361543800FD2E2E /* Joystick.png */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		594965E71383B07B00C1B064 /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				59851F6013881051007AB4BB /* ShadowTypes.png */,
+				59851F6113881051007AB4BB /* ShadowTypes.plist */,
+			);
+			name = Sprites;
+			sourceTree = "<group>";
+		};
+		594965E81383B08F00C1B064 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				598D54D013856307008F2FEF /* CartridgePickup.m4a */,
+				598D54D113856307008F2FEF /* WeaponPickup.m4a */,
+				598D54CE13855F0A008F2FEF /* EnemyDeath.m4a */,
+				598D54CC13855E80008F2FEF /* EnemyHit.m4a */,
+				594965FE13852DD600C1B064 /* PlayerJump.m4a */,
+				594965EF1383B5AB00C1B064 /* Pistol.m4a */,
+				594965ED1383B49D00C1B064 /* Shotgun.m4a */,
+				594965EB1383B38800C1B064 /* Phaser.m4a */,
+				594965E91383B0AB00C1B064 /* MachineGun.m4a */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		594966021385316C00C1B064 /* Particle Effects */ = {
+			isa = PBXGroup;
+			children = (
+				59851F6D1388156D007AB4BB /* WeaponPickup.plist */,
+				59851F6E1388156D007AB4BB /* PlayerJump.plist */,
+				59851F6F1388156D007AB4BB /* EnemyExplode.plist */,
+			);
+			name = "Particle Effects";
+			sourceTree = "<group>";
+		};
 		59847E0713717E23007C301E /* Cache Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -974,14 +1068,12 @@
 		599DE43D13614F7300FD2E2E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				592AE7EB1378317000C88B10 /* Level1.tmx */,
-				59E96D70137A8274008CA66D /* ScoreNumbers.png */,
-				592AE7E51377F81400C88B10 /* Tileset.png */,
-				599DE45C1361546000FD2E2E /* reloadButtonPressed.png */,
-				599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */,
-				599DE4521361543800FD2E2E /* fireButtonPressed.png */,
-				599DE4531361543800FD2E2E /* fireButtonUnpressed.png */,
-				599DE4541361543800FD2E2E /* Joystick.png */,
+				593D68E01386384800C6BDA0 /* Font */,
+				594966021385316C00C1B064 /* Particle Effects */,
+				594965E81383B08F00C1B064 /* Sounds */,
+				594965E71383B07B00C1B064 /* Sprites */,
+				594965E61383B05A00C1B064 /* General */,
+				594965E41383B04300C1B064 /* Levels */,
 				599DE43E13614F7300FD2E2E /* Default.png */,
 				599DE43F13614F7300FD2E2E /* fps_images.png */,
 				599DE44013614F7300FD2E2E /* Icon-72.png */,
@@ -989,8 +1081,6 @@
 				599DE44213614F7300FD2E2E /* Icon-Small.png */,
 				599DE44313614F7300FD2E2E /* Icon-Small@2x.png */,
 				599DE44413614F7300FD2E2E /* Icon.png */,
-				592AE7ED137925EA00C88B10 /* ShadowTypes.png */,
-				592AE7EE137925EA00C88B10 /* ShadowTypes.plist */,
 				599DE44513614F7300FD2E2E /* Icon@2x.png */,
 				599DE44613614F7300FD2E2E /* Info.plist */,
 				599DE44713614F7300FD2E2E /* iTunesArtwork */,
@@ -1061,9 +1151,23 @@
 				599DE45F1361546000FD2E2E /* reloadButtonUnpressed.png in Resources */,
 				592AE7E71377F81400C88B10 /* Tileset.png in Resources */,
 				592AE7EC1378317000C88B10 /* Level1.tmx in Resources */,
-				592AE7EF137925EA00C88B10 /* ShadowTypes.png in Resources */,
-				592AE7F0137925EA00C88B10 /* ShadowTypes.plist in Resources */,
 				59E96D71137A8274008CA66D /* ScoreNumbers.png in Resources */,
+				594965EA1383B0AB00C1B064 /* MachineGun.m4a in Resources */,
+				594965EC1383B38800C1B064 /* Phaser.m4a in Resources */,
+				594965EE1383B49D00C1B064 /* Shotgun.m4a in Resources */,
+				594965F01383B5AB00C1B064 /* Pistol.m4a in Resources */,
+				594965FF13852DD600C1B064 /* PlayerJump.m4a in Resources */,
+				598D54CD13855E80008F2FEF /* EnemyHit.m4a in Resources */,
+				598D54CF13855F0A008F2FEF /* EnemyDeath.m4a in Resources */,
+				598D54D213856307008F2FEF /* CartridgePickup.m4a in Resources */,
+				598D54D313856307008F2FEF /* WeaponPickup.m4a in Resources */,
+				59851F48138793C6007AB4BB /* weaponFeedback.png in Resources */,
+				59851F49138793C6007AB4BB /* weaponFeedback.fnt in Resources */,
+				59851F6213881051007AB4BB /* ShadowTypes.png in Resources */,
+				59851F6313881051007AB4BB /* ShadowTypes.plist in Resources */,
+				59851F701388156D007AB4BB /* WeaponPickup.plist in Resources */,
+				59851F711388156D007AB4BB /* PlayerJump.plist in Resources */,
+				59851F721388156D007AB4BB /* EnemyExplode.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1266,6 +1370,7 @@
 				GCC_PREFIX_HEADER = ShadowTypesNew/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = ShadowTypesNew/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = ShadowTypesNew/libs/Chipmunk/include/chipmunk;
@@ -1282,6 +1387,7 @@
 				GCC_PREFIX_HEADER = ShadowTypesNew/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = ShadowTypesNew/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = ShadowTypesNew/libs/Chipmunk/include/chipmunk;

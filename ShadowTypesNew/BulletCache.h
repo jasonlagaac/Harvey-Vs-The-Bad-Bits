@@ -31,10 +31,7 @@
 	int nextInactiveBullet;
 }
 
-/* Instance of the game */
 @property (nonatomic, retain) GameLayer *theGame;
-
-/* Array to hold the bullet objects */
 @property (nonatomic, retain) CCArray *bullets;
 
 /** Fire a stored bullet from the |bullets| array

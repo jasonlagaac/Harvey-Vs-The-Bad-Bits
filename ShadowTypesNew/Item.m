@@ -10,39 +10,109 @@
 
 
 @interface Item (private) 
+/** Generate random position for spawn
+ */
 -(CGPoint) genRandPos;
+
+/** Set the item sprite
+ */
 -(void) setItemSprite;
+
+/** Load physics restraints
+ */
 -(void) loadPhysics;
+
+/** Weapon Feedback Txt 
+ */
+- (void)weaponPickupFeedback;
+
+/** Remove sprites from the layer
+ */
+- (void)removeSprite:(CCNode*)n;
+
+/** Display the text for feedback 
+ */
+- (void)displayText:(NSString *)string;
+
 @end
 
 @implementation Item
 
-@synthesize item;
-@synthesize collected;
+@synthesize item;       @synthesize collected;
+@synthesize body;       @synthesize shape;
+@synthesize spawnPos;
 
-@synthesize body;
-@synthesize shape;
+#pragma mark - 
+#pragma mark Initialisation / Deallocation
 
+/* Initialisation and object loading */
+- (id)initWithGame:(GameLayer *)game withType:(ItemType)objType {    
+  if( (self=[super init])) {
+    self.theGame = game;
+    self.item = objType;
+    self.collected = NO;
+    
+    [self setItemSprite];
+    self.spawnPos = [self genRandPos];
+    self.sprite.position = spawnPos;
+    [self loadPhysics];        
+    
+    [game addChild:self];
+  }
+  
+  return self;
+}
 
-/*****************************************
- Implementation of Private Methods 
- *****************************************/
+/* Deallocate Object */
+- (void)dealloc
+{
+  cpBodyFree(body);
+  cpShapeFree(shape);
+  [theGame release];
+	[super dealloc];
+}
+
+#pragma mark - 
+#pragma mark Load options / configurations
+
+/* Load Sound */
+-(void) loadSound {
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"CartridgePickup.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"WeaponPickup.m4a"];
+
+}
+
+/* Generate random position */
 - (CGPoint)genRandPos {
+  // Determine the possible spawn areas
   NSMutableArray *spawnPoints = [[theGame level] itemSpawnPos];
   int totalSpawnPoints = [spawnPoints count];
   CGPoint newSpawnPoint = CGPointZero;
   
+  // Find a spawn point which doesn't match the current point and the 
+  // position of the other sprite
   while (true) {
+    // Obtain a new spawn point
     newSpawnPoint = [[spawnPoints objectAtIndex:(arc4random() % totalSpawnPoints)] CGPointValue];
     
-    if (newSpawnPoint.x != self.sprite.position.x 
-        && newSpawnPoint.y != self.sprite.position.y)
-      break;
+    // Determine if the current spawn point is equal to the new spawn point
+    if (CGPointEqualToPoint(newSpawnPoint, self.spawnPos) == NO) {
+      
+      // Determine the item type and make sure they dont have the same spawn position
+      if (self.item == kAmmoPack) {
+        if (CGPointEqualToPoint(newSpawnPoint, theGame.cartridge.spawnPos) == NO && (newSpawnPoint.y != self.spawnPos.y))
+          break;
+      } else if (self.item == kCartridge ) {
+        if (CGPointEqualToPoint(newSpawnPoint, theGame.ammoBox.spawnPos) == NO && (newSpawnPoint.y != self.spawnPos.y))
+          break;
+      }
+    }
   }
   
   return newSpawnPoint;
 }
 
+/* Set the default sprite */
 - (void)setItemSprite {    
   switch (self.item) {
 		case kCartridge:
@@ -58,36 +128,7 @@
 }
 
 
-/*****************************************
- Implementation of Item Methods 
- *****************************************/
-
-// Initialisation and object loading
-
-- (id)initWithGame:(GameLayer *)game withType:(ItemType)objType {    
-  if( (self=[super init])) {
-    self.theGame = game;
-    self.item = objType;
-    self.collected = NO;
-    
-    [self setItemSprite];
-    self.sprite.position = [self genRandPos];
-    [self loadPhysics];        
-    
-    [game addChild:self];
-  }
-  
-  return self;
-}
-
-- (void)dealloc
-{
-  cpBodyFree(body);
-  cpShapeFree(shape);
-  [theGame release];
-	[super dealloc];
-}
-
+/* Load the physics properties */
 - (void)loadPhysics {
   int numVert = 4;
   CGPoint verts[4];
@@ -121,22 +162,38 @@
   cpSpaceAddShape(theGame.space, shape);
 }
 
+#pragma mark - 
+#pragma mark General Operations
+
+/* Reload and respawn the sprite to new location */
 - (void)reload {
   [sprite setOpacity:0];
-  [self.sprite setPosition:[self genRandPos]];
-  self.body->p = self.sprite.position;
+  self.spawnPos = [self genRandPos];
+  self.body->p = spawnPos;
+  
   [sprite runAction:[CCFadeIn actionWithDuration:0.5]];
 }
 
+/* Determine if the player has collided with the item */
 - (void)checkItemCollision {
-  //EnemyCache *ec = theGame.enemyCache;
   Player *player = theGame.player;
-  
-  
+    
   if (ccpDistance(player.sprite.position, self.sprite.position) < 25) {
     if (self.item == kAmmoPack) {
       [player changeWeapon];
+      [[SimpleAudioEngine sharedEngine]playEffect:@"WeaponPickup.m4a"];
+      /* Particle Effects */
+      CCParticleSystem *weaponPickup;
+      
+      weaponPickup = [CCParticleSystemPoint particleWithFile:@"WeaponPickup.plist"];
+      weaponPickup.autoRemoveOnFinish = YES;
+      
+      [self.theGame addChild:weaponPickup z:7];      
+      [weaponPickup setPosition:player.sprite.position];
+      
+      [self weaponPickupFeedback];
     } else {
+      [[SimpleAudioEngine sharedEngine]playEffect:@"CartridgePickup.m4a"];
       [player addPoint];
     }
     
@@ -144,6 +201,51 @@
   }
 }
 
+- (void)weaponPickupFeedback {
+  Player *player = theGame.player;
+
+  switch (player.weapon) {
+    case kPlayerWeaponMachineGun:
+      [self displayText:@"Machine\n  Gun"];
+      break;
+    
+    case kPlayerWeaponPhaser:
+      [self displayText:@"Phaser"];
+      break;
+      
+    case kPlayerWeaponShotgun:
+      [self displayText:@"Shotgun"];
+      break;
+
+
+    default:
+      break;
+  }
+  
+}
+
+- (void)displayText:(NSString *)string {
+  
+  CGSize screenSize = [[CCDirector sharedDirector] winSize];
+  
+  CCLabelBMFont *feedbackTxt;
+  
+  feedbackTxt = [CCLabelBMFont labelWithString:string fntFile:@"weaponFeedback.fnt"];
+  [self.theGame addChild:feedbackTxt z:8];
+  [feedbackTxt setPosition:CGPointMake((screenSize.width / 2), (screenSize.height / 2))];
+  
+  
+  [feedbackTxt runAction:[CCSequence actions:[CCFadeIn actionWithDuration:0.2],
+                          [CCDelayTime actionWithDuration:0.2],
+                          [CCFadeOut actionWithDuration:0.2],
+                          [CCCallFuncN actionWithTarget:self selector:@selector(removeSprite:)], 
+                          nil]];
+}
+
+
+- (void)removeSprite:(CCNode*)n {
+  [self.theGame removeChild:n cleanup:YES];
+}
 
 
 @end

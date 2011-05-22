@@ -10,51 +10,50 @@
 
 
 @interface Bullet (PrivateMethods) 
--(id) initWithBulletImage;
+/* Initialise the bullet with default image */
+- (id)initWithBulletImage;
 @end
-
 
 @implementation Bullet
 
-@synthesize velocity;
-@synthesize startPos;
-@synthesize weaponType;
-@synthesize damage;
+@synthesize velocity;     @synthesize startPos;
+@synthesize weaponType;   @synthesize damage;
 
-#pragma mark Initialisation and Singleton Methods
-
+#pragma mark - Initialisation / Deallocation / Singleton
+/* Bullet Singleton */
 +(id) bullet {
   return [[[self alloc] initWithBulletImage] autorelease];
 }
 
--(id) initWithBulletImage
-{
-	// Uses the Texture Atlas now.
+/* Initialise with default image */
+-(id) initWithBulletImage {
 	if ((self = [super initWithSpriteFrameName:@"Bullet.png"])) {
     self.visible = NO;
-	}
-	
+  }
 	return self;
 }
 
--(void) dealloc
-{	
+/* Deallocate object */
+-(void) dealloc {	
 	[super dealloc];
 }
 
--(void)bulletReinit {
+
+/* Reinitialise the bullet */
+-(void)reinit {
   self.visible = NO;
   self.weaponType = 0;
   self.startPos = CGPointZero;
+  
+  // Stop actions and unschedule update
   [self stopAllActions];
   [self unscheduleAllSelectors];
 }
 
 
-#pragma mark Public Methods
-
--(void) shootBulletAt:(CGPoint)startPosition direction:(int)direction frameName:(NSString*)frameName weaponType:(int)weapon
-{
+#pragma mark - Bullet Action
+/* Fire the bullet from a point */
+-(void) fire:(CGPoint)startPosition direction:(int)direction frameName:(NSString*)frameName weaponType:(int)weapon {
   // Determine the bullet's velocity based on the weapon selected
   switch (weapon) {
     case kPlayerWeaponPistol:
@@ -89,34 +88,39 @@
 	CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName];
 	[self setDisplayFrame:frame];
 	
+  // Start the update
 	[self scheduleUpdate];
   
 }
 
--(void)bulletEnemyCollision {
+#pragma mark - Collision Detection
+/* Detect collision between the bullet and enemy */
+- (void)detectEnemyCollision {
   GameLayer *game = [GameLayer sharedGameLayer];
   EnemyCache *ec = [game enemyCache];    
   
   for (int i = 0; i < MAX_ENEMIES; i++) {
+    // Load an enemy from the enemy cache
     Enemy *e = [[ec enemies] objectAtIndex:i];   
-    if (e.activeInGame) {
+    if (e.activeInGame) { 
+      // Determine the distance
       if (ccpDistance(self.position, e.sprite.position) < 15) {
-        [e damage:self.damage];
-        [self bulletReinit];
+        [e damage:self.damage];        
+        [self reinit];
       }
     }
   }
 }
 
 
--(void) update:(ccTime)delta
-{
+#pragma mark - Step / Update Function
+/* Scheduled update function */
+- (void)update:(ccTime)delta {
   float randYVel;
   
-  // Determine the scatter pattern of the bullet when fired from a specific weapon
+  // Determine the scatter pattern of the bullet when 
+  // fired from a specific weapon
   switch (weaponType) {
-      
-      
     case kPlayerWeaponMachineGun:
       randYVel = ((arc4random() % 6));
       
@@ -136,30 +140,33 @@
       break;
   }
   
+  // Determine bullet velocity
   self.velocity = CGPointMake(velocity.x, randYVel); 
+  
+  // Move the bullet
 	self.position = ccpAdd(self.position, velocity);
 	
   CGSize screenSize = [[CCDirector sharedDirector] winSize];
-	// When the bullet leaves the screen, make it invisible
+	
   
+  // When the bullet leaves the screen, make it invisible
   switch (self.weaponType) {
-      
+    // Shotgun bullets have a shorter distance
     case kPlayerWeaponShotgun:
-      if (self.position.x > (self.startPos.x + 100) || self.position.x < (self.startPos.x - 100) 
-          || self.position.x > screenSize.width  || self.position.x < 0)
-      {
-        [self bulletReinit];
+      if (self.position.x > (self.startPos.x + 100) || 
+          self.position.x < (self.startPos.x - 100) || 
+          self.position.x > screenSize.width  || self.position.x < 0){
+        [self reinit];
       }
       break;
       
     default:
       if (self.position.x > screenSize.width || self.position.x < 0)
-      {
-        [self bulletReinit];
-      }
+        [self reinit];
   }
   
-  [self bulletEnemyCollision];
+  // Detect bullet collision with enemy object
+  [self detectEnemyCollision];
 }
 
 

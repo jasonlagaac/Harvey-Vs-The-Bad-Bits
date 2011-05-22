@@ -9,15 +9,24 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+
 #import "Player.h"
 #import "GameScene.h"
 #import "EnemyCache.h"
 
+/** Bullet: Bullet object to be fired by the player
+ */
 @interface Bullet : CCSprite {
+  /* Bullet velocity */
   CGPoint velocity;
+  
+  /* Bullet start position */
   CGPoint startPos;
-  float outsideScreen;
+  
+  /* Bullet type in regards to weapon */
   int weaponType;
+  
+  /* Damage that bullet deals */
   int damage;
 }
 
@@ -26,12 +35,24 @@
 @property (readwrite, nonatomic) int weaponType;
 @property (readwrite, nonatomic) int damage;
 
+/** Bullet Singleton
+ */
 + (id)bullet;
-- (void)shootBulletAt:(CGPoint)startPosition 
+
+
+/** Fire: Fire bullet
+ *  @param startPosition: fire bullet from position
+ *  @param direction: direction the bullet is to be fired
+ *  @param frameName: bullet type frame
+ *  @param weapon: Bullet from weapon type
+ */
+- (void)fire:(CGPoint)startPosition 
             direction:(int)direction 
             frameName:(NSString*)frameName 
            weaponType:(int)weapon;
 
-- (void)bulletReinit;
+/** Reinit: Re-initialise the bullet
+ */
+- (void)reinit;
 
 @end

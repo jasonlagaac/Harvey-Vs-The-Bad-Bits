@@ -79,7 +79,7 @@
   } else { 
     // Vertical platform definition
     CGPoint endPoint = CGPointMake(pos.x, (pos.y + height));
-    shape = cpSegmentShapeNew(staticBody, pos, endPoint, 1.0f);
+    shape = cpSegmentShapeNew(staticBody, pos, endPoint, 0.5f);
   }
   
   // Add shape into the space

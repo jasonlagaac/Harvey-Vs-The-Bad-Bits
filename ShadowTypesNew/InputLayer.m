@@ -123,14 +123,7 @@
     // in that specific direction
     
     // Player movement in the x-axis
-    [player move_x:velocity.x activeFireButton:fireButton.active];
-
-    // Player facing direction
-    [player facingDirection:velocity.x];
-
-    
-    // Animate the walking motion of the sprite
-    [player animateMovement:velocity.x];
+    [player move:velocity.x activeFireButton:fireButton.active];
     
     // Jumping action
     if (reloadButton.active && jumpButtonActiveCount < MAX_JUMP_COUNT) {

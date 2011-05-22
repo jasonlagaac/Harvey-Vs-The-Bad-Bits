@@ -36,9 +36,9 @@ eachShape(void *ptr, void* unused)
 
 
 @interface GameLayer (private) 
-
 - (void)updateScore;
 - (void)spawnEnemy;
+- (void)loadParticleEffects;
 @end
 
 
@@ -98,6 +98,8 @@ static GameLayer* instanceOfGameLayer;
     // Need the screen window size for iPad and iPhone differentiation 
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
+    nextSpawnTime = 0;
+    
     // Initialise Chipmunk
     cpInitChipmunk();
     
@@ -113,6 +115,8 @@ static GameLayer* instanceOfGameLayer;
     
     // Assign gamelayer instance
     instanceOfGameLayer = self;
+    
+    [self loadParticleEffects];
     
     self.playerLevel = 0; // Assign the player game level
     self.remainingTime = 75; // remaining time in seconds
@@ -157,6 +161,28 @@ static GameLayer* instanceOfGameLayer;
 	[super onEnter];
 }
 
+
+- (void)loadParticleEffects {
+  /* Particle Effects */
+  CCParticleSystem *effect;
+  
+  effect = [CCParticleSystemPoint particleWithFile:@"EnemyExplode.plist"];
+  effect.autoRemoveOnFinish = YES;
+  
+  [self addChild:effect z:7];
+  
+  effect = [CCParticleSystemPoint particleWithFile:@"WeaponPickup.plist"];
+  effect.autoRemoveOnFinish = YES;
+  
+  [self addChild:effect z:7];
+  
+  effect = [CCParticleSystemPoint particleWithFile:@"PlayerJump.plist"];
+  effect.autoRemoveOnFinish = YES;
+  
+  [self addChild:effect z:7];
+  
+}
+
 - (void)updateScore {
   CCLabelAtlas *l = (CCLabelAtlas *)[self getChildByTag:K_ScoreLabel];
   [l setString:[NSString stringWithFormat:@"%d", [player points]]];
@@ -176,6 +202,8 @@ static GameLayer* instanceOfGameLayer;
 	int steps = 2;
 	CGFloat dt = delta/(CGFloat)steps;
 	
+  nextSpawnTime += delta;
+  
 	for(int i=0; i<steps; i++){
 		cpSpaceStep(space, dt);
 	}
@@ -186,8 +214,11 @@ static GameLayer* instanceOfGameLayer;
   [[self player] checkEnemyCollision];
   [[self cartridge] checkItemCollision];
   [[self ammoBox] checkItemCollision];    
-  
-  [self spawnEnemy];
+    
+  if (nextSpawnTime > 1.0f) {
+    [self spawnEnemy];
+    nextSpawnTime = 0.0f;
+  }
 }
 
 @end

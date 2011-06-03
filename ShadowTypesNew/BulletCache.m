@@ -63,18 +63,6 @@
   Bullet *bullet = nil;
   
   switch (weapon) {
-    case kPlayerWeaponPistol:
-      bullet = [bullets objectAtIndex:nextInactiveBullet];
-      [bullet fire:startPosition direction:direction frameName:frameName weaponType:weapon];
-      nextInactiveBullet++;
-      
-      break;
-    case kPlayerWeaponMachineGun:
-      bullet = [bullets objectAtIndex:nextInactiveBullet];
-      [bullet fire:startPosition direction:direction frameName:frameName weaponType:weapon];
-      nextInactiveBullet++;
-      
-      break;
       
     case kPlayerWeaponShotgun:
       // Shotgun - Fires five bullets at once
@@ -90,16 +78,12 @@
         [bullet fire:startPosition direction:direction  frameName:frameName weaponType:weapon];
         nextInactiveBullet++;
       }
-      
       break;
-    case kPlayerWeaponPhaser:
+
+    default:
       bullet = [bullets objectAtIndex:nextInactiveBullet];
       [bullet fire:startPosition direction:direction frameName:frameName weaponType:weapon];
       nextInactiveBullet++;
-      
-      break;
-      
-    default:
       break;
   }
   

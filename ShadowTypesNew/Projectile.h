@@ -7,10 +7,31 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "chipmunk.h"
 
+#import "GameScene.h"
 
-@interface Projectile : CCNode {
-    
+typedef enum {
+  kProjFlame,
+  kProjMine,
+  kProjGrenade,
+  kProjCount
+} projType;
+
+@interface Projectile : CCSprite {
+  /* Projectile Type */
+  projType type;
+  
+  /* Physics Attribs */
+  cpBody *body;          
+  cpShape *shape; 
+  
+  /* Animation actions for objects */
+  CCAction *flameAction;
+  CCAction *mineAction;
 }
+
+@property (nonatomic, readwrite) projType type;
 
 @end

@@ -33,8 +33,11 @@
     [game addChild: map];
     
     CCTMXLayer *level = [map layerNamed:@"Level"];
-    
+    [[level texture] setAliasTexParameters];
+  
     [game reorderChild:level z:1];
+    
+    
     
     CCTMXObjectGroup *levelObj = [map objectGroupNamed:@"Object Layer"];
     

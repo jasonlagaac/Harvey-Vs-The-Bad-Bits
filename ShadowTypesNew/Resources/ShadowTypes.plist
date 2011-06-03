@@ -85,15 +85,15 @@
 		<key>Bullet.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{180, 154}, {10, 6}}</string>
+			<string>{{1013, 132}, {8, 8}}</string>
 			<key>offset</key>
 			<string>{0, -0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0, 0}, {10, 6}}</string>
+			<string>{{0, 0}, {8, 8}}</string>
 			<key>sourceSize</key>
-			<string>{10, 6}</string>
+			<string>{8, 8}</string>
 		</dict>
 		<key>Cartridge.png</key>
 		<dict>
@@ -393,6 +393,19 @@
 			<string>{{0, 2}, {40, 38}}</string>
 			<key>sourceSize</key>
 			<string>{46, 40}</string>
+		</dict>
+		<key>Grenade.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1013, 122}, {8, 8}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {8, 8}}</string>
+			<key>sourceSize</key>
+			<string>{8, 8}</string>
 		</dict>
 		<key>Grenade1.png</key>
 		<dict>

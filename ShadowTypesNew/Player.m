@@ -12,7 +12,6 @@
 @interface Player (private)
 // Player Initialisation
 - (void)loadAnimations;
-- (void)loadDefaultSprite;
 - (void)loadSound;
 - (void)loadPhysics;
 
@@ -34,13 +33,17 @@
 
 @implementation Player
 
-@synthesize theGame;                @synthesize sprite;
-@synthesize weapon;                 @synthesize direction;
-@synthesize playerAttacking;        @synthesize playerJumping;
-@synthesize body;                   @synthesize shape;
-@synthesize knifeWalkAction;        @synthesize pistolWalkAction;
-@synthesize machineGunWalkAction;   @synthesize shotgunWalkAction;
-@synthesize phaserWalkAction;       @synthesize points;
+@synthesize theGame;                    @synthesize sprite;
+@synthesize weapon;                     @synthesize direction;
+@synthesize playerAttacking;            @synthesize playerJumping;
+@synthesize body;                       @synthesize shape;
+@synthesize knifeWalkAction;            @synthesize pistolWalkAction;
+@synthesize machineGunWalkAction;       @synthesize shotgunWalkAction;
+@synthesize phaserWalkAction;           @synthesize points;
+@synthesize rocketWalkAction;           @synthesize revolverWalkAction;
+@synthesize flamethrowerWalkAction;     @synthesize gattlingGunWalkAction;
+@synthesize grenadeLauncherWalkAction;
+
 
 
 #pragma mark - 
@@ -50,8 +53,9 @@
   CGSize screenSize = [[CCDirector sharedDirector] winSize];
   
   self.weapon = kPlayerWeaponPistol;
+  self.sprite = [CCSprite spriteWithSpriteFrameName:@"PistolStill.png"];
+
   
-  [self loadDefaultSprite];
   [[self.sprite texture] setAliasTexParameters];
   
   self.sprite.flipX = NO;    
@@ -62,30 +66,20 @@
   
 }
 
--(void) loadDefaultSprite {    
-  switch (self.weapon) {
-    case kPlayerWeaponPistol:
-      self.sprite = [CCSprite spriteWithSpriteFrameName:@"PistolStill.png"];
-      break;
-    case kPlayerWeaponMachineGun:
-      self.sprite = [CCSprite spriteWithSpriteFrameName:@"MachineGunStill.png"];
-      break;
-    case kPlayerWeaponShotgun:
-      self.sprite = [CCSprite spriteWithSpriteFrameName:@"ShotgunStill.png"];
-      break;
-    case kPlayerWeaponPhaser:
-      self.sprite = [CCSprite spriteWithSpriteFrameName:@"PhaserStill.png"];
-      break;
-  }
-}
 
 -(void) loadAnimations {
   NSMutableArray *pistolWalkFrames = [NSMutableArray array];
   NSMutableArray *machineGunWalkFrames = [NSMutableArray array];
   NSMutableArray *shotgunWalkFrames = [NSMutableArray array];
   NSMutableArray *phaserWalkFrames = [NSMutableArray array];
+  NSMutableArray *rocketWalkFrames = [NSMutableArray array];
+  NSMutableArray *revolverWalkFrames = [NSMutableArray array];
+  NSMutableArray *flamethrowerWalkFrames = [NSMutableArray array];
+  NSMutableArray *gattlingGunWalkFrames = [NSMutableArray array];
+  NSMutableArray *grenadeLauncherWalkFrames = [NSMutableArray array];
+
   
-  for (int i = 1; i <= 4; i++) {
+  for (int i = 1; i <= NUM_PLAYER_WALK_FRAMES; i++) {
     [pistolWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] 
                                  spriteFrameByName:[NSString stringWithFormat:@"Pistol%d.png", i]]];    
     [machineGunWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] 
@@ -96,6 +90,24 @@
     
     [phaserWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] 
                                  spriteFrameByName:[NSString stringWithFormat:@"Phaser%d.png", i]]]; 
+    
+    [rocketWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                 spriteFrameByName:[NSString stringWithFormat:@"Rocket%d.png", i]]];
+    
+    [revolverWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                 spriteFrameByName:[NSString stringWithFormat:@"Revolver%d.png", i]]];
+    
+    [flamethrowerWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                   spriteFrameByName:[NSString stringWithFormat:@"Flamethrower%d.png", i]]];
+    
+    [gattlingGunWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                       spriteFrameByName:[NSString stringWithFormat:@"Gattling%d.png", i]]];
+    
+    [grenadeLauncherWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                      spriteFrameByName:[NSString stringWithFormat:@"Grenade%d.png", i]]];
+
+
+     
   }
   
   CCAnimation *pistolWalkAnim = [CCAnimation animationWithFrames:pistolWalkFrames delay:0.07f];
@@ -112,17 +124,23 @@
   
   CCAnimation *phaserWalkAnim = [CCAnimation animationWithFrames:phaserWalkFrames delay:0.07f];
   self.phaserWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:phaserWalkAnim]];
-}
 
-
-/* Preload the sound files */
--(void) loadSound {
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Pistol.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"MachineGun.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Phaser.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Shotgun.m4a"];
+  CCAnimation *rocketWalkAnim = [CCAnimation animationWithFrames:rocketWalkFrames delay:0.07f];
+  self.rocketWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:rocketWalkAnim]];
   
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayerJump.m4a"];
+  CCAnimation *revolverWalkAnim = [CCAnimation animationWithFrames:revolverWalkFrames delay:0.07f];
+  self.revolverWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:revolverWalkAnim]];
+
+  CCAnimation *flamethrowerWalkAnim = [CCAnimation animationWithFrames:flamethrowerWalkFrames delay:0.07f];
+  self.flamethrowerWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:flamethrowerWalkAnim]];
+  
+  CCAnimation *gattlingGunWalkAnim = [CCAnimation animationWithFrames:gattlingGunWalkFrames delay:0.07f];
+  self.gattlingGunWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:gattlingGunWalkAnim]];
+
+  CCAnimation *grenadeWalkAnim = [CCAnimation animationWithFrames:grenadeLauncherWalkFrames delay:0.07f];
+  self.grenadeLauncherWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:grenadeWalkAnim]];
+
+  
 }
 
 -(void) loadPhysics {    
@@ -165,7 +183,6 @@
     
     [self loadSprites];
     [self loadAnimations];
-    [self loadSound];
     [self loadPhysics];
     
     [game addChild:self z:5];
@@ -210,6 +227,34 @@
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
                                       spriteFrameByName:@"PhaserStill.png"]];
       break;
+      
+    case kPlayerWeaponRevolver:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                      spriteFrameByName:@"RevolverStill.png"]];
+      break;
+      
+    case kPlayerWeaponRocket:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                      spriteFrameByName:@"RocketStill.png"]];
+      break;
+      
+    case kPlayerWeaponFlamethrower:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                      spriteFrameByName:@"FlamethrowerStill.png"]];
+      break;
+      
+    case kPlayerWeaponGattlingGun:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                      spriteFrameByName:@"GattlingStill.png"]];
+      break;
+      
+    case kPlayerWeaponGrenadeLauncher:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                      spriteFrameByName:@"GrenadeStill.png"]];
+      break;
+      
+    default:
+      break;
   }
 }
 
@@ -231,6 +276,26 @@
       case kPlayerWeaponPhaser:
         [[self sprite] runAction: phaserWalkAction];
         break;
+        
+      case kPlayerWeaponRocket:
+        [[self sprite] runAction: rocketWalkAction];
+        break;     
+        
+      case kPlayerWeaponRevolver:
+        [[self sprite] runAction: revolverWalkAction];
+        break;
+        
+      case kPlayerWeaponFlamethrower:
+        [[self sprite] runAction: flamethrowerWalkAction];
+        break;  
+        
+      case kPlayerWeaponGattlingGun:
+        [[self sprite] runAction: gattlingGunWalkAction];
+        break;  
+        
+      case kPlayerWeaponGrenadeLauncher:
+        [[self sprite] runAction: grenadeLauncherWalkAction];
+        break;  
         
       default:
         break;
@@ -321,6 +386,33 @@
                                       spriteFrameByName:@"PhaserJump.png"]];
       break;
       
+    case kPlayerWeaponRocket:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                      spriteFrameByName:@"RocketJump.png"]];
+      break;
+      
+    case kPlayerWeaponRevolver:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                      spriteFrameByName:@"RevolverJump.png"]];
+      break;
+      
+    case kPlayerWeaponFlamethrower:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                      spriteFrameByName:@"FlamethrowerJump.png"]];
+      break;
+      
+    case kPlayerWeaponGattlingGun:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                      spriteFrameByName:@"GattlingJump.png"]];
+      break;
+      
+      
+    case kPlayerWeaponGrenadeLauncher:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                      spriteFrameByName:@"GrenadeJump.png"]];
+      break;
+      
+      
     default:
       break;
   }
@@ -358,9 +450,16 @@
   CGPoint shotPos = CGPointZero;
   
   if (self.direction == kPlayerMoveRight) {
-    shotPos = CGPointMake(self.sprite.position.x + 25, self.sprite.position.y + 7.0f);
+    if (self.weapon != kPlayerWeaponGattlingGun)
+      shotPos = CGPointMake(self.sprite.position.x + 20, self.sprite.position.y + 7.0f);
+    else
+      shotPos = CGPointMake(self.sprite.position.x + 15, self.sprite.position.y - 2.0f);
+
   } else {
-    shotPos = CGPointMake(self.sprite.position.x - 25, self.sprite.position.y + 7.0f);
+    if (self.weapon != kPlayerWeaponGattlingGun)
+        shotPos = CGPointMake(self.sprite.position.x - 20, self.sprite.position.y + 7.0f);
+    else 
+      shotPos = CGPointMake(self.sprite.position.x - 15, self.sprite.position.y - 2.0f);
   }
   
   switch (self.weapon) {
@@ -428,6 +527,39 @@
       }
       break;
       
+    case kPlayerWeaponRevolver: // Single shot for the revolver
+      if (fireButtonActive && !playerAttacking) {
+        playerAttacking = YES;
+        BulletCache *bulletCache = [theGame bulletCache];
+        
+        [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
+                           frameName:@"Bullet.png" weaponType:self.weapon];
+        
+        [[SimpleAudioEngine sharedEngine]playEffect:@"Revolver.m4a"];
+
+      } else if (!fireButtonActive && playerAttacking) {
+        playerAttacking = NO;
+        
+      }      break;
+  
+      
+    case kPlayerWeaponGattlingGun: // Rapid shot for the machine gun
+      if (fireButtonActive && totalTime > *nextShotTime) {
+        playerAttacking = YES;
+        *nextShotTime = totalTime + 0.02f;
+        
+        BulletCache *bulletCache = [theGame bulletCache];                
+        [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
+                           frameName:@"Bullet.png" weaponType:self.weapon];
+        
+        [[SimpleAudioEngine sharedEngine]playEffect:@"MachineGun.m4a"];
+      } else if (!fireButtonActive && playerAttacking) {
+        playerAttacking = NO;
+        nextShotTime = 0;
+      }
+      
+      break;
+      
     default:
       break;
   } 
@@ -439,6 +571,11 @@
     case kPlayerWeaponMachineGun:
       return 30;
       break;
+      
+    case kPlayerWeaponGattlingGun:
+      return 120;
+      break;
+      
     default:
       break;
   }

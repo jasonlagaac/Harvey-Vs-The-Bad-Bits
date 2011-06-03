@@ -10,11 +10,16 @@
 #import "cocos2d.h"
 #import "chipmunk.h"
 #import "GameScene.h"
+#import "Explosion.h"
+#import "ExplosionCache.h"
+
+#define NUM_ENEMY_WALK_FRAMES 5
 
 /* Enemy Types */
 typedef enum {
   kEnemySmall,
-  kEnemyJuggernaut
+  kEnemyJuggernaut,
+  kEnemyExploder
 } EnemyType;
 
 /* Enemy movement options */
@@ -58,6 +63,8 @@ typedef enum {
   /* Animation Action */
   CCAction *enemyWalkAction;
   CCAction *juggernautWalkAction;
+  CCAction *exploderWalkAction;
+
   
 }
 
@@ -75,6 +82,8 @@ typedef enum {
 @property (nonatomic, readwrite) EnemyMovement direction;
 @property (nonatomic, retain) CCAction *enemyWalkAction;
 @property (nonatomic, retain) CCAction *juggernautWalkAction;
+@property (nonatomic, retain) CCAction *exploderWalkAction;
+
 
 @property (nonatomic, readwrite) float prevPos_x;
 

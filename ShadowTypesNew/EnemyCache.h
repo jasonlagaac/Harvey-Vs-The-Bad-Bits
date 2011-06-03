@@ -12,7 +12,7 @@
 #import "GameScene.h"
 #import "Enemy.h"
 
-#define MAX_ENEMIES 8
+#define MAX_ENEMIES 30
 
 /** EnemyCache: Storing and reloading enemy objects
  */

@@ -37,6 +37,7 @@ typedef enum
 @class Player;
 @class BulletCache;
 @class EnemyCache;
+@class ExplosionCache;
 @class Level;
 
 // HelloWorldLayer
@@ -46,11 +47,13 @@ typedef enum
   cpSpace *space;
   
   // Game Entities
-  Item *items[10];
   EnemyCache *enemyCache;
+  BulletCache *bulletCache;
+  ExplosionCache *explosionCache;
+
+  
   Enemy *enemy;
   Player *player;
-  BulletCache *bulletCache;
   Level *level;
   Item *cartridge;
   Item *ammoBox;
@@ -73,6 +76,7 @@ typedef enum
 @property (nonatomic, retain) Player *player;
 @property (nonatomic, retain) BulletCache *bulletCache;
 @property (nonatomic, retain) EnemyCache *enemyCache;
+@property (nonatomic, retain) ExplosionCache *explosionCache;
 
 @property (nonatomic, retain) Level *level;
 @property (nonatomic, retain) Item *cartridge;

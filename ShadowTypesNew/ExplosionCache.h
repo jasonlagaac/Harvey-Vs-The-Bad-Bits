@@ -7,10 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
+@class Explosion;
+@class GameLayer;
 
 @interface ExplosionCache : CCNode {
-    
+  GameLayer *theGame;
+  
+  CCArray *explosions;
+  
+  int nextInactiveExplosion;
 }
+@property (nonatomic, retain) CCArray *explosions;
+
+-(void) blastAt:(CGPoint)pos;
 
 @end

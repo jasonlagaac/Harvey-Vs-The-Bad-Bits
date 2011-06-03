@@ -116,7 +116,7 @@
 - (void)setItemSprite {    
   switch (self.item) {
 		case kCartridge:
-      self.sprite = [CCSprite spriteWithSpriteFrameName:@"Cartridge2.png"];
+      self.sprite = [CCSprite spriteWithSpriteFrameName:@"Cartridge.png"];
 			break;
     case kAmmoPack:
       self.sprite = [CCSprite spriteWithSpriteFrameName:@"AmmoBox.png"];
@@ -177,6 +177,7 @@
 /* Determine if the player has collided with the item */
 - (void)checkItemCollision {
   Player *player = theGame.player;
+  
     
   if (ccpDistance(player.sprite.position, self.sprite.position) < 25) {
     if (self.item == kAmmoPack) {
@@ -199,6 +200,9 @@
     
     [self reload];
   }
+  
+  if (self.sprite.position.y < -50) 
+    [self reload];
 }
 
 - (void)weaponPickupFeedback {
@@ -216,7 +220,26 @@
     case kPlayerWeaponShotgun:
       [self displayText:@"Shotgun"];
       break;
-
+      
+    case kPlayerWeaponFlamethrower:
+      [self displayText:@"Flamethrower"];
+      break;
+      
+    case kPlayerWeaponGattlingGun:
+      [self displayText:@"Gattling\n  Gun"];
+      break;
+      
+    case kPlayerWeaponGrenadeLauncher:
+      [self displayText:@"Grenade\n\t\tLauncher"];
+      break;
+      
+    case kPlayerWeaponRevolver:
+      [self displayText:@"Revolver"];
+      break;
+      
+    case kPlayerWeaponRocket:
+      [self displayText:@"Rocket\n\t\tLauncher"];
+      break;
 
     default:
       break;
@@ -238,8 +261,7 @@
   [feedbackTxt runAction:[CCSequence actions:[CCFadeIn actionWithDuration:0.2],
                           [CCDelayTime actionWithDuration:0.2],
                           [CCFadeOut actionWithDuration:0.2],
-                          [CCCallFuncN actionWithTarget:self selector:@selector(removeSprite:)], 
-                          nil]];
+                          [CCCallFuncN actionWithTarget:self selector:@selector(removeSprite:)], nil]];
 }
 
 

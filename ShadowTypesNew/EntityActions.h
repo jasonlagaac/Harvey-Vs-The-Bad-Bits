@@ -19,9 +19,7 @@
 -(void) loadIntoLayer;
 -(void) removeFromLayer;
 
-@optional
--(void) loadObj:(int)objType spawnTime:(float)sTime;
--(void) loadObj:(int)objType spawnTime:(float)sTime removeTime:(float)rTime;
+
 
 
 @end

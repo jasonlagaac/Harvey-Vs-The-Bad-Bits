@@ -49,14 +49,15 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 
 @implementation Enemy
 
-@synthesize sprite;       @synthesize theGame;
-@synthesize enemyType;    @synthesize direction;
-@synthesize health;       @synthesize prevPos_x;
-@synthesize spawnPos;     @synthesize body;
-@synthesize shape;        @synthesize enemyFalling;
-@synthesize started;      @synthesize activeInGame;
-@synthesize dead;         @synthesize enemyWalkAction;
-@synthesize juggernautWalkAction;
+@synthesize sprite;                 @synthesize theGame;
+@synthesize enemyType;              @synthesize direction;
+@synthesize health;                 @synthesize prevPos_x;
+@synthesize spawnPos;               @synthesize body;
+@synthesize shape;                  @synthesize enemyFalling;
+@synthesize started;                @synthesize activeInGame;
+@synthesize dead;                   @synthesize enemyWalkAction;
+@synthesize juggernautWalkAction;   @synthesize exploderWalkAction;
+
 
 
 #pragma mark -
@@ -98,6 +99,10 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
       self.sprite = [CCSprite spriteWithSpriteFrameName:@"Juggernaut2.png"];
       self.health = 10;
       break;
+    case kEnemyExploder:
+      self.sprite = [CCSprite spriteWithSpriteFrameName:@"Exploder2.png"];
+      self.health = 15;
+      break;
   }
   
   self.sprite.position = self.spawnPos;
@@ -108,21 +113,28 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 - (void)loadAnimations {
   NSMutableArray *enemySmallWalkFrames = [NSMutableArray array];
   NSMutableArray *juggernautWalkFrames = [NSMutableArray array];
+  NSMutableArray *exploderWalkFrames = [NSMutableArray array];
 
   
-  for (int i = 1; i <= 5; i++) {
+  for (int i = 1; i <= NUM_ENEMY_WALK_FRAMES; i++) {
     [enemySmallWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] 
                                      spriteFrameByName:[NSString stringWithFormat:@"EnemySmall%d.png", i]]];
     [juggernautWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] 
                                      spriteFrameByName:[NSString stringWithFormat:@"Juggernaut%d.png", i]]];
+    [exploderWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                     spriteFrameByName:[NSString stringWithFormat:@"Exploder%d.png", i]]];
+
   }
   
   CCAnimation *enemySmallWalkAnim = [CCAnimation animationWithFrames:enemySmallWalkFrames delay:0.07f];
   CCAnimation *juggernautWalkAnim = [CCAnimation animationWithFrames:juggernautWalkFrames delay:0.07f];
+  CCAnimation *exploderWalkAnim = [CCAnimation animationWithFrames:exploderWalkFrames delay:0.07f];
 
   
   self.enemyWalkAction  = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:enemySmallWalkAnim]];
   self.juggernautWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:juggernautWalkAnim]];
+  self.exploderWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:exploderWalkAnim]];
+
 }
 
 /* Load physics attributes */
@@ -207,6 +219,10 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
       [[self sprite] runAction:juggernautWalkAction];
       break;
       
+    case kEnemyExploder:
+      [[self sprite] runAction:exploderWalkAction];
+      break;
+      
     default:
       break;
   }
@@ -264,6 +280,9 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
         [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Juggernaut2.png"]];
         break;
         
+      case kEnemyExploder:
+        [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Exploder2.png"]];
+        break;
       default:
         break;
     }
@@ -280,6 +299,10 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
         [[self sprite] runAction:juggernautWalkAction];
         break;
         
+      case kEnemyExploder:
+        [[self sprite] runAction:exploderWalkAction];
+        break;
+        
       default:
         break;
     }
@@ -292,11 +315,12 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 - (void)respawn {
   CGSize screenSize = [[CCDirector sharedDirector] winSize];
   
-  respawnCount++;
   
-  if (respawnCount == 2) {
+  if (respawnCount < 2) 
+    respawnCount++; 
+  else
     [self evolve];
-  }
+
   
   // Randomly select new movement direction
   if (arc4random() % kNumEnemyMovements) {
@@ -314,6 +338,7 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
   // Re-initialise
   enemyFalling = NO;
   started = NO;
+  self.sprite.visible = YES;
   
    
 }
@@ -326,16 +351,19 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
   
   
   /* Particle Effects */
-  CCParticleSystem *explosion;
+  if (enemyType != kEnemyExploder) {
+    CCParticleSystem *explosion;
   
-  explosion = [CCParticleSystemPoint particleWithFile:@"EnemyExplode.plist"];
-  explosion.autoRemoveOnFinish = YES;
+    explosion = [CCParticleSystemPoint particleWithFile:@"EnemyExplode.plist"];
+    explosion.autoRemoveOnFinish = YES;
   
-  [self.theGame addChild:explosion z:7];
-  [explosion setPosition:self.sprite.position];
+    [self.theGame addChild:explosion z:7];
+    [explosion setPosition:self.sprite.position];
   
-  [[SimpleAudioEngine sharedEngine]playEffect:@"EnemyDeath.m4a"];
-
+    [[SimpleAudioEngine sharedEngine]playEffect:@"EnemyDeath.m4a"];
+  } else {
+    [[theGame explosionCache] blastAt:self.sprite.position];
+  }
   
   // Cocos2d must run this after the step that all bodies are accounted for
   // and that they are all cleaned up
@@ -345,10 +373,11 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 
 /* Enemy damage from being hit */
 - (void)damage:(int)damage {
+  
   self.health -= damage;
-  [[self sprite] runAction:[CCBlink actionWithDuration:1 blinks:10]];
+  [[self sprite] runAction:[CCBlink actionWithDuration:1 blinks:30]];
+  self.sprite.visible = YES;
   [[SimpleAudioEngine sharedEngine]playEffect:@"EnemyHit.m4a"];
-
   
   if (self.health <= 0) {
     [self death];
@@ -356,10 +385,9 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 }
 
 - (void)evolve {
-  if (self.enemyType < (kEnemyJuggernaut)) {
+  if (self.enemyType != kEnemyExploder) {
     self.enemyType++;
     [self stopAllActions];
-    //[self loadDefaultSprite];
     
     switch (enemyType) {
       case kEnemySmall:
@@ -368,6 +396,14 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
         
       case kEnemyJuggernaut:
         [[self sprite] runAction:juggernautWalkAction];
+        self.sprite.visible = YES;
+        self.health = 10;
+        break;
+        
+      case kEnemyExploder:
+        [[self sprite] runAction:exploderWalkAction];
+        self.sprite.visible = YES;
+        self.health = 15;
         break;
         
       default:

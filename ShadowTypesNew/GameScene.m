@@ -13,6 +13,7 @@
 #import "Player.h"
 #import "BulletCache.h"
 #import "EnemyCache.h"
+#import "ExplosionCache.h"
 #import "Bullet.h"
 #import "Enemy.h"
 
@@ -39,6 +40,7 @@ eachShape(void *ptr, void* unused)
 - (void)updateScore;
 - (void)spawnEnemy;
 - (void)loadParticleEffects;
+- (void)loadSound;
 @end
 
 
@@ -50,6 +52,7 @@ eachShape(void *ptr, void* unused)
 @synthesize player;
 @synthesize bulletCache;
 @synthesize enemyCache;
+@synthesize explosionCache;
 @synthesize space;
 @synthesize level;
 @synthesize ammoBox;
@@ -98,6 +101,7 @@ static GameLayer* instanceOfGameLayer;
     // Need the screen window size for iPad and iPhone differentiation 
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
+    
     nextSpawnTime = 0;
     
     // Initialise Chipmunk
@@ -117,6 +121,7 @@ static GameLayer* instanceOfGameLayer;
     instanceOfGameLayer = self;
     
     [self loadParticleEffects];
+    [self loadSound];
     
     self.playerLevel = 0; // Assign the player game level
     self.remainingTime = 75; // remaining time in seconds
@@ -143,6 +148,10 @@ static GameLayer* instanceOfGameLayer;
     
     enemyCache = [[EnemyCache alloc] initWithGame:self withLevel:1 withStartPoints:spawnPos];
     bulletCache = [[BulletCache alloc] initWithGame:self];
+    explosionCache = [[ExplosionCache alloc] initWithGame:self];
+    
+    
+
     
     [self schedule: @selector(step:)];
     
@@ -181,6 +190,19 @@ static GameLayer* instanceOfGameLayer;
   
   [self addChild:effect z:7];
   
+}
+
+-(void) loadSound {
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Pistol.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"MachineGun.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Phaser.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Shotgun.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Revolver.m4a"];
+
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"ShotgunReload.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayerJump.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Explosion.m4a"];
+
 }
 
 - (void)updateScore {

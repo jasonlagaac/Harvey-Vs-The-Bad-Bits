@@ -13,12 +13,19 @@
 
 #import "GameScene.h"
 
+#define NUM_PLAYER_WALK_FRAMES 4
+
 // Weapon Types
 typedef enum  {
     kPlayerWeaponPistol,
     kPlayerWeaponMachineGun,
     kPlayerWeaponShotgun,
     kPlayerWeaponPhaser,
+    kPlayerWeaponRocket,
+    kPlayerWeaponRevolver,
+    kPlayerWeaponFlamethrower,
+    kPlayerWeaponGattlingGun,
+    kPlayerWeaponGrenadeLauncher,
     kPlayerWeaponCount
 } PlayerWeapon;
 
@@ -56,6 +63,11 @@ typedef enum  {
     CCAction *machineGunWalkAction;
     CCAction *shotgunWalkAction;
     CCAction *phaserWalkAction;
+    CCAction *rocketWalkAction;
+    CCAction *revolverWalkAction;
+    CCAction *flamethrowerWalkAction;
+    CCAction *gattlingGunWalkAction;
+    CCAction *grenadeLauncherWalkAction;
 }
 
 @property (nonatomic, retain) GameLayer *theGame;
@@ -64,14 +76,25 @@ typedef enum  {
 @property (nonatomic, readwrite) PlayerMovement direction;
 @property (nonatomic, readwrite) BOOL playerAttacking;
 @property (nonatomic, readwrite) BOOL playerJumping;
+@property (nonatomic, readwrite) int points;
+
 @property (nonatomic, readwrite) cpBody  *body;
 @property (nonatomic, readwrite) cpShape *shape;
+
+
 @property (nonatomic, retain) CCAction *knifeWalkAction;
 @property (nonatomic, retain) CCAction *pistolWalkAction;
 @property (nonatomic, retain) CCAction *machineGunWalkAction;
 @property (nonatomic, retain) CCAction *shotgunWalkAction;
 @property (nonatomic, retain) CCAction *phaserWalkAction;
-@property (nonatomic, readwrite) int points;
+
+
+@property (nonatomic, retain) CCAction *rocketWalkAction;
+@property (nonatomic, retain) CCAction *revolverWalkAction;
+@property (nonatomic, retain) CCAction *flamethrowerWalkAction;
+@property (nonatomic, retain) CCAction *gattlingGunWalkAction;
+@property (nonatomic, retain) CCAction *grenadeLauncherWalkAction;
+
 
 /** Restore the default sprite
  */ 

@@ -124,6 +124,7 @@
     
     // Player movement in the x-axis
     [player move:velocity.x activeFireButton:fireButton.active];
+
     
     // Jumping action
     if (reloadButton.active && jumpButtonActiveCount < MAX_JUMP_COUNT) {

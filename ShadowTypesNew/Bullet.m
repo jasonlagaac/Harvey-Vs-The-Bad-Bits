@@ -66,12 +66,27 @@
       break;
       
     case kPlayerWeaponShotgun:
-      self.velocity = CGPointMake((arc4random() % 6 + 5), 0);
+      self.velocity = CGPointMake((arc4random() % 6 + 3), 0);
       self.damage = 1;
       break;
     case kPlayerWeaponPhaser:
       self.velocity = CGPointMake(9, 0);
       self.damage = 5;
+      break;
+      
+    case kPlayerWeaponGattlingGun:
+      self.velocity = CGPointMake(12, 0);
+      self.damage = 5;
+      break;
+      
+    case kPlayerWeaponRevolver:
+      self.velocity = CGPointMake(12, 0);
+      self.damage = 5;
+      break;
+
+    
+      
+    default:
       break;
   }
   
@@ -105,8 +120,9 @@
     if (e.activeInGame) { 
       // Determine the distance
       if (ccpDistance(self.position, e.sprite.position) < 15) {
-        [e damage:self.damage];        
-        [self reinit];
+        [e damage:self.damage];    
+        if (weaponType != kPlayerWeaponShotgun) 
+          [self reinit];
       }
     }
   }
@@ -130,6 +146,13 @@
       
     case kPlayerWeaponShotgun:
       randYVel = ((arc4random() % 9));
+      
+      randYVel = (arc4random() % 2) ? abs(randYVel) : -abs(randYVel);
+      randYVel *= 0.5f;
+      break;
+      
+    case kPlayerWeaponGattlingGun:
+      randYVel = ((arc4random() % 12));
       
       randYVel = (arc4random() % 2) ? abs(randYVel) : -abs(randYVel);
       randYVel *= 0.5f;

@@ -38,6 +38,7 @@ typedef enum
 @class BulletCache;
 @class EnemyCache;
 @class ExplosionCache;
+@class ProjectileCache;
 @class Level;
 
 // HelloWorldLayer
@@ -50,6 +51,7 @@ typedef enum
   EnemyCache *enemyCache;
   BulletCache *bulletCache;
   ExplosionCache *explosionCache;
+  ProjectileCache *projectileCache;
 
   
   Enemy *enemy;
@@ -77,6 +79,8 @@ typedef enum
 @property (nonatomic, retain) BulletCache *bulletCache;
 @property (nonatomic, retain) EnemyCache *enemyCache;
 @property (nonatomic, retain) ExplosionCache *explosionCache;
+@property (nonatomic, retain) ProjectileCache *projectileCache;
+
 
 @property (nonatomic, retain) Level *level;
 @property (nonatomic, retain) Item *cartridge;

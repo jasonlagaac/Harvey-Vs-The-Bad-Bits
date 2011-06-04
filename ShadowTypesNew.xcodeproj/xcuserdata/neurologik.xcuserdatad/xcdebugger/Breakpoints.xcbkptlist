@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "ShadowTypesNew/Player.m"
-         timestampString = "328242587.406433"
+         timestampString = "328684368.779244"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "471"
-         endingLineNumber = "471"
+         startingLineNumber = "472"
+         endingLineNumber = "472"
          landmarkName = "-playerAttack:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -71,6 +71,20 @@
          startingLineNumber = "235"
          endingLineNumber = "235"
          landmarkName = "-initWithSpriteFrameName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "ShadowTypesNew/ProjectileCache.m"
+         timestampString = "328856376.23744"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "53"
+         endingLineNumber = "53"
+         landmarkName = "-initWithGame:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

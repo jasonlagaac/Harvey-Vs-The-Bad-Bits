@@ -14,6 +14,7 @@
 #import "BulletCache.h"
 #import "EnemyCache.h"
 #import "ExplosionCache.h"
+#import "ProjectileCache.h"
 #import "Bullet.h"
 #import "Enemy.h"
 
@@ -53,6 +54,7 @@ eachShape(void *ptr, void* unused)
 @synthesize bulletCache;
 @synthesize enemyCache;
 @synthesize explosionCache;
+@synthesize projectileCache;
 @synthesize space;
 @synthesize level;
 @synthesize ammoBox;
@@ -149,9 +151,7 @@ static GameLayer* instanceOfGameLayer;
     enemyCache = [[EnemyCache alloc] initWithGame:self withLevel:1 withStartPoints:spawnPos];
     bulletCache = [[BulletCache alloc] initWithGame:self];
     explosionCache = [[ExplosionCache alloc] initWithGame:self];
-    
-    
-
+    projectileCache = [[ProjectileCache alloc] initWithGame:self];
     
     [self schedule: @selector(step:)];
     
@@ -236,6 +236,7 @@ static GameLayer* instanceOfGameLayer;
   [[self player] checkEnemyCollision];
   [[self cartridge] checkItemCollision];
   [[self ammoBox] checkItemCollision];    
+  [[self projectileCache] runProjectileActions:delta];
     
   if (nextSpawnTime > 1.0f) {
     [self spawnEnemy];

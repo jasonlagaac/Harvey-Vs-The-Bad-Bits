@@ -8,6 +8,7 @@
 
 #import "Player.h"
 #import "BulletCache.h"
+#import "ProjectileCache.h"
 
 @interface Player (private)
 // Player Initialisation
@@ -52,7 +53,7 @@
 -(void) loadSprites {
   CGSize screenSize = [[CCDirector sharedDirector] winSize];
   
-  self.weapon = kPlayerWeaponPistol;
+  self.weapon = kPlayerWeaponGrenadeLauncher;
   self.sprite = [CCSprite spriteWithSpriteFrameName:@"PistolStill.png"];
 
   
@@ -559,6 +560,37 @@
       }
       
       break;
+      
+    case kPlayerWeaponGrenadeLauncher: // Single delayed shot for shotgun
+      if (fireButtonActive && !playerAttacking && totalTime > *nextShotTime) {
+        
+        *nextShotTime = totalTime + 2.0f;
+        
+        
+        playerAttacking = YES;
+        ProjectileCache *projCache = [theGame projectileCache];
+        
+        [projCache fireFrom:shotPos direction:self.direction];
+        
+      } else if (!fireButtonActive && playerAttacking == YES) {
+        playerAttacking = NO;
+      }
+      
+    case kPlayerWeaponFlamethrower: // Single delayed shot for shotgun
+      if (fireButtonActive && totalTime > *nextShotTime) {
+        
+        *nextShotTime = totalTime + 0.1f;
+        
+        
+        playerAttacking = YES;
+        ProjectileCache *projCache = [theGame projectileCache];
+        
+        [projCache fireFrom:shotPos direction:self.direction];
+        
+      } else if (!fireButtonActive && playerAttacking == YES) {
+        playerAttacking = NO;
+        nextShotTime = 0;
+      }
       
     default:
       break;

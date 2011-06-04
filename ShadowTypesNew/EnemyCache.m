@@ -79,7 +79,6 @@
       if (enemy.sprite.position.y < -30.0f)
         [enemy respawn];
     }
-    
   }
 }
 

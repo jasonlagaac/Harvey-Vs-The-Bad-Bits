@@ -11,8 +11,6 @@
 		5919A17E138DF4B3004CF76C /* ShotgunReload.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5919A17D138DF4B3004CF76C /* ShotgunReload.m4a */; };
 		5919A180138DF5E8004CF76C /* Shotgun.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5919A17F138DF5E8004CF76C /* Shotgun.m4a */; };
 		5919A182138DF6B0004CF76C /* Explosion.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5919A181138DF6B0004CF76C /* Explosion.m4a */; };
-		59244F961393647000B6EAF6 /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 59244F941393647000B6EAF6 /* ShadowTypes.png */; };
-		59244F971393647000B6EAF6 /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59244F951393647000B6EAF6 /* ShadowTypes.plist */; };
 		59244F991393847700B6EAF6 /* Revolver.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 59244F981393847700B6EAF6 /* Revolver.m4a */; };
 		592AE7EC1378317000C88B10 /* Level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 592AE7EB1378317000C88B10 /* Level1.tmx */; };
 		5939F5D41367C24D00BC74D2 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 5939F5D31367C24D00BC74D2 /* Level.m */; };
@@ -195,6 +193,9 @@
 		59D129F9138CC00400358ABE /* ExplosionCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D129F8138CC00300358ABE /* ExplosionCache.m */; };
 		59E96D71137A8274008CA66D /* ScoreNumbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E96D70137A8274008CA66D /* ScoreNumbers.png */; };
 		59FC4A031393970F00AF3697 /* Tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 59FC4A021393970F00AF3697 /* Tileset.png */; };
+		59FC4A0A13969E1A00AF3697 /* ProjectileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59FC4A0913969E1A00AF3697 /* ProjectileCache.m */; };
+		59FC4A151397CFEE00AF3697 /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59FC4A131397CFEE00AF3697 /* ShadowTypes.plist */; };
+		59FC4A161397CFEE00AF3697 /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 59FC4A141397CFEE00AF3697 /* ShadowTypes.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -202,8 +203,6 @@
 		5919A17D138DF4B3004CF76C /* ShotgunReload.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ShotgunReload.m4a; sourceTree = "<group>"; };
 		5919A17F138DF5E8004CF76C /* Shotgun.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Shotgun.m4a; sourceTree = "<group>"; };
 		5919A181138DF6B0004CF76C /* Explosion.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Explosion.m4a; sourceTree = "<group>"; };
-		59244F941393647000B6EAF6 /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
-		59244F951393647000B6EAF6 /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
 		59244F981393847700B6EAF6 /* Revolver.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Revolver.m4a; sourceTree = "<group>"; };
 		592AE7EB1378317000C88B10 /* Level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level1.tmx; sourceTree = "<group>"; };
 		5939F5D21367C24C00BC74D2 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
@@ -551,6 +550,10 @@
 		59D129F8138CC00300358ABE /* ExplosionCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplosionCache.m; sourceTree = "<group>"; };
 		59E96D70137A8274008CA66D /* ScoreNumbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScoreNumbers.png; sourceTree = "<group>"; };
 		59FC4A021393970F00AF3697 /* Tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tileset.png; sourceTree = "<group>"; };
+		59FC4A0813969E1900AF3697 /* ProjectileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectileCache.h; sourceTree = "<group>"; };
+		59FC4A0913969E1A00AF3697 /* ProjectileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectileCache.m; sourceTree = "<group>"; };
+		59FC4A131397CFEE00AF3697 /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
+		59FC4A141397CFEE00AF3697 /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -606,8 +609,8 @@
 		594965E71383B07B00C1B064 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				59244F941393647000B6EAF6 /* ShadowTypes.png */,
-				59244F951393647000B6EAF6 /* ShadowTypes.plist */,
+				59FC4A131397CFEE00AF3697 /* ShadowTypes.plist */,
+				59FC4A141397CFEE00AF3697 /* ShadowTypes.png */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -651,6 +654,8 @@
 				59847E0913717FA7007C301E /* EnemyCache.m */,
 				59D129F7138CC00300358ABE /* ExplosionCache.h */,
 				59D129F8138CC00300358ABE /* ExplosionCache.m */,
+				59FC4A0813969E1900AF3697 /* ProjectileCache.h */,
+				59FC4A0913969E1A00AF3697 /* ProjectileCache.m */,
 			);
 			name = "Cache Classes";
 			sourceTree = "<group>";
@@ -1195,10 +1200,10 @@
 				5919A17E138DF4B3004CF76C /* ShotgunReload.m4a in Resources */,
 				5919A180138DF5E8004CF76C /* Shotgun.m4a in Resources */,
 				5919A182138DF6B0004CF76C /* Explosion.m4a in Resources */,
-				59244F961393647000B6EAF6 /* ShadowTypes.png in Resources */,
-				59244F971393647000B6EAF6 /* ShadowTypes.plist in Resources */,
 				59244F991393847700B6EAF6 /* Revolver.m4a in Resources */,
 				59FC4A031393970F00AF3697 /* Tileset.png in Resources */,
+				59FC4A151397CFEE00AF3697 /* ShadowTypes.plist in Resources */,
+				59FC4A161397CFEE00AF3697 /* ShadowTypes.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1352,6 +1357,7 @@
 				59D129E8138C587800358ABE /* Explosion.m in Sources */,
 				59D129EC138C588900358ABE /* Projectile.m in Sources */,
 				59D129F9138CC00400358ABE /* ExplosionCache.m in Sources */,
+				59FC4A0A13969E1A00AF3697 /* ProjectileCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

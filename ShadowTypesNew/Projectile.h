@@ -30,8 +30,19 @@ typedef enum {
   /* Animation actions for objects */
   CCAction *flameAction;
   CCAction *mineAction;
+  
+  /* Count of how long the object is in the env */
+  ccTime lifeTime;
+  
 }
 
 @property (nonatomic, readwrite) projType type;
+
++(id) projectile;
+
+-(void) fireProjFrom:(CGPoint)pos 
+ withPlayerhDirection:(PlayerMovement)dir;
+
+-(void) updateProjectile:(ccTime)delta;
 
 @end

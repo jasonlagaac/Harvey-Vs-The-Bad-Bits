@@ -17,6 +17,7 @@
 #import "ProjectileCache.h"
 #import "Bullet.h"
 #import "Enemy.h"
+#import "AppDelegate.h"
 
 
 static void
@@ -102,8 +103,7 @@ static GameLayer* instanceOfGameLayer;
     
     // Need the screen window size for iPad and iPhone differentiation 
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
-    
-    
+        
     nextSpawnTime = 0;
     
     // Initialise Chipmunk
@@ -115,6 +115,23 @@ static GameLayer* instanceOfGameLayer;
     cpSpaceResizeActiveHash(space, 100, 600);
     
     space->gravity = ccp(0, -600);
+    
+    // Load the background
+    CCLayerColor *colorLayer = [CCLayerColor layerWithColor:ccc4(105, 170, 193, 255)];
+    [self addChild:colorLayer z:0];
+    
+    
+    CCSprite *background = [CCSprite spriteWithFile:@"Level1Background.png"];
+    [self addChild:background z:1];
+    
+    CCSprite *levelLayer= [CCSprite spriteWithFile:@"Level1Layer.png"];
+    [self addChild:levelLayer z:2];
+    
+    background.position = CGPointMake(240, 160);
+    [[background texture] setAliasTexParameters];
+    
+    levelLayer.position = CGPointMake(240, 160);
+    [[levelLayer texture] setAliasTexParameters];
     
     // Load the level
     level = [[Level alloc] initWithLevel:1 game:self];
@@ -215,6 +232,44 @@ static GameLayer* instanceOfGameLayer;
     [[self enemyCache] spawnEnemy];
   }
 }
+
+-(void) shakeScreen {
+  float randx = ((arc4random() % 5) - 0.5);
+  float randy = ((arc4random() % 5) - 0.5);
+  
+  self.position = CGPointMake(randx, randy);
+  
+}
+
+-(void) restoreScreen {
+  self.position = CGPointZero;
+}
+
+
+-(void) pauseGame {
+  [InputLayer sharedInputLayer].visible = NO;
+  ccColor4B c = {0,0,0,200};
+  PauseLayer *p = [[[PauseLayer alloc] initWithColor:c] autorelease];
+  [self addChild:p z:40];
+  
+  if (![[AppDelegate get] paused]) {
+    [AppDelegate get].paused = YES;
+    [[CCDirector sharedDirector] pause];
+  }
+}
+
+-(void) resume {
+  [InputLayer sharedInputLayer].visible = YES;
+  if (![AppDelegate get].paused) {
+    return;
+  }
+  [AppDelegate get].paused = NO;
+  [[CCDirector sharedDirector] resume];
+  
+}
+
+
+
 
 
 #pragma mark -

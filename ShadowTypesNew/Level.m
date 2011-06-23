@@ -79,11 +79,11 @@
     // Horizontal platform definition
     CGPoint endPoint = CGPointMake((pos.x + width), pos.y);
     shape = cpSegmentShapeNew(staticBody, pos, endPoint, 0.0f);
-    shape->e = 0.02f; shape->u = 0.1f;
+    shape->e = 0.02f; shape->u = 0.05f;
   } else { 
     // Vertical platform definition
     CGPoint endPoint = CGPointMake(pos.x, (pos.y + height));
-    shape = cpSegmentShapeNew(staticBody, pos, endPoint, 0.5f);
+    shape = cpSegmentShapeNew(staticBody, pos, endPoint, 0.0f);
     shape->e = 0.00f; shape->u = 0.0f;
 
   }

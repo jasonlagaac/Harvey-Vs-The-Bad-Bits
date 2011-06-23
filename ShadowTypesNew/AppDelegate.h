@@ -13,8 +13,12 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
+  bool paused;
 }
 
 @property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, readwrite) bool paused;
+
++(AppDelegate *)get;
 
 @end

@@ -18,6 +18,9 @@
 		594965EC1383B38800C1B064 /* Phaser.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 594965EB1383B38800C1B064 /* Phaser.m4a */; };
 		594965F01383B5AB00C1B064 /* Pistol.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 594965EF1383B5AB00C1B064 /* Pistol.m4a */; };
 		594965FF13852DD600C1B064 /* PlayerJump.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 594965FE13852DD600C1B064 /* PlayerJump.m4a */; };
+		5969AAC713A34E3C00243DB5 /* PauseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5969AAC613A34E3C00243DB5 /* PauseLayer.m */; };
+		5969AACF13A753AB00243DB5 /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5969AACD13A753AB00243DB5 /* ShadowTypes.plist */; };
+		5969AAD013A753AB00243DB5 /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 5969AACE13A753AB00243DB5 /* ShadowTypes.png */; };
 		59847E0A13717FA7007C301E /* EnemyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59847E0913717FA7007C301E /* EnemyCache.m */; };
 		59851F48138793C6007AB4BB /* weaponFeedback.png in Resources */ = {isa = PBXBuildFile; fileRef = 59851F46138793C6007AB4BB /* weaponFeedback.png */; };
 		59851F49138793C6007AB4BB /* weaponFeedback.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 59851F47138793C6007AB4BB /* weaponFeedback.fnt */; };
@@ -187,15 +190,15 @@
 		599DE4591361543800FD2E2E /* Joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE4541361543800FD2E2E /* Joystick.png */; };
 		599DE45E1361546000FD2E2E /* reloadButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE45C1361546000FD2E2E /* reloadButtonPressed.png */; };
 		599DE45F1361546000FD2E2E /* reloadButtonUnpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */; };
+		59B7D0F713B048710018E496 /* Level1Layer.png in Resources */ = {isa = PBXBuildFile; fileRef = 59B7D0F613B048710018E496 /* Level1Layer.png */; };
 		59D129E8138C587800358ABE /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D129E7138C587800358ABE /* Explosion.m */; };
 		59D129EC138C588900358ABE /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D129EB138C588900358ABE /* Projectile.m */; };
 		59D129EE138CB32000358ABE /* BlastSmoke.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59D129ED138CB32000358ABE /* BlastSmoke.plist */; };
 		59D129F9138CC00400358ABE /* ExplosionCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D129F8138CC00300358ABE /* ExplosionCache.m */; };
 		59E96D71137A8274008CA66D /* ScoreNumbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E96D70137A8274008CA66D /* ScoreNumbers.png */; };
+		59F956B413A07AB8005F085B /* Level1Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 59F956B313A07AB8005F085B /* Level1Background.png */; };
 		59FC4A031393970F00AF3697 /* Tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 59FC4A021393970F00AF3697 /* Tileset.png */; };
 		59FC4A0A13969E1A00AF3697 /* ProjectileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59FC4A0913969E1A00AF3697 /* ProjectileCache.m */; };
-		59FC4A151397CFEE00AF3697 /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59FC4A131397CFEE00AF3697 /* ShadowTypes.plist */; };
-		59FC4A161397CFEE00AF3697 /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 59FC4A141397CFEE00AF3697 /* ShadowTypes.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -211,6 +214,10 @@
 		594965EB1383B38800C1B064 /* Phaser.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Phaser.m4a; sourceTree = "<group>"; };
 		594965EF1383B5AB00C1B064 /* Pistol.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pistol.m4a; sourceTree = "<group>"; };
 		594965FE13852DD600C1B064 /* PlayerJump.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = PlayerJump.m4a; sourceTree = "<group>"; };
+		5969AAC513A34E3C00243DB5 /* PauseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseLayer.h; sourceTree = "<group>"; };
+		5969AAC613A34E3C00243DB5 /* PauseLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseLayer.m; sourceTree = "<group>"; };
+		5969AACD13A753AB00243DB5 /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
+		5969AACE13A753AB00243DB5 /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
 		59847E0813717FA7007C301E /* EnemyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyCache.h; sourceTree = "<group>"; };
 		59847E0913717FA7007C301E /* EnemyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyCache.m; sourceTree = "<group>"; };
 		59851F46138793C6007AB4BB /* weaponFeedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weaponFeedback.png; sourceTree = "<group>"; };
@@ -541,6 +548,7 @@
 		599DE4541361543800FD2E2E /* Joystick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Joystick.png; sourceTree = "<group>"; };
 		599DE45C1361546000FD2E2E /* reloadButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadButtonPressed.png; sourceTree = "<group>"; };
 		599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadButtonUnpressed.png; sourceTree = "<group>"; };
+		59B7D0F613B048710018E496 /* Level1Layer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1Layer.png; sourceTree = "<group>"; };
 		59D129E6138C587800358ABE /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
 		59D129E7138C587800358ABE /* Explosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explosion.m; sourceTree = "<group>"; };
 		59D129EA138C588900358ABE /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projectile.h; sourceTree = "<group>"; };
@@ -549,11 +557,10 @@
 		59D129F7138CC00300358ABE /* ExplosionCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionCache.h; sourceTree = "<group>"; };
 		59D129F8138CC00300358ABE /* ExplosionCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplosionCache.m; sourceTree = "<group>"; };
 		59E96D70137A8274008CA66D /* ScoreNumbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScoreNumbers.png; sourceTree = "<group>"; };
+		59F956B313A07AB8005F085B /* Level1Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1Background.png; sourceTree = "<group>"; };
 		59FC4A021393970F00AF3697 /* Tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tileset.png; sourceTree = "<group>"; };
 		59FC4A0813969E1900AF3697 /* ProjectileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectileCache.h; sourceTree = "<group>"; };
 		59FC4A0913969E1A00AF3697 /* ProjectileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectileCache.m; sourceTree = "<group>"; };
-		59FC4A131397CFEE00AF3697 /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
-		59FC4A141397CFEE00AF3697 /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -587,6 +594,8 @@
 		594965E41383B04300C1B064 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				59B7D0F613B048710018E496 /* Level1Layer.png */,
+				59F956B313A07AB8005F085B /* Level1Background.png */,
 				59FC4A021393970F00AF3697 /* Tileset.png */,
 				592AE7EB1378317000C88B10 /* Level1.tmx */,
 			);
@@ -609,8 +618,8 @@
 		594965E71383B07B00C1B064 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				59FC4A131397CFEE00AF3697 /* ShadowTypes.plist */,
-				59FC4A141397CFEE00AF3697 /* ShadowTypes.png */,
+				5969AACD13A753AB00243DB5 /* ShadowTypes.plist */,
+				5969AACE13A753AB00243DB5 /* ShadowTypes.png */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -1062,6 +1071,8 @@
 				599DE43813614D9900FD2E2E /* GameScene.m */,
 				599DE43A13614DCE00FD2E2E /* InputLayer.h */,
 				599DE43B13614DCE00FD2E2E /* InputLayer.m */,
+				5969AAC513A34E3C00243DB5 /* PauseLayer.h */,
+				5969AAC613A34E3C00243DB5 /* PauseLayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -1202,8 +1213,10 @@
 				5919A182138DF6B0004CF76C /* Explosion.m4a in Resources */,
 				59244F991393847700B6EAF6 /* Revolver.m4a in Resources */,
 				59FC4A031393970F00AF3697 /* Tileset.png in Resources */,
-				59FC4A151397CFEE00AF3697 /* ShadowTypes.plist in Resources */,
-				59FC4A161397CFEE00AF3697 /* ShadowTypes.png in Resources */,
+				59F956B413A07AB8005F085B /* Level1Background.png in Resources */,
+				5969AACF13A753AB00243DB5 /* ShadowTypes.plist in Resources */,
+				5969AAD013A753AB00243DB5 /* ShadowTypes.png in Resources */,
+				59B7D0F713B048710018E496 /* Level1Layer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1358,6 +1371,7 @@
 				59D129EC138C588900358ABE /* Projectile.m in Sources */,
 				59D129F9138CC00400358ABE /* ExplosionCache.m in Sources */,
 				59FC4A0A13969E1A00AF3697 /* ProjectileCache.m in Sources */,
+				5969AAC713A34E3C00243DB5 /* PauseLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1410,7 +1424,7 @@
 				GCC_PREFIX_HEADER = ShadowTypesNew/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = ShadowTypesNew/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = ShadowTypesNew/libs/Chipmunk/include/chipmunk;
@@ -1427,7 +1441,7 @@
 				GCC_PREFIX_HEADER = ShadowTypesNew/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = ShadowTypesNew/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = ShadowTypesNew/libs/Chipmunk/include/chipmunk;

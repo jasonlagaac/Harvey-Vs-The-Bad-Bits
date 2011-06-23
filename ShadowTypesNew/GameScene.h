@@ -15,6 +15,7 @@
 
 // Importing additional class headers
 #import "InputLayer.h"
+#import "PauseLayer.h"
 #import "Bullet.h"
 #import "Level.h"
 
@@ -52,6 +53,8 @@ typedef enum
   BulletCache *bulletCache;
   ExplosionCache *explosionCache;
   ProjectileCache *projectileCache;
+  
+  InputLayer* inputLayer;
 
   
   Enemy *enemy;
@@ -65,6 +68,7 @@ typedef enum
   int remainingTime;
 
   ccTime nextSpawnTime;
+  
 }
 
 
@@ -87,10 +91,14 @@ typedef enum
 @property (nonatomic, retain) Item *ammoBox;
 
 
+
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 +(GameLayer*) sharedGameLayer;
 -(void) updateScore;
-
+-(void) shakeScreen;
+-(void) restoreScreen;
+-(void) pauseGame;
+-(void) resume;
 
 @end

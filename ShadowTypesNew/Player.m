@@ -53,7 +53,7 @@
 -(void) loadSprites {
   CGSize screenSize = [[CCDirector sharedDirector] winSize];
   
-  self.weapon = kPlayerWeaponGrenadeLauncher;
+  self.weapon = kPlayerWeaponFlamethrower;
   self.sprite = [CCSprite spriteWithSpriteFrameName:@"PistolStill.png"];
 
   
@@ -450,18 +450,10 @@
   
   CGPoint shotPos = CGPointZero;
   
-  if (self.direction == kPlayerMoveRight) {
-    if (self.weapon != kPlayerWeaponGattlingGun)
-      shotPos = CGPointMake(self.sprite.position.x + 20, self.sprite.position.y + 7.0f);
-    else
-      shotPos = CGPointMake(self.sprite.position.x + 15, self.sprite.position.y - 2.0f);
-
-  } else {
-    if (self.weapon != kPlayerWeaponGattlingGun)
-        shotPos = CGPointMake(self.sprite.position.x - 20, self.sprite.position.y + 7.0f);
-    else 
-      shotPos = CGPointMake(self.sprite.position.x - 15, self.sprite.position.y - 2.0f);
-  }
+  if (self.direction == kPlayerMoveRight) 
+      shotPos = CGPointMake(self.sprite.position.x + 20, self.sprite.position.y + 7);
+  else
+      shotPos = CGPointMake(self.sprite.position.x - 20, self.sprite.position.y + 7);
   
   switch (self.weapon) {
     case kPlayerWeaponPistol: // Single shot for the pistol
@@ -537,11 +529,14 @@
                            frameName:@"Bullet.png" weaponType:self.weapon];
         
         [[SimpleAudioEngine sharedEngine]playEffect:@"Revolver.m4a"];
+        [[GameLayer sharedGameLayer] shakeScreen];
 
       } else if (!fireButtonActive && playerAttacking) {
         playerAttacking = NO;
-        
-      }      break;
+      } else
+        [[GameLayer sharedGameLayer] restoreScreen];
+
+      break;
   
       
     case kPlayerWeaponGattlingGun: // Rapid shot for the machine gun
@@ -554,6 +549,8 @@
                            frameName:@"Bullet.png" weaponType:self.weapon];
         
         [[SimpleAudioEngine sharedEngine]playEffect:@"MachineGun.m4a"];
+        [[GameLayer sharedGameLayer] shakeScreen];
+        
       } else if (!fireButtonActive && playerAttacking) {
         playerAttacking = NO;
         nextShotTime = 0;
@@ -579,7 +576,7 @@
     case kPlayerWeaponFlamethrower: // Single delayed shot for shotgun
       if (fireButtonActive && totalTime > *nextShotTime) {
         
-        *nextShotTime = totalTime + 0.1f;
+        *nextShotTime = totalTime + 0.09f;
         
         
         playerAttacking = YES;
@@ -592,9 +589,29 @@
         nextShotTime = 0;
       }
       
+    case kPlayerWeaponRocket:
+      if (fireButtonActive && !playerAttacking && totalTime > *nextShotTime) {
+        
+        *nextShotTime = totalTime + 3.0f;
+        
+        
+        playerAttacking = YES;
+        BulletCache *bulletCache = [theGame bulletCache];
+        
+        [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
+                           frameName:@"Grenade.png" weaponType:self.weapon];
+        
+        //[[SimpleAudioEngine sharedEngine]playEffect:@"Shotgun.m4a"];
+        
+      } else if (!fireButtonActive && playerAttacking == YES) {
+        playerAttacking = NO;
+      }
+
     default:
       break;
   } 
+  
+
   
 }
 
@@ -634,6 +651,7 @@
       break;
   }
   
+  self.playerAttacking = NO;
   self.weapon = chosenWeapon;
   [self stopAllActions];
   [self restoreDefaultSprite];

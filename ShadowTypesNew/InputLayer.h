@@ -27,6 +27,7 @@
   // Button definitions
   SneakyButton *fireButton;
   SneakyButton *reloadButton;
+  SneakyButton *pauseButton;
   
   // Gotta make a dpad for this game
   SneakyJoystick *joystick;
@@ -38,6 +39,12 @@
   // Weapon firing rate control time variables
   ccTime totalTime;
 	ccTime nextShotTime;
+  
+  
 }
+
+@property (nonatomic, readwrite) ccTime totalTime;
+
++(InputLayer *)sharedInputLayer;
 
 @end

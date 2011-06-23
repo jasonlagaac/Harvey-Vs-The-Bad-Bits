@@ -89,7 +89,7 @@
     Enemy *e = [[ec enemies] objectAtIndex:i];   
     if (e.activeInGame) { 
       // Determine the distance
-      if (ccpDistance(self.position, e.sprite.position) < 50) {
+      if (ccpDistance(self.position, e.sprite.position) < 100) {
         [e damage:50];    
       }
     }

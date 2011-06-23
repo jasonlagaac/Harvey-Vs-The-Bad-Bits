@@ -17,18 +17,29 @@
 @end
 
 @implementation InputLayer
+@synthesize totalTime;
 
+static InputLayer* instanceOfInputLayer;
+
++(InputLayer *)sharedInputLayer
+{
+  NSAssert(instanceOfInputLayer != nil, @"GameScene instance not yet initialized!");
+  return instanceOfInputLayer;
+}
 
 - (id)init
 {
 	if ((self = [super init]))
 	{
-        jumpButtonActiveCount = 0;
-		[self addButtons];
-		[self addJoystick];
-		[self scheduleUpdate];
+    
+      jumpButtonActiveCount = 0;
+      [self addButtons];
+      [self addJoystick];
+      [self scheduleUpdate];
 
-        playerAttacked = NO;
+      playerAttacked = NO;
+    
+      instanceOfInputLayer = self;
     }
 	
 	return self;
@@ -85,6 +96,30 @@
     skinReloadButton.button = reloadButton;
     
     [self addChild:skinReloadButton];
+  
+  
+  // Allocate and initialise the reloadbutton
+  pauseButton = [[[SneakyButton alloc] initWithRect:CGRectZero] autorelease];    
+  pauseButton.isHoldable = YES;
+  
+  SneakyButtonSkinnedBase *skinPauseButton = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
+  skinPauseButton.position = CGPointMake(screenSize.width - 30, screenSize.height - 15);
+  
+  // Remember to load the sprite from the spritesheet
+  skinPauseButton.defaultSprite = [CCSprite spriteWithSpriteFrameName:@"PauseButton.png"];
+  skinPauseButton.pressSprite = [CCSprite spriteWithSpriteFrameName:@"PauseButton.png"];
+
+  // Turn of anti-aliasing on the unpressed and pressed sprite
+ // [[skinReloadButton.defaultSprite texture] setAliasTexParameters]; 
+  //[[skinReloadButton.pressSprite texture] setAliasTexParameters];
+  
+  skinPauseButton.defaultSprite.opacity = 160;
+  
+  skinPauseButton.button = pauseButton;
+  
+  [self addChild:skinPauseButton];
+
+  
 }
 
 -(void) addJoystick {
@@ -111,7 +146,13 @@
     [self addChild:skinJoystick];
 }
 
-- (void)update:(ccTime)delta {    
+- (void)update:(ccTime)delta {   
+
+    if (pauseButton.active) {
+      [[GameLayer sharedGameLayer] pauseGame];
+      return;
+    }
+    
     GameLayer *game = [GameLayer sharedGameLayer];
     Player *player = [game player];
     
@@ -141,7 +182,7 @@
     //NSLog(@"velocity x: %f  y: %f", p.sprite.position.x, p.sprite.position.y);
     
     //[game release];
-    
+  
 }
 
 @end

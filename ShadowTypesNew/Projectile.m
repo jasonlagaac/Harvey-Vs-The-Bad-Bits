@@ -13,15 +13,10 @@
  This function is called during the cpSpaceAddPostStepCallback function
  */
 static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
-  //CCSprite *projSprite = (CCSprite *) shape->data;
-  //GameLayer *game = [GameLayer sharedGameLayer];
-  
   cpSpaceRemoveBody(space, shape->body);
   cpSpaceRemoveShape(space, shape);
   cpBodyFree(shape->body);
   cpShapeFree(shape);
-  
-  //[game removeChild:projSprite cleanup:YES];
   
 }
 
@@ -30,6 +25,7 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
 - (void)loadPhysics;
 - (void)loadAnimations;
 - (void) loadSprite;
+- (bool)detectEnemyCollision;
 @end
 
 @implementation Projectile
@@ -94,7 +90,14 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
 }
 
 -(void) loadAnimations {
+  NSMutableArray *flameFrames = [NSMutableArray array];
   
+  for (int i = 1; i <= 3; i++) {
+    [flameFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                     spriteFrameByName:[NSString stringWithFormat:@"Flame%d.png", i]]];
+  }
+  CCAnimation *flameAnim = [CCAnimation animationWithFrames:flameFrames delay:0.07f];
+  flameAction  = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:flameAnim]];
 }
 
 -(void) loadSprite {
@@ -109,46 +112,106 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
   GameLayer *game = [GameLayer sharedGameLayer];
   PlayerWeapon playerWeapon = [[game player] weapon];
   
+  // Add sprite to the game
+  [self loadSprite]; 
+  self.position = pos;  
+  
+  [self loadAnimations];
+  [self loadPhysics];
+  
+  // Set visibility
+  self.visible = YES;
+  
+  lifeTime = 0.0f;
+
+  
   switch (playerWeapon) {
     case kPlayerWeaponGrenadeLauncher:
+      [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                             spriteFrameByName:@"Grenade.png"]];
       self.type = kProjGrenade;
+      // Set elasticity so that it bounces
+      shape->e = 30;
+      
+      // To be fired from the position  
+      if (dir == kPlayerMoveLeft)
+        cpBodyApplyImpulse(body, cpv(-300,30),cpv(0,0));
+      else 
+        cpBodyApplyImpulse(body, cpv(300,30),cpv(0,0));
       break;
       
     case kPlayerWeaponFlamethrower:
+      self.opacity = 200;
+      [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                      spriteFrameByName:@"Flame3.png"]];
       self.type = kProjFlame;
+      
+      // Set elasticity so that it bounces
+      shape->e = 0;
+      shape->u = (((arc4random() % 100) / 100) + 50);
+      
+      // To be fired from the position  
+      float vel_x = ((arc4random() % 200) + 200);
+      
+      if (dir == kPlayerMoveLeft) 
+        cpBodyApplyImpulse(body, cpv(-vel_x,30), cpvzero);
+      else 
+        cpBodyApplyImpulse(body, cpv(vel_x,30), cpvzero);
+      
       break;
       
     default:
       break;
   }
-  
-  // Add sprite to the game
-  [self loadSprite]; 
-  self.position = pos;  
-  
-  [self loadPhysics];
-  
-  // Set visibility
-  self.visible = YES;
-
-  // Set elasticity so that it bounces
-  shape->e = 30;
-  
-  // To be fired from the position  
-  if (dir == kPlayerMoveLeft)
-    cpBodyApplyImpulse(body, cpv(-350,80),cpv(0,0));
-  else 
-    cpBodyApplyImpulse(body, cpv(350,80),cpv(0,0));
-  
-  lifeTime = 0.0f;
 }
+
+- (bool)detectEnemyCollision {
+  GameLayer *game = [GameLayer sharedGameLayer];
+  EnemyCache *ec = [game enemyCache];    
+  
+  for (int i = 0; i < MAX_ENEMIES; i++) {
+    // Load an enemy from the enemy cache
+    Enemy *e = [[ec enemies] objectAtIndex:i];   
+    if (e.activeInGame) { 
+      // Determine the distance
+      if (ccpDistance(self.position, e.sprite.position) < 15) {
+        if (self.type == kProjGrenade) {
+          [[[GameLayer sharedGameLayer] explosionCache]blastAt:self.position];
+        } else
+          [e damage:7];
+      
+        return YES;
+      }
+    }
+  }
+  
+  return NO;
+}
+
 
 -(void) updateProjectile:(ccTime)delta {
   GameLayer *game = [GameLayer sharedGameLayer];
-
-  if (lifeTime < 0.3f) {
-    lifeTime += delta;
-  } else if (lifeTime > 3.0f && type == kProjGrenade) {
+    
+  lifeTime += delta;
+  
+  if (self.type == kProjFlame && ![self numberOfRunningActions]) {
+    [self runAction:flameAction];
+  }
+  
+  // Detect Enemy collision
+  if ([self detectEnemyCollision]) {
+    if (self.type == kProjGrenade) {
+      // Reset lifetime
+      lifeTime = 0;
+      self.visible = NO;
+  
+      // Remove object from the environment
+      cpSpaceAddPostStepCallback(game.space, (cpPostStepFunc)projUnload, shape, nil);
+    }
+  }
+  
+  
+  if (lifeTime > 3.0f && type == kProjGrenade) {
     ExplosionCache *ec = [game explosionCache];
     
     // Should run explosion etc
@@ -161,9 +224,10 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
     
     // Remove object from the environment
     cpSpaceAddPostStepCallback(game.space, (cpPostStepFunc)projUnload, shape, nil);
-  } else {
+  } else if (lifeTime > 2.0f && type == kProjFlame) {
     lifeTime = 0;
     self.visible = NO;
+    [self stopAllActions];
     cpSpaceAddPostStepCallback(game.space, (cpPostStepFunc)projUnload, shape, nil);
   }
 }

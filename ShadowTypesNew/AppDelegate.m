@@ -16,6 +16,12 @@
 @implementation AppDelegate
 
 @synthesize window;
+@synthesize paused;
+
++(AppDelegate *)get {
+  return (AppDelegate *) [[UIApplication sharedApplication] delegate];
+}
+
 
 - (void) removeStartupFlicker
 {
@@ -121,11 +127,13 @@
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+  [[GameLayer sharedGameLayer] pauseGame];
 	[[CCDirector sharedDirector] pause];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	[[CCDirector sharedDirector] resume];
+  if (!self.paused)
+    [[CCDirector sharedDirector] resume];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {

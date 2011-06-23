@@ -38,6 +38,7 @@ typedef enum {
 
 @property (nonatomic, readwrite) projType type;
 
+
 +(id) projectile;
 
 -(void) fireProjFrom:(CGPoint)pos 

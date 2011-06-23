@@ -12,6 +12,7 @@
 @interface Bullet (PrivateMethods) 
 /* Initialise the bullet with default image */
 - (id)initWithBulletImage;
+- (void)bulletScatter;
 @end
 
 @implementation Bullet
@@ -61,12 +62,12 @@
       self.damage = 1;
       break;
     case kPlayerWeaponMachineGun:
-      self.velocity = CGPointMake(7, 0);
+      self.velocity = CGPointMake(9, 0);
       self.damage = 3;
       break;
       
     case kPlayerWeaponShotgun:
-      self.velocity = CGPointMake((arc4random() % 6 + 3), 0);
+      self.velocity = CGPointMake((arc4random() % 6 + 4), 0);
       self.damage = 1;
       break;
     case kPlayerWeaponPhaser:
@@ -84,7 +85,10 @@
       self.damage = 5;
       break;
 
-    
+    case kPlayerWeaponRocket:
+      self.velocity = CGPointMake(15, 0);
+      self.damage = 5;
+      break;
       
     default:
       break;
@@ -102,10 +106,47 @@
 	// change the bullet's texture by setting a different SpriteFrame to be displayed
 	CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName];
 	[self setDisplayFrame:frame];
-	
+	[self bulletScatter];
+  
   // Start the update
 	[self scheduleUpdate];
   
+}
+
+- (void)bulletScatter {
+  float randYVel;
+  
+  // Determine the scatter pattern of the bullet when 
+  // fired from a specific weapon
+  switch (weaponType) {
+    case kPlayerWeaponMachineGun:
+      randYVel = ((arc4random() % 2));
+      
+      randYVel = (arc4random() % 2) ? abs(randYVel) : -abs(randYVel);
+      randYVel *= 0.5f;
+      break;
+      
+    case kPlayerWeaponShotgun:
+      randYVel = ((arc4random() % 3));
+      
+      randYVel = (arc4random() % 2) ? abs(randYVel) : -abs(randYVel);
+      randYVel *= 0.5f;
+      break;
+      
+    case kPlayerWeaponGattlingGun:
+      randYVel = ((arc4random() % 3));
+      
+      randYVel = (arc4random() % 2) ? abs(randYVel) : -abs(randYVel);
+      randYVel *= 0.5f;
+      break;
+      
+    default:
+      randYVel = 0;
+      break;
+  }
+  
+  // Determine bullet velocity
+  self.velocity = CGPointMake(velocity.x, randYVel); 
 }
 
 #pragma mark - Collision Detection
@@ -120,7 +161,12 @@
     if (e.activeInGame) { 
       // Determine the distance
       if (ccpDistance(self.position, e.sprite.position) < 15) {
-        [e damage:self.damage];    
+        if (weaponType == kPlayerWeaponRocket) {
+          [[[GameLayer sharedGameLayer] explosionCache]blastAt:self.position];
+        }
+        
+        [e damage:self.damage];   
+        
         if (weaponType != kPlayerWeaponShotgun) 
           [self reinit];
       }
@@ -132,39 +178,7 @@
 #pragma mark - Step / Update Function
 /* Scheduled update function */
 - (void)update:(ccTime)delta {
-  float randYVel;
   
-  // Determine the scatter pattern of the bullet when 
-  // fired from a specific weapon
-  switch (weaponType) {
-    case kPlayerWeaponMachineGun:
-      randYVel = ((arc4random() % 6));
-      
-      randYVel = (arc4random() % 2) ? abs(randYVel) : -abs(randYVel);
-      randYVel *= 0.5f;
-      break;
-      
-    case kPlayerWeaponShotgun:
-      randYVel = ((arc4random() % 9));
-      
-      randYVel = (arc4random() % 2) ? abs(randYVel) : -abs(randYVel);
-      randYVel *= 0.5f;
-      break;
-      
-    case kPlayerWeaponGattlingGun:
-      randYVel = ((arc4random() % 12));
-      
-      randYVel = (arc4random() % 2) ? abs(randYVel) : -abs(randYVel);
-      randYVel *= 0.5f;
-      break;
-      
-    default:
-      randYVel = 0;
-      break;
-  }
-  
-  // Determine bullet velocity
-  self.velocity = CGPointMake(velocity.x, randYVel); 
   
   // Move the bullet
 	self.position = ccpAdd(self.position, velocity);
@@ -183,6 +197,11 @@
       }
       break;
       
+    case kPlayerWeaponRocket:
+      if (self.position.x > screenSize.width || self.position.x < 0) {
+        [[[GameLayer sharedGameLayer] explosionCache]blastAt:self.position];
+        [self reinit];
+      }
     default:
       if (self.position.x > screenSize.width || self.position.x < 0)
         [self reinit];

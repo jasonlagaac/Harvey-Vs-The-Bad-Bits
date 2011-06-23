@@ -116,7 +116,7 @@
 - (void)setItemSprite {    
   switch (self.item) {
 		case kCartridge:
-      self.sprite = [CCSprite spriteWithSpriteFrameName:@"Cartridge.png"];
+      self.sprite = [CCSprite spriteWithSpriteFrameName:@"Cartridge2.png"];
 			break;
     case kAmmoPack:
       self.sprite = [CCSprite spriteWithSpriteFrameName:@"AmmoBox.png"];

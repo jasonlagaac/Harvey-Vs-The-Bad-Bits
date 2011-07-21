@@ -99,10 +99,13 @@ static GameLayer* instanceOfGameLayer;
 {
   // always call "super" init
   // Apple recommends to re-assign "self" with the "super" return value
-  if( (self = [super init])) {
+  if ((self = [super init])) {
     
     // Need the screen window size for iPad and iPhone differentiation 
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    // Assign gamelayer instance
+    instanceOfGameLayer = self;
         
     nextSpawnTime = 0;
     
@@ -116,28 +119,18 @@ static GameLayer* instanceOfGameLayer;
     
     space->gravity = ccp(0, -600);
     
-    // Load the background
-    CCLayerColor *colorLayer = [CCLayerColor layerWithColor:ccc4(105, 170, 193, 255)];
+    // Load the background & level content
+    CCLayerColor *colorLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)];
     [self addChild:colorLayer z:0];
-    
-    
-    CCSprite *background = [CCSprite spriteWithFile:@"Level1Background.png"];
-    [self addChild:background z:1];
-    
+        
     CCSprite *levelLayer= [CCSprite spriteWithFile:@"Level1Layer.png"];
     [self addChild:levelLayer z:2];
-    
-    background.position = CGPointMake(240, 160);
-    [[background texture] setAliasTexParameters];
     
     levelLayer.position = CGPointMake(240, 160);
     [[levelLayer texture] setAliasTexParameters];
     
     // Load the level
     level = [[Level alloc] initWithLevel:1 game:self];
-    
-    // Assign gamelayer instance
-    instanceOfGameLayer = self;
     
     [self loadParticleEffects];
     [self loadSound];

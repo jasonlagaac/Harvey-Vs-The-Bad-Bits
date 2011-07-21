@@ -41,6 +41,7 @@ typedef enum
 @class ExplosionCache;
 @class ProjectileCache;
 @class Level;
+@class ParallaxNode;
 
 // HelloWorldLayer
 @interface GameLayer : CCLayer
@@ -54,10 +55,6 @@ typedef enum
   ExplosionCache *explosionCache;
   ProjectileCache *projectileCache;
   
-  InputLayer* inputLayer;
-
-  
-  Enemy *enemy;
   Player *player;
   Level *level;
   Item *cartridge;

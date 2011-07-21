@@ -97,6 +97,7 @@ static InputLayer* instanceOfInputLayer;
     
     [self addChild:skinReloadButton];
   
+  /*
   
   // Allocate and initialise the reloadbutton
   pauseButton = [[[SneakyButton alloc] initWithRect:CGRectZero] autorelease];    
@@ -118,7 +119,7 @@ static InputLayer* instanceOfInputLayer;
   skinPauseButton.button = pauseButton;
   
   [self addChild:skinPauseButton];
-
+   */
   
 }
 

@@ -41,7 +41,7 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
 
 /* Initialisation and object loading */
 - (id)initWithProjImage {    
-  if ((self = [super initWithSpriteFrameName:@"Grenade.png"])) {
+  if ((self = [super initWithSpriteFrameName:@"BulletLarge.png"])) {
     self.visible = NO;
     self.type = kProjGrenade;
     [self loadAnimations];
@@ -96,7 +96,7 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
     [flameFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] 
                                      spriteFrameByName:[NSString stringWithFormat:@"Flame%d.png", i]]];
   }
-  CCAnimation *flameAnim = [CCAnimation animationWithFrames:flameFrames delay:0.07f];
+  CCAnimation *flameAnim = [CCAnimation animationWithFrames:flameFrames delay:0.1f];
   flameAction  = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:flameAnim]];
 }
 
@@ -128,16 +128,16 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
   switch (playerWeapon) {
     case kPlayerWeaponGrenadeLauncher:
       [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                             spriteFrameByName:@"Grenade.png"]];
+                             spriteFrameByName:@"BulletLarge.png"]];
       self.type = kProjGrenade;
       // Set elasticity so that it bounces
       shape->e = 30;
       
       // To be fired from the position  
       if (dir == kPlayerMoveLeft)
-        cpBodyApplyImpulse(body, cpv(-300,30),cpv(0,0));
+        cpBodyApplyImpulse(body, cpv(-500,30),cpv(0,0));
       else 
-        cpBodyApplyImpulse(body, cpv(300,30),cpv(0,0));
+        cpBodyApplyImpulse(body, cpv(500,30),cpv(0,0));
       break;
       
     case kPlayerWeaponFlamethrower:

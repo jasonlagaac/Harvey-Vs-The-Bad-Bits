@@ -54,7 +54,7 @@
   CGSize screenSize = [[CCDirector sharedDirector] winSize];
   
   self.weapon = kPlayerWeaponFlamethrower;
-  self.sprite = [CCSprite spriteWithSpriteFrameName:@"PistolStill.png"];
+  self.sprite = [CCSprite spriteWithSpriteFrameName:@"Pistol1.png"];
 
   
   [[self.sprite texture] setAliasTexParameters];
@@ -62,7 +62,7 @@
   self.sprite.flipX = NO;    
   self.direction = kPlayerMoveRight;
   self.sprite.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
-  [theGame addChild:sprite z:6];
+  [super addChild:sprite z:6];
   
   
 }
@@ -181,6 +181,7 @@
     self.theGame = game;
     self.playerAttacking = NO;
     self.playerJumping = NO;
+    changeWeapon = NO;
     
     [self loadSprites];
     [self loadAnimations];
@@ -211,47 +212,47 @@
   switch (self.weapon) {
     case kPlayerWeaponPistol:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"PistolStill.png"]];
+                                      spriteFrameByName:@"Pistol1.png"]];
       break;
       
     case kPlayerWeaponMachineGun:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"MachineGunStill.png"]];
+                                      spriteFrameByName:@"MachineGun1.png"]];
       break;
       
     case kPlayerWeaponShotgun:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"ShotgunStill.png"]];
+                                      spriteFrameByName:@"Shotgun1.png"]];
       break;
       
     case kPlayerWeaponPhaser:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"PhaserStill.png"]];
+                                      spriteFrameByName:@"Phaser1.png"]];
       break;
       
     case kPlayerWeaponRevolver:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"RevolverStill.png"]];
+                                      spriteFrameByName:@"Revolver1.png"]];
       break;
       
     case kPlayerWeaponRocket:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"RocketStill.png"]];
+                                      spriteFrameByName:@"Rocket1.png"]];
       break;
       
     case kPlayerWeaponFlamethrower:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"FlamethrowerStill.png"]];
+                                      spriteFrameByName:@"Flamethrower1.png"]];
       break;
       
     case kPlayerWeaponGattlingGun:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"GattlingStill.png"]];
+                                      spriteFrameByName:@"Gattling1.png"]];
       break;
       
     case kPlayerWeaponGrenadeLauncher:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"GrenadeStill.png"]];
+                                      spriteFrameByName:@"Grenade1.png"]];
       break;
       
     default:
@@ -369,48 +370,48 @@
   switch (self.weapon) {
     case kPlayerWeaponPistol:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"PistolJump.png"]];
+                                      spriteFrameByName:@"Pistol3.png"]];
       break;
       
     case kPlayerWeaponMachineGun:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"MachineGunJump.png"]];
+                                      spriteFrameByName:@"MachineGun3.png"]];
       break;
       
     case kPlayerWeaponShotgun:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"ShotgunJump.png"]];
+                                      spriteFrameByName:@"Shotgun3.png"]];
       break;
       
     case kPlayerWeaponPhaser:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"PhaserJump.png"]];
+                                      spriteFrameByName:@"Phaser3.png"]];
       break;
       
     case kPlayerWeaponRocket:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"RocketJump.png"]];
+                                      spriteFrameByName:@"Rocket3.png"]];
       break;
       
     case kPlayerWeaponRevolver:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"RevolverJump.png"]];
+                                      spriteFrameByName:@"Revolver3.png"]];
       break;
       
     case kPlayerWeaponFlamethrower:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"FlamethrowerJump.png"]];
+                                      spriteFrameByName:@"Flamethrower3.png"]];
       break;
       
     case kPlayerWeaponGattlingGun:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"GattlingJump.png"]];
+                                      spriteFrameByName:@"Gattling3.png"]];
       break;
       
       
     case kPlayerWeaponGrenadeLauncher:
       [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"GrenadeJump.png"]];
+                                      spriteFrameByName:@"Grenade3.png"]];
       break;
       
       
@@ -526,7 +527,7 @@
         BulletCache *bulletCache = [theGame bulletCache];
         
         [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
-                           frameName:@"Bullet.png" weaponType:self.weapon];
+                           frameName:@"BulletLarge.png" weaponType:self.weapon];
         
         [[SimpleAudioEngine sharedEngine]playEffect:@"Revolver.m4a"];
         [[GameLayer sharedGameLayer] shakeScreen];
@@ -559,10 +560,11 @@
       break;
       
     case kPlayerWeaponGrenadeLauncher: // Single delayed shot for shotgun
-      if (fireButtonActive && !playerAttacking && totalTime > *nextShotTime) {
+      if (fireButtonActive && totalTime > *nextShotTime) {
         
         *nextShotTime = totalTime + 2.0f;
         
+        NSLog(@"Grenade Fired %f", *nextShotTime);
         
         playerAttacking = YES;
         ProjectileCache *projCache = [theGame projectileCache];
@@ -599,7 +601,7 @@
         BulletCache *bulletCache = [theGame bulletCache];
         
         [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
-                           frameName:@"Grenade.png" weaponType:self.weapon];
+                           frameName:@"BulletLarge.png" weaponType:self.weapon];
         
         //[[SimpleAudioEngine sharedEngine]playEffect:@"Shotgun.m4a"];
         
@@ -651,10 +653,9 @@
       break;
   }
   
-  self.playerAttacking = NO;
   self.weapon = chosenWeapon;
-  [self stopAllActions];
-  [self restoreDefaultSprite];
+  self.playerAttacking = NO;
+  
 }
 
 -(void) checkEnemyCollision {
@@ -695,6 +696,11 @@
     [self respawn];
   }
   
+  if (changeWeapon) {
+    [self stopAllActions];
+    [self restoreDefaultSprite];
+    changeWeapon = NO;
+  }
 }
 
 

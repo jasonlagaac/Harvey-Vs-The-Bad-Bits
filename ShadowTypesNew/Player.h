@@ -55,7 +55,7 @@ typedef enum  {
     PlayerMovement direction;   // Direction of movment by player
     BOOL playerAttacking;       // Determine if the player is in attack mode
     BOOL playerJumping;         // Determine if the player is jumping
-    
+    BOOL changeWeapon;
     
     /* Animation Actions */
     CCAction *knifeWalkAction;    

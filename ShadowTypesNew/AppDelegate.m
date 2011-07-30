@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "GameConfig.h"
 #import "GameScene.h"
+#import "MainMenuScene.h"
 #import "RootViewController.h"
 
 @implementation AppDelegate
@@ -117,7 +118,8 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [GameLayer scene]];
+  [[CCDirector sharedDirector] runWithScene: [MainMenuScene node]];
+	//[[CCDirector sharedDirector] runWithScene: [GameLayer scene]];
 }
 
 -(void)imageLoaded:(CCTexture2D *)texture

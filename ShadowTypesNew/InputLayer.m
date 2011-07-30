@@ -97,7 +97,7 @@ static InputLayer* instanceOfInputLayer;
     
     [self addChild:skinReloadButton];
   
-  /*
+  
   
   // Allocate and initialise the reloadbutton
   pauseButton = [[[SneakyButton alloc] initWithRect:CGRectZero] autorelease];    
@@ -109,17 +109,16 @@ static InputLayer* instanceOfInputLayer;
   // Remember to load the sprite from the spritesheet
   skinPauseButton.defaultSprite = [CCSprite spriteWithSpriteFrameName:@"PauseButton.png"];
   skinPauseButton.pressSprite = [CCSprite spriteWithSpriteFrameName:@"PauseButton.png"];
-
-  // Turn of anti-aliasing on the unpressed and pressed sprite
- // [[skinReloadButton.defaultSprite texture] setAliasTexParameters]; 
-  //[[skinReloadButton.pressSprite texture] setAliasTexParameters];
   
   skinPauseButton.defaultSprite.opacity = 160;
   
   skinPauseButton.button = pauseButton;
   
+  
   [self addChild:skinPauseButton];
-   */
+  
+
+   
   
 }
 

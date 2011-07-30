@@ -23,8 +23,8 @@
 
 @property (nonatomic, retain) CCArray *projectiles;
 
+-(id) initWithGame:(GameLayer *)game;
 -(void)fireFrom:(CGPoint)pos direction:(PlayerMovement)dir;
-
 -(void) runProjectileActions:(ccTime)delta;
 
 @end

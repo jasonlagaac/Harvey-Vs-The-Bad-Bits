@@ -12,7 +12,8 @@
 
 
 @interface PauseLayer : CCLayerColor {
-    
+    CGPoint resumeButtonPos;
+    CGPoint quitButtonPos;
 }
 
 @end

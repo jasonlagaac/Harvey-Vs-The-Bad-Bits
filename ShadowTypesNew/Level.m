@@ -82,9 +82,9 @@
     shape->e = 0.02f; shape->u = 0.05f;
   } else { 
     // Vertical platform definition
-    CGPoint endPoint = CGPointMake(pos.x, (pos.y + height));
-    shape = cpSegmentShapeNew(staticBody, pos, endPoint, 0.0f);
-    shape->e = 0.00f; shape->u = 0.0f;
+    CGPoint endPoint = CGPointMake(pos.x, (pos.y + height - 5.0f));
+    shape = cpSegmentShapeNew(staticBody, pos, endPoint, 3.0f);
+    shape->e = 0.0f; shape->u = 0.0f;
 
   }
   

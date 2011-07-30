@@ -24,6 +24,7 @@
 @implementation Explosion
 
 @synthesize  explosionAnimation;
+@synthesize  enemyExplosionAnimation;
 
 
 #pragma mark - Init / Dealloc / Singleton Functions
@@ -55,25 +56,36 @@
 
 -(void) loadAnimation {
   NSMutableArray *explosionFrames = [NSMutableArray array];
+  NSMutableArray *enemyExplosionFrames = [NSMutableArray array];
+
   
   for (int i = 1; i <= NUM_EXPLOSION_FRAMES; i++) {
     [explosionFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache]
                                 spriteFrameByName:[NSString stringWithFormat:@"Blast%d.png", i]]];
+    [enemyExplosionFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                spriteFrameByName:[NSString stringWithFormat:@"Blast%dE.png", i]]];
   }
   
-  self.explosionAnimation = [CCAnimation animationWithFrames:explosionFrames delay:0.10];
+  self.explosionAnimation = [CCAnimation animationWithFrames:explosionFrames delay:0.15];
+  self.enemyExplosionAnimation = [CCAnimation animationWithFrames:enemyExplosionFrames delay: 0.15];
 }
 
 #pragma mark - Action Functions
 
--(void) blastAt:(CGPoint)pos {
+-(void) blastAt:(CGPoint)pos explosionType:(explosionType)blastType {
   self.position = pos;  
   active = YES;
   self.visible = YES;
 
-  [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:explosionAnimation],
+  if (blastType == kExplosionEnemy) {
+    [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:enemyExplosionAnimation],
                    [CCCallFunc actionWithTarget:self selector:@selector(reload)],
                    nil]];
+  } else {
+    [self runAction:[CCSequence actions:[CCAnimate actionWithAnimation:explosionAnimation],
+                     [CCCallFunc actionWithTarget:self selector:@selector(reload)],
+                     nil]];
+  }
   
   [[SimpleAudioEngine sharedEngine]playEffect:@"Explosion.m4a"];
 

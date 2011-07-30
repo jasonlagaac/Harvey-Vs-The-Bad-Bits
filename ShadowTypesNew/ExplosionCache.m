@@ -34,16 +34,15 @@
   [super dealloc];
 }
 
-- (void)blastAt:(CGPoint)pos {
-  Explosion *explosion = [self.explosions objectAtIndex:nextInactiveExplosion];
-  
-  [explosion blastAt:pos];
-  
-  nextInactiveExplosion++;
-  
+- (void)blastAt:(CGPoint)pos explosionType:(int)type {
   if (nextInactiveExplosion >= [explosions count]) {
     nextInactiveExplosion = 0;
   }
+  
+  Explosion *explosion = [self.explosions objectAtIndex:nextInactiveExplosion];
+  nextInactiveExplosion++;
+
+  [explosion blastAt:pos explosionType:type];
 }
 
 @end

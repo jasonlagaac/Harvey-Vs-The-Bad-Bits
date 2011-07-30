@@ -7,6 +7,7 @@
 //
 
 #import "Projectile.h"
+#import "Explosion.h"
 
 /*  
  Cocos2d unloading function to cleanup bodies and shapes
@@ -141,7 +142,6 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
       break;
       
     case kPlayerWeaponFlamethrower:
-      self.opacity = 200;
       [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
                                       spriteFrameByName:@"Flame3.png"]];
       self.type = kProjFlame;
@@ -176,7 +176,7 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
       // Determine the distance
       if (ccpDistance(self.position, e.sprite.position) < 15) {
         if (self.type == kProjGrenade) {
-          [[[GameLayer sharedGameLayer] explosionCache]blastAt:self.position];
+          [[[GameLayer sharedGameLayer] explosionCache]blastAt:self.position explosionType:kExplosionPlayer];
         } else
           [e damage:7];
       
@@ -215,7 +215,7 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
     ExplosionCache *ec = [game explosionCache];
     
     // Should run explosion etc
-    [ec blastAt:self.position];
+    [ec blastAt:self.position explosionType:kExplosionPlayer];
     
     // Reset lifetime
     lifeTime = 0;

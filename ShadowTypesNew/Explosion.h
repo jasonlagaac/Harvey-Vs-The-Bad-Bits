@@ -24,16 +24,19 @@ typedef enum {
   
   /* Explosion animation */
   CCAnimation *explosionAnimation;
+  CCAnimation *enemyExplosionAnimation;
   
   BOOL active;
 }
 
 @property (nonatomic, retain) CCAnimation *explosionAnimation;
+@property (nonatomic, retain) CCAnimation *enemyExplosionAnimation;
+
 
 /* Explosion Singleton */
 +(id) explosion;
 
 /* Run explosion animation */
--(void) blastAt:(CGPoint)pos;
+-(void) blastAt:(CGPoint)pos explosionType:(explosionType)type;
 
 @end

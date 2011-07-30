@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5903753713D8197000B127BF /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5903753513D8197000B127BF /* ShadowTypes.plist */; };
-		5903753813D8197000B127BF /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = 5903753613D8197000B127BF /* ShadowTypes.png */; };
 		5903753A13D8223E00B127BF /* Level1Layer.png in Resources */ = {isa = PBXBuildFile; fileRef = 5903753913D8223E00B127BF /* Level1Layer.png */; };
+		5903754513D9AC9500B127BF /* reloadButtonUnpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5903754313D9AC9500B127BF /* reloadButtonUnpressed.png */; };
+		5903754613D9AC9500B127BF /* reloadButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5903754413D9AC9500B127BF /* reloadButtonPressed.png */; };
 		591080A4138A94B700FE8010 /* PlayerJump.plist in Resources */ = {isa = PBXBuildFile; fileRef = 591080A3138A94B700FE8010 /* PlayerJump.plist */; };
 		5919A17E138DF4B3004CF76C /* ShotgunReload.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5919A17D138DF4B3004CF76C /* ShotgunReload.m4a */; };
 		5919A180138DF5E8004CF76C /* Shotgun.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5919A17F138DF5E8004CF76C /* Shotgun.m4a */; };
@@ -26,7 +26,6 @@
 		59851F48138793C6007AB4BB /* weaponFeedback.png in Resources */ = {isa = PBXBuildFile; fileRef = 59851F46138793C6007AB4BB /* weaponFeedback.png */; };
 		59851F49138793C6007AB4BB /* weaponFeedback.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 59851F47138793C6007AB4BB /* weaponFeedback.fnt */; };
 		59851F701388156D007AB4BB /* WeaponPickup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59851F6D1388156D007AB4BB /* WeaponPickup.plist */; };
-		59851F721388156D007AB4BB /* EnemyExplode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59851F6F1388156D007AB4BB /* EnemyExplode.plist */; };
 		598D54CD13855E80008F2FEF /* EnemyHit.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 598D54CC13855E80008F2FEF /* EnemyHit.m4a */; };
 		598D54CF13855F0A008F2FEF /* EnemyDeath.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 598D54CE13855F0A008F2FEF /* EnemyDeath.m4a */; };
 		598D54D213856307008F2FEF /* CartridgePickup.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 598D54D013856307008F2FEF /* CartridgePickup.m4a */; };
@@ -189,8 +188,6 @@
 		599DE4571361543800FD2E2E /* fireButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE4521361543800FD2E2E /* fireButtonPressed.png */; };
 		599DE4581361543800FD2E2E /* fireButtonUnpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE4531361543800FD2E2E /* fireButtonUnpressed.png */; };
 		599DE4591361543800FD2E2E /* Joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE4541361543800FD2E2E /* Joystick.png */; };
-		599DE45E1361546000FD2E2E /* reloadButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE45C1361546000FD2E2E /* reloadButtonPressed.png */; };
-		599DE45F1361546000FD2E2E /* reloadButtonUnpressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */; };
 		59B4DB9113B765CE007BA3B2 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B4DB9013B765CE007BA3B2 /* MainMenuScene.m */; };
 		59D129E8138C587800358ABE /* Explosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D129E7138C587800358ABE /* Explosion.m */; };
 		59D129EC138C588900358ABE /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D129EB138C588900358ABE /* Projectile.m */; };
@@ -199,12 +196,18 @@
 		59E96D71137A8274008CA66D /* ScoreNumbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E96D70137A8274008CA66D /* ScoreNumbers.png */; };
 		59FC4A031393970F00AF3697 /* Tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 59FC4A021393970F00AF3697 /* Tileset.png */; };
 		59FC4A0A13969E1A00AF3697 /* ProjectileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59FC4A0913969E1A00AF3697 /* ProjectileCache.m */; };
+		B801802613E433A10037444C /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B801802413E433A10037444C /* ShadowTypes.plist */; };
+		B801802713E433A10037444C /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = B801802513E433A10037444C /* ShadowTypes.png */; };
+		B801802913E45EE50037444C /* Level1Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B801802813E45EE50037444C /* Level1Preview.png */; };
+		B850F89A13DE93CB00C62FC8 /* EnemyExplode.plist in Resources */ = {isa = PBXBuildFile; fileRef = B850F89913DE93CB00C62FC8 /* EnemyExplode.plist */; };
+		B85C8FC113E2802C00722698 /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FC013E2802C00722698 /* LevelSelectScene.m */; };
+		B8B7B0A713E1618D0008FE49 /* menuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B7B0A613E1618D0008FE49 /* menuBackground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5903753513D8197000B127BF /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
-		5903753613D8197000B127BF /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
 		5903753913D8223E00B127BF /* Level1Layer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1Layer.png; sourceTree = "<group>"; };
+		5903754313D9AC9500B127BF /* reloadButtonUnpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadButtonUnpressed.png; sourceTree = "<group>"; };
+		5903754413D9AC9500B127BF /* reloadButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadButtonPressed.png; sourceTree = "<group>"; };
 		591080A3138A94B700FE8010 /* PlayerJump.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlayerJump.plist; sourceTree = "<group>"; };
 		5919A17D138DF4B3004CF76C /* ShotgunReload.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ShotgunReload.m4a; sourceTree = "<group>"; };
 		5919A17F138DF5E8004CF76C /* Shotgun.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Shotgun.m4a; sourceTree = "<group>"; };
@@ -224,7 +227,6 @@
 		59851F46138793C6007AB4BB /* weaponFeedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weaponFeedback.png; sourceTree = "<group>"; };
 		59851F47138793C6007AB4BB /* weaponFeedback.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = weaponFeedback.fnt; sourceTree = "<group>"; };
 		59851F6D1388156D007AB4BB /* WeaponPickup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WeaponPickup.plist; sourceTree = "<group>"; };
-		59851F6F1388156D007AB4BB /* EnemyExplode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnemyExplode.plist; sourceTree = "<group>"; };
 		598D54CC13855E80008F2FEF /* EnemyHit.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = EnemyHit.m4a; sourceTree = "<group>"; };
 		598D54CE13855F0A008F2FEF /* EnemyDeath.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = EnemyDeath.m4a; sourceTree = "<group>"; };
 		598D54D013856307008F2FEF /* CartridgePickup.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = CartridgePickup.m4a; sourceTree = "<group>"; };
@@ -547,8 +549,6 @@
 		599DE4521361543800FD2E2E /* fireButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireButtonPressed.png; sourceTree = "<group>"; };
 		599DE4531361543800FD2E2E /* fireButtonUnpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireButtonUnpressed.png; sourceTree = "<group>"; };
 		599DE4541361543800FD2E2E /* Joystick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Joystick.png; sourceTree = "<group>"; };
-		599DE45C1361546000FD2E2E /* reloadButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadButtonPressed.png; sourceTree = "<group>"; };
-		599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadButtonUnpressed.png; sourceTree = "<group>"; };
 		59B4DB8F13B765CE007BA3B2 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		59B4DB9013B765CE007BA3B2 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		59D129E6138C587800358ABE /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
@@ -562,6 +562,13 @@
 		59FC4A021393970F00AF3697 /* Tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tileset.png; sourceTree = "<group>"; };
 		59FC4A0813969E1900AF3697 /* ProjectileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectileCache.h; sourceTree = "<group>"; };
 		59FC4A0913969E1A00AF3697 /* ProjectileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectileCache.m; sourceTree = "<group>"; };
+		B801802413E433A10037444C /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
+		B801802513E433A10037444C /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
+		B801802813E45EE50037444C /* Level1Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1Preview.png; sourceTree = "<group>"; };
+		B850F89913DE93CB00C62FC8 /* EnemyExplode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnemyExplode.plist; sourceTree = "<group>"; };
+		B85C8FBF13E2802C00722698 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectScene.h; sourceTree = "<group>"; };
+		B85C8FC013E2802C00722698 /* LevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectScene.m; sourceTree = "<group>"; };
+		B8B7B0A613E1618D0008FE49 /* menuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBackground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -595,6 +602,7 @@
 		594965E41383B04300C1B064 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				B801802813E45EE50037444C /* Level1Preview.png */,
 				5903753913D8223E00B127BF /* Level1Layer.png */,
 				59FC4A021393970F00AF3697 /* Tileset.png */,
 				592AE7EB1378317000C88B10 /* Level1.tmx */,
@@ -606,8 +614,8 @@
 			isa = PBXGroup;
 			children = (
 				59E96D70137A8274008CA66D /* ScoreNumbers.png */,
-				599DE45C1361546000FD2E2E /* reloadButtonPressed.png */,
-				599DE45D1361546000FD2E2E /* reloadButtonUnpressed.png */,
+				5903754313D9AC9500B127BF /* reloadButtonUnpressed.png */,
+				5903754413D9AC9500B127BF /* reloadButtonPressed.png */,
 				599DE4521361543800FD2E2E /* fireButtonPressed.png */,
 				599DE4531361543800FD2E2E /* fireButtonUnpressed.png */,
 				599DE4541361543800FD2E2E /* Joystick.png */,
@@ -618,8 +626,9 @@
 		594965E71383B07B00C1B064 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				5903753513D8197000B127BF /* ShadowTypes.plist */,
-				5903753613D8197000B127BF /* ShadowTypes.png */,
+				B8B7B0A613E1618D0008FE49 /* menuBackground.png */,
+				B801802413E433A10037444C /* ShadowTypes.plist */,
+				B801802513E433A10037444C /* ShadowTypes.png */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -649,7 +658,7 @@
 				59D129ED138CB32000358ABE /* BlastSmoke.plist */,
 				591080A3138A94B700FE8010 /* PlayerJump.plist */,
 				59851F6D1388156D007AB4BB /* WeaponPickup.plist */,
-				59851F6F1388156D007AB4BB /* EnemyExplode.plist */,
+				B850F89913DE93CB00C62FC8 /* EnemyExplode.plist */,
 			);
 			name = "Particle Effects";
 			sourceTree = "<group>";
@@ -1072,6 +1081,8 @@
 				599DE43813614D9900FD2E2E /* GameScene.m */,
 				59B4DB8F13B765CE007BA3B2 /* MainMenuScene.h */,
 				59B4DB9013B765CE007BA3B2 /* MainMenuScene.m */,
+				B85C8FBF13E2802C00722698 /* LevelSelectScene.h */,
+				B85C8FC013E2802C00722698 /* LevelSelectScene.m */,
 				599DE43A13614DCE00FD2E2E /* InputLayer.h */,
 				599DE43B13614DCE00FD2E2E /* InputLayer.m */,
 				5969AAC513A34E3C00243DB5 /* PauseLayer.h */,
@@ -1166,6 +1177,9 @@
 /* Begin PBXProject section */
 		599DE1E113612D0600FD2E2E /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 599DE1E413612D0600FD2E2E /* Build configuration list for PBXProject "ShadowTypesNew" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -1200,8 +1214,6 @@
 				599DE4571361543800FD2E2E /* fireButtonPressed.png in Resources */,
 				599DE4581361543800FD2E2E /* fireButtonUnpressed.png in Resources */,
 				599DE4591361543800FD2E2E /* Joystick.png in Resources */,
-				599DE45E1361546000FD2E2E /* reloadButtonPressed.png in Resources */,
-				599DE45F1361546000FD2E2E /* reloadButtonUnpressed.png in Resources */,
 				592AE7EC1378317000C88B10 /* Level1.tmx in Resources */,
 				59E96D71137A8274008CA66D /* ScoreNumbers.png in Resources */,
 				594965EA1383B0AB00C1B064 /* MachineGun.m4a in Resources */,
@@ -1215,7 +1227,6 @@
 				59851F48138793C6007AB4BB /* weaponFeedback.png in Resources */,
 				59851F49138793C6007AB4BB /* weaponFeedback.fnt in Resources */,
 				59851F701388156D007AB4BB /* WeaponPickup.plist in Resources */,
-				59851F721388156D007AB4BB /* EnemyExplode.plist in Resources */,
 				591080A4138A94B700FE8010 /* PlayerJump.plist in Resources */,
 				59D129EE138CB32000358ABE /* BlastSmoke.plist in Resources */,
 				5919A17E138DF4B3004CF76C /* ShotgunReload.m4a in Resources */,
@@ -1223,9 +1234,14 @@
 				5919A182138DF6B0004CF76C /* Explosion.m4a in Resources */,
 				59244F991393847700B6EAF6 /* Revolver.m4a in Resources */,
 				59FC4A031393970F00AF3697 /* Tileset.png in Resources */,
-				5903753713D8197000B127BF /* ShadowTypes.plist in Resources */,
-				5903753813D8197000B127BF /* ShadowTypes.png in Resources */,
 				5903753A13D8223E00B127BF /* Level1Layer.png in Resources */,
+				5903754513D9AC9500B127BF /* reloadButtonUnpressed.png in Resources */,
+				5903754613D9AC9500B127BF /* reloadButtonPressed.png in Resources */,
+				B850F89A13DE93CB00C62FC8 /* EnemyExplode.plist in Resources */,
+				B8B7B0A713E1618D0008FE49 /* menuBackground.png in Resources */,
+				B801802613E433A10037444C /* ShadowTypes.plist in Resources */,
+				B801802713E433A10037444C /* ShadowTypes.png in Resources */,
+				B801802913E45EE50037444C /* Level1Preview.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1382,6 +1398,7 @@
 				59FC4A0A13969E1A00AF3697 /* ProjectileCache.m in Sources */,
 				5969AAC713A34E3C00243DB5 /* PauseLayer.m in Sources */,
 				59B4DB9113B765CE007BA3B2 /* MainMenuScene.m in Sources */,
+				B85C8FC113E2802C00722698 /* LevelSelectScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1392,6 +1409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1412,6 +1430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
@@ -1434,9 +1453,10 @@
 				GCC_PREFIX_HEADER = ShadowTypesNew/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = ShadowTypesNew/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = ShadowTypesNew/libs/Chipmunk/include/chipmunk;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1451,9 +1471,10 @@
 				GCC_PREFIX_HEADER = ShadowTypesNew/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = ShadowTypesNew/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = ShadowTypesNew/libs/Chipmunk/include/chipmunk;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -1470,7 +1491,7 @@
 				599DE3AA13612D0A00FD2E2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		599DE3AB13612D0A00FD2E2E /* Build configuration list for PBXNativeTarget "ShadowTypesNew" */ = {
 			isa = XCConfigurationList;
@@ -1479,7 +1500,7 @@
 				599DE3AD13612D0A00FD2E2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

@@ -54,7 +54,7 @@
     
     if (![enemy activeInGame]) {
       [enemy loadIntoGame:self.theGame 
-            withEnemyType:kEnemySmall
+            withEnemyType:(arc4random() % 3)
            withSpawnPoint:spawnPos];
       
       break;

@@ -25,8 +25,7 @@
 
 #define MAX_ITEMS 10
 
-typedef enum
-{
+typedef enum {
 	GameSceneLayerTagGame = 1,
 	GameSceneLayerTagInput,
   GameSceneNodeTagBulletCache,
@@ -43,9 +42,13 @@ typedef enum
 @class Level;
 @class ParallaxNode;
 
+@interface GameScene : CCScene {
+  
+}
+@end
+
 // HelloWorldLayer
-@interface GameLayer : CCLayer
-{
+@interface GameLayer : CCLayer {
   // Physics Entities
   cpSpace *space;
   
@@ -58,7 +61,6 @@ typedef enum
   Player *player;
   Level *level;
   Item *cartridge;
-  Item *ammoBox;
   
   int playerLevel;
   int score;
@@ -85,12 +87,9 @@ typedef enum
 
 @property (nonatomic, retain) Level *level;
 @property (nonatomic, retain) Item *cartridge;
-@property (nonatomic, retain) Item *ammoBox;
-
-
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
-+(CCScene *) scene;
++(CCScene *) scene:(int)level;
 +(GameLayer*) sharedGameLayer;
 -(void) updateScore;
 -(void) shakeScreen;

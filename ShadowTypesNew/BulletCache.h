@@ -34,6 +34,8 @@
 @property (nonatomic, retain) GameLayer *theGame;
 @property (nonatomic, retain) CCArray *bullets;
 
+-(id) initWithGame:(GameLayer *) game;
+
 /** Fire a stored bullet from the |bullets| array
  *  @param startPosition is the bullets start point
  *  @param direction which way the player is facing (determine direction)

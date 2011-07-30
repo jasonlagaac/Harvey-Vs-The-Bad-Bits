@@ -43,8 +43,26 @@ eachShape(void *ptr, void* unused)
 - (void)spawnEnemy;
 - (void)loadParticleEffects;
 - (void)loadSound;
+-(id) initWithLevel:(int)levelSelected;
 @end
 
+@implementation GameScene 
+- (id) init {
+  self = [super init];
+  if (self != nil) {
+		
+    [self addChild:[GameLayer node]];
+		
+  }
+  return self;
+}
+
+-(void)dealloc
+{
+	[super dealloc];
+}
+  
+@end
 
 @implementation GameLayer
 
@@ -58,7 +76,6 @@ eachShape(void *ptr, void* unused)
 @synthesize projectileCache;
 @synthesize space;
 @synthesize level;
-@synthesize ammoBox;
 @synthesize cartridge;
 
 static GameLayer* instanceOfGameLayer;
@@ -66,13 +83,13 @@ static GameLayer* instanceOfGameLayer;
 #pragma mark -
 #pragma mark Scene Instance
 
-+(CCScene *) scene
++(CCScene *) scene:(int)level
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	GameLayer *layer = [GameLayer node];
+	GameLayer *layer = [[[GameLayer alloc] initWithLevel:level] autorelease];
 	
 	// add layer as a child to scene
 	[scene addChild:layer z:0 tag:GameSceneLayerTagGame];
@@ -95,7 +112,7 @@ static GameLayer* instanceOfGameLayer;
 #pragma mark Alloc / Dealloc
 
 // on "init" you need to initialize your instance
--(id) init
+-(id) initWithLevel:(int)levelSelected
 {
   // always call "super" init
   // Apple recommends to re-assign "self" with the "super" return value
@@ -124,13 +141,13 @@ static GameLayer* instanceOfGameLayer;
     [self addChild:colorLayer z:0];
         
     CCSprite *levelLayer= [CCSprite spriteWithFile:@"Level1Layer.png"];
-    [self addChild:levelLayer z:2];
+    [self addChild:levelLayer z:6];
     
     levelLayer.position = CGPointMake(240, 160);
     [[levelLayer texture] setAliasTexParameters];
     
     // Load the level
-    level = [[Level alloc] initWithLevel:1 game:self];
+    level = [[Level alloc] initWithLevel:levelSelected game:self];
     
     [self loadParticleEffects];
     [self loadSound];
@@ -138,19 +155,17 @@ static GameLayer* instanceOfGameLayer;
     self.playerLevel = 0; // Assign the player game level
     self.remainingTime = 75; // remaining time in seconds
     
-    // Load the items and images into the framecache
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ShadowTypes.plist"];
     
     // Initialise the Score Label
     CCLabelAtlas *scoreLabel = [CCLabelAtlas labelWithString:@"0" charMapFile:@"ScoreNumbers.png" itemWidth:25 itemHeight:23 startCharMap:'.'];
     
     [self addChild:scoreLabel z:12 tag:K_ScoreLabel];
+    [[scoreLabel texture] setAliasTexParameters];
     [scoreLabel setPosition:CGPointMake((screenSize.width / 2), (screenSize.height - 30))];
     [scoreLabel setAnchorPoint:ccp(0.5,0)];
     
     
     cartridge = [[Item alloc] initWithGame:self withType:kCartridge];
-    ammoBox = [[Item alloc] initWithGame:self withType:kAmmoPack];
     player = [[Player alloc] initWithGame:self];
     
     NSMutableArray *spawnPos = [[NSMutableArray alloc] init];
@@ -164,7 +179,6 @@ static GameLayer* instanceOfGameLayer;
     projectileCache = [[ProjectileCache alloc] initWithGame:self];
     
     [self schedule: @selector(step:)];
-    
   }
   return self;
 }
@@ -187,17 +201,14 @@ static GameLayer* instanceOfGameLayer;
   
   effect = [CCParticleSystemPoint particleWithFile:@"EnemyExplode.plist"];
   effect.autoRemoveOnFinish = YES;
+  [effect setPosition:CGPointMake(-2000, -2000)];
   
   [self addChild:effect z:7];
   
   effect = [CCParticleSystemPoint particleWithFile:@"WeaponPickup.plist"];
   effect.autoRemoveOnFinish = YES;
-  
-  [self addChild:effect z:7];
-  
-  effect = [CCParticleSystemPoint particleWithFile:@"PlayerJump.plist"];
-  effect.autoRemoveOnFinish = YES;
-  
+  [effect setPosition:CGPointMake(-2000, -2000)];
+
   [self addChild:effect z:7];
   
 }
@@ -241,8 +252,8 @@ static GameLayer* instanceOfGameLayer;
 
 -(void) pauseGame {
   [InputLayer sharedInputLayer].visible = NO;
-  ccColor4B c = {0,0,0,200};
-  PauseLayer *p = [[[PauseLayer alloc] initWithColor:c] autorelease];
+  
+  PauseLayer *p = [[[PauseLayer alloc] init] autorelease];
   [self addChild:p z:40];
   
   if (![[AppDelegate get] paused]) {
@@ -260,8 +271,6 @@ static GameLayer* instanceOfGameLayer;
   [[CCDirector sharedDirector] resume];
   
 }
-
-
 
 
 
@@ -283,7 +292,6 @@ static GameLayer* instanceOfGameLayer;
   [[self enemyCache] runEnemyActions];
   [[self player] checkEnemyCollision];
   [[self cartridge] checkItemCollision];
-  [[self ammoBox] checkItemCollision];    
   [[self projectileCache] runProjectileActions:delta];
     
   if (nextSpawnTime > 1.0f) {

@@ -41,9 +41,6 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 /* Enemy object "death" actions */
 -(void)death;
 
-/* Evolve the enemy after respawns */
--(void)evolve;
-
 @end
 
 
@@ -93,11 +90,11 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
   switch (self.enemyType) {
     case kEnemySmall:
       self.sprite = [CCSprite spriteWithSpriteFrameName:@"EnemySmall2.png"];
-      self.health = 5;
+      self.health = 10;
       break;
     case kEnemyJuggernaut:
       self.sprite = [CCSprite spriteWithSpriteFrameName:@"Juggernaut2.png"];
-      self.health = 10;
+      self.health = 25;
       break;
     case kEnemyExploder:
       self.sprite = [CCSprite spriteWithSpriteFrameName:@"Exploder2.png"];
@@ -141,14 +138,20 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 - (void)loadPhysics {
   
   int numVert = 4;
+  CGPoint *verts = (CGPoint *)malloc(sizeof(CGPoint) * 4);
   
   // Define the verticies of the sprite
-  CGPoint verts[] = {
-    ccp(-10.5, -18),
-    ccp(-10.5,  18),
-    ccp( 10.5,  18),
-    ccp( 10.5, -18),
-  };
+  if (self.enemyType != kEnemyJuggernaut) {
+    verts[0] = ccp(-10.5, -18);
+    verts[1] = ccp(-10.5,  18);
+    verts[2] = ccp( 10.5,  18);
+    verts[3] = ccp( 10.5, -18);
+  } else {
+    verts[0] = ccp(-10.5, -23);
+    verts[1] = ccp(-10.5,  23);
+    verts[2] = ccp( 10.5,  23);
+    verts[3] = ccp( 10.5, -23);
+  }
   
   // Define the mass and movement of intertia
   body = cpBodyNew(1.0f, cpMomentForPoly(1.0f, numVert, verts, CGPointZero));
@@ -201,7 +204,6 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
   enemyFalling = NO;
   started = NO;
   dead = NO;
-  respawnCount = 0;
   
   // Load all the necessary attributes
   [self loadDefaultSprite];
@@ -314,12 +316,6 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 /* Respawn the enemy object */
 - (void)respawn {
   CGSize screenSize = [[CCDirector sharedDirector] winSize];
-  
-  
-  if (respawnCount < 2) 
-    respawnCount++; 
-  else
-    [self evolve];
 
   
   // Randomly select new movement direction
@@ -349,20 +345,19 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
   self.activeInGame = NO;  
   [[self sprite] stopAllActions];
   
+  CCParticleSystem *explosion;
+  
+  explosion = [CCParticleSystemPoint particleWithFile:@"EnemyExplode.plist"];
+  explosion.autoRemoveOnFinish = YES;
+  
+  [self.theGame addChild:explosion z:7];
+  [explosion setPosition:self.sprite.position];
+  
+  [[SimpleAudioEngine sharedEngine]playEffect:@"EnemyDeath.m4a"];
   
   /* Particle Effects */
-  if (enemyType != kEnemyExploder) {
-    CCParticleSystem *explosion;
-  
-    explosion = [CCParticleSystemPoint particleWithFile:@"EnemyExplode.plist"];
-    explosion.autoRemoveOnFinish = YES;
-  
-    [self.theGame addChild:explosion z:7];
-    [explosion setPosition:self.sprite.position];
-  
-    [[SimpleAudioEngine sharedEngine]playEffect:@"EnemyDeath.m4a"];
-  } else {
-    [[theGame explosionCache] blastAt:self.sprite.position];
+  if (enemyType == kEnemyExploder) {
+    [[theGame explosionCache] blastAt:self.sprite.position explosionType:kExplosionEnemy];
   }
   
   // Cocos2d must run this after the step that all bodies are accounted for
@@ -382,35 +377,6 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
   
   if (self.health <= 0) {
     [self death];
-  }
-}
-
-- (void)evolve {
-  if (self.enemyType != kEnemyExploder) {
-    self.enemyType++;
-    [self stopAllActions];
-    
-    switch (enemyType) {
-      case kEnemySmall:
-        [[self sprite] runAction:enemyWalkAction];
-        break;
-        
-      case kEnemyJuggernaut:
-        [[self sprite] runAction:juggernautWalkAction];
-        self.sprite.visible = YES;
-        self.health = 10;
-        break;
-        
-      case kEnemyExploder:
-        [[self sprite] runAction:exploderWalkAction];
-        self.sprite.visible = YES;
-        self.health = 15;
-        break;
-        
-      default:
-        break;
-    }
-    respawnCount = 0;
   }
 }
 

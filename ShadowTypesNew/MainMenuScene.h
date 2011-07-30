@@ -9,9 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class GameLayer;
 
-@interface MainMenuScene : CCMenu {
-    
+@interface MainMenuScene : CCScene {
+}
+
+@end
+
+
+@interface MainMenuLayer : CCLayer {
+  GameLayer *game;
 }
 
 @end

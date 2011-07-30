@@ -14,13 +14,13 @@
 
 @interface ExplosionCache : CCNode {
   GameLayer *theGame;
-  
   CCArray *explosions;
-  
   int nextInactiveExplosion;
 }
+
 @property (nonatomic, retain) CCArray *explosions;
 
--(void) blastAt:(CGPoint)pos;
+-(id) initWithGame:(GameLayer *)game;
+- (void)blastAt:(CGPoint)pos explosionType:(int)type;
 
 @end

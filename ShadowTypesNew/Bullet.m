@@ -58,34 +58,44 @@
   // Determine the bullet's velocity based on the weapon selected
   switch (weapon) {
     case kPlayerWeaponPistol:
-      self.velocity = CGPointMake(6, 0);
-      self.damage = 1;
+      self.velocity = CGPointMake(10, 0);
+      self.damage = 5;
       break;
     case kPlayerWeaponMachineGun:
-      self.velocity = CGPointMake(9, 0);
-      self.damage = 3;
+      self.velocity = CGPointMake(10, 0);
+      self.damage = 5;
       break;
       
     case kPlayerWeaponShotgun:
       self.velocity = CGPointMake((arc4random() % 6 + 4), 0);
-      self.damage = 1;
+      self.damage = 3;
       break;
     case kPlayerWeaponPhaser:
-      self.velocity = CGPointMake(9, 0);
+      self.velocity = CGPointMake(12, 0);
       self.damage = 5;
       break;
       
     case kPlayerWeaponGattlingGun:
-      self.velocity = CGPointMake(12, 0);
+      self.velocity = CGPointMake(15, 0);
       self.damage = 5;
       break;
       
     case kPlayerWeaponRevolver:
       self.velocity = CGPointMake(12, 0);
-      self.damage = 5;
+      self.damage = 10;
       break;
 
     case kPlayerWeaponRocket:
+      self.velocity = CGPointMake(15, 0);
+      self.damage = 10;
+      break;
+      
+    case kPlayerWeaponLaser:
+      self.velocity = CGPointMake(20, 0);
+      self.damage = 30;
+      break;
+      
+    case kPlayerWeaponShurikin:
       self.velocity = CGPointMake(15, 0);
       self.damage = 5;
       break;
@@ -162,12 +172,12 @@
       // Determine the distance
       if (ccpDistance(self.position, e.sprite.position) < 15) {
         if (weaponType == kPlayerWeaponRocket) {
-          [[[GameLayer sharedGameLayer] explosionCache]blastAt:self.position];
+          [[[GameLayer sharedGameLayer] explosionCache]blastAt:self.position explosionType:kExplosionPlayer];
         }
         
         [e damage:self.damage];   
         
-        if (weaponType != kPlayerWeaponShotgun) 
+        if (weaponType != kPlayerWeaponShotgun && weaponType != kPlayerWeaponLaser) 
           [self reinit];
       }
     }
@@ -199,7 +209,7 @@
       
     case kPlayerWeaponRocket:
       if (self.position.x > screenSize.width || self.position.x < 0) {
-        [[[GameLayer sharedGameLayer] explosionCache]blastAt:self.position];
+        [[[GameLayer sharedGameLayer] explosionCache]blastAt:self.position explosionType:kExplosionPlayer];
         [self reinit];
       }
     default:

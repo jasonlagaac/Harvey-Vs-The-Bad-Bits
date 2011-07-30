@@ -46,7 +46,6 @@ typedef enum {
   EnemyType enemyType;
   CGPoint spawnPos;
   int health;
-  int respawnCount;
   
   /* Object location on screen attribute */
   float prevPos_x;

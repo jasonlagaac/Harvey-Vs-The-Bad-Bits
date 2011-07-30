@@ -18,8 +18,6 @@
 
 // Player General Actions
 - (void)animateMove;
-- (void)stopAnimations;
-- (void)changeToJumpFallSprite;
 - (void)landedCheck;
 - (void)respawn;
 - (int)weaponRecoil;
@@ -43,7 +41,8 @@
 @synthesize phaserWalkAction;           @synthesize points;
 @synthesize rocketWalkAction;           @synthesize revolverWalkAction;
 @synthesize flamethrowerWalkAction;     @synthesize gattlingGunWalkAction;
-@synthesize grenadeLauncherWalkAction;
+@synthesize grenadeLauncherWalkAction;  @synthesize laserWalkAction;
+@synthesize shurikinWalkAction;
 
 
 
@@ -53,7 +52,7 @@
 -(void) loadSprites {
   CGSize screenSize = [[CCDirector sharedDirector] winSize];
   
-  self.weapon = kPlayerWeaponFlamethrower;
+  self.weapon = kPlayerWeaponPistol;
   self.sprite = [CCSprite spriteWithSpriteFrameName:@"Pistol1.png"];
 
   
@@ -62,9 +61,7 @@
   self.sprite.flipX = NO;    
   self.direction = kPlayerMoveRight;
   self.sprite.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
-  [super addChild:sprite z:6];
-  
-  
+  [super addChild:sprite z:11];
 }
 
 
@@ -78,6 +75,8 @@
   NSMutableArray *flamethrowerWalkFrames = [NSMutableArray array];
   NSMutableArray *gattlingGunWalkFrames = [NSMutableArray array];
   NSMutableArray *grenadeLauncherWalkFrames = [NSMutableArray array];
+  NSMutableArray *laserWalkFrames = [NSMutableArray array];
+  NSMutableArray *shurikinWalkFrames = [NSMutableArray array];
 
   
   for (int i = 1; i <= NUM_PLAYER_WALK_FRAMES; i++) {
@@ -106,7 +105,12 @@
     
     [grenadeLauncherWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache]
                                       spriteFrameByName:[NSString stringWithFormat:@"Grenade%d.png", i]]];
+    
+    [laserWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                               spriteFrameByName:[NSString stringWithFormat:@"Laser%d.png", i]]];
 
+    [shurikinWalkFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                                spriteFrameByName:[NSString stringWithFormat:@"Shurikin%d.png", i]]];
 
      
   }
@@ -140,7 +144,12 @@
 
   CCAnimation *grenadeWalkAnim = [CCAnimation animationWithFrames:grenadeLauncherWalkFrames delay:0.07f];
   self.grenadeLauncherWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:grenadeWalkAnim]];
-
+  
+  CCAnimation *laserWalkAnim = [CCAnimation animationWithFrames:laserWalkFrames delay:0.07f];
+  self.laserWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:laserWalkAnim]];
+  
+  CCAnimation *shurikinWalkAnim = [CCAnimation animationWithFrames:shurikinWalkFrames delay:0.07f];
+  self.shurikinWalkAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:shurikinWalkAnim]];
   
 }
 
@@ -149,10 +158,10 @@
   
   // Define the player's verticies
   CGPoint verts[] = {
-    ccp(-21, -20),
-    ccp(-21,  20),
-    ccp( 21,  20),
-    ccp( 21, -20)
+    ccp(-15, -22),
+    ccp(-15,  22),
+    ccp( 15,  22),
+    ccp( 15, -22)
   };
   
   // Define the mass and the movement of intertia
@@ -187,7 +196,7 @@
     [self loadAnimations];
     [self loadPhysics];
     
-    [game addChild:self z:5];
+    [game addChild:self z:9];
     
     [self scheduleUpdate];
   }
@@ -255,6 +264,16 @@
                                       spriteFrameByName:@"Grenade1.png"]];
       break;
       
+    case kPlayerWeaponLaser:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                      spriteFrameByName:@"Laser1.png"]];
+      break;
+      
+    case kPlayerWeaponShurikin:
+      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
+                                      spriteFrameByName:@"Shurikin1.png"]];
+      break;
+      
     default:
       break;
   }
@@ -299,16 +318,21 @@
         [[self sprite] runAction: grenadeLauncherWalkAction];
         break;  
         
+      case kPlayerWeaponLaser:
+        [[self sprite] runAction: laserWalkAction];
+        break;
+        
+      case kPlayerWeaponShurikin:
+        [[self sprite] runAction: shurikinWalkAction];
+        break;
+        
       default:
         break;
     }
   }
 }
 
--(void) stopAnimations {
-  if ([self.sprite numberOfRunningActions])
-    [[self sprite] stopAllActions];
-}
+
 
 #pragma mark - 
 #pragma mark Player Movement Actions
@@ -321,7 +345,7 @@
   
   [self facingDirection:velocity_x];
   [self animateMovement:velocity_x];
-  
+    
   if (velocity_x >= 10) {
     body->v.x = playerJumping ? (200 - recoil) :  (250 - recoil);
   } else if (velocity_x <= -10) {
@@ -344,101 +368,21 @@
   }
 }
 
--(void) animateMovement:(float)velocity_x {
-  
+-(void) animateMovement:(float)velocity_x {  
   // Movement in the horizontal direction
-  if (velocity_x < -50 || velocity_x > 50) {
+  if ((velocity_x < -50 || velocity_x > 50)) {
     [self animateMove];
-  } else  {
-    [self stopAnimations];
-    [self restoreDefaultSprite];
-  }
-  
-  // Movement in the vertical direction
-  if (self.body->v.y != 0) {
-    self.playerJumping = YES; 
-    [self changeToJumpFallSprite];
-    [self stopAnimations];
-    
   } else {
-    self.playerJumping = NO;
+    [[self sprite] stopAllActions];
     [self restoreDefaultSprite];
-  }
-}
-
--(void) changeToJumpFallSprite {
-  switch (self.weapon) {
-    case kPlayerWeaponPistol:
-      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"Pistol3.png"]];
-      break;
-      
-    case kPlayerWeaponMachineGun:
-      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"MachineGun3.png"]];
-      break;
-      
-    case kPlayerWeaponShotgun:
-      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] 
-                                      spriteFrameByName:@"Shotgun3.png"]];
-      break;
-      
-    case kPlayerWeaponPhaser:
-      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"Phaser3.png"]];
-      break;
-      
-    case kPlayerWeaponRocket:
-      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"Rocket3.png"]];
-      break;
-      
-    case kPlayerWeaponRevolver:
-      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"Revolver3.png"]];
-      break;
-      
-    case kPlayerWeaponFlamethrower:
-      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"Flamethrower3.png"]];
-      break;
-      
-    case kPlayerWeaponGattlingGun:
-      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"Gattling3.png"]];
-      break;
-      
-      
-    case kPlayerWeaponGrenadeLauncher:
-      [[self sprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
-                                      spriteFrameByName:@"Grenade3.png"]];
-      break;
-      
-      
-    default:
-      break;
   }
 }
 
 
 -(void) jump {
-  
-  if (!self.playerJumping) {
+  if (!self.playerJumping)
     [[SimpleAudioEngine sharedEngine]playEffect:@"PlayerJump.m4a"];
-  
-    /* Particle Effects */
-    CCParticleSystem *jump;
-  
-    jump = [CCParticleSystemPoint particleWithFile:@"PlayerJump.plist"];
-    jump.autoRemoveOnFinish = YES;
-  
-    [self.theGame addChild:jump z:7];
-    CGPoint jumpSpot = CGPointMake(self.sprite.position.x, (self.sprite.position.y - 10.0f));
-    
-    [jump setPosition:jumpSpot];
-  }
-  
-  self.body->v.y = 400.0f;
+  self.body->v.y = 600.0f;
 }
 
 -(void) land {
@@ -575,6 +519,8 @@
         playerAttacking = NO;
       }
       
+      break;
+      
     case kPlayerWeaponFlamethrower: // Single delayed shot for shotgun
       if (fireButtonActive && totalTime > *nextShotTime) {
         
@@ -590,6 +536,7 @@
         playerAttacking = NO;
         nextShotTime = 0;
       }
+      break;
       
     case kPlayerWeaponRocket:
       if (fireButtonActive && !playerAttacking && totalTime > *nextShotTime) {
@@ -608,6 +555,41 @@
       } else if (!fireButtonActive && playerAttacking == YES) {
         playerAttacking = NO;
       }
+      break;
+      
+    case kPlayerWeaponLaser:
+      if (fireButtonActive && !playerAttacking && totalTime > *nextShotTime) {
+        
+        *nextShotTime = totalTime + 3.0f;
+        
+        
+        playerAttacking = YES;
+        BulletCache *bulletCache = [theGame bulletCache];
+        
+        [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
+                           frameName:@"Laser.png" weaponType:self.weapon];
+        
+        //[[SimpleAudioEngine sharedEngine]playEffect:@"Shotgun.m4a"];
+        
+      } else if (!fireButtonActive && playerAttacking == YES) {
+        playerAttacking = NO;
+      }
+      
+      break;
+      
+    case kPlayerWeaponShurikin: // Single shot for the revolver
+      if (fireButtonActive && !playerAttacking) {
+        playerAttacking = YES;
+        BulletCache *bulletCache = [theGame bulletCache];
+        
+        [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
+                           frameName:@"Shurikin.png" weaponType:self.weapon];
+        
+        //[[SimpleAudioEngine sharedEngine]playEffect:@"Revolver.m4a"];        
+      } else if (!fireButtonActive && playerAttacking) {
+        playerAttacking = NO;
+      } 
+      break;
 
     default:
       break;
@@ -646,12 +628,12 @@
   while (true) {
     chosenWeapon = (arc4random() % kPlayerWeaponCount);
     
-    if (chosenWeapon == kPlayerWeaponPistol)
-      chosenWeapon++;
-    
     if (chosenWeapon != self.weapon) 
       break;
   }
+  [[self sprite] stopAllActions];\
+  
+  
   
   self.weapon = chosenWeapon;
   self.playerAttacking = NO;

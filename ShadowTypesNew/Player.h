@@ -26,6 +26,8 @@ typedef enum  {
     kPlayerWeaponFlamethrower,
     kPlayerWeaponGattlingGun,
     kPlayerWeaponGrenadeLauncher,
+    kPlayerWeaponLaser,
+    kPlayerWeaponShurikin,
     kPlayerWeaponCount
 } PlayerWeapon;
 
@@ -68,6 +70,8 @@ typedef enum  {
     CCAction *flamethrowerWalkAction;
     CCAction *gattlingGunWalkAction;
     CCAction *grenadeLauncherWalkAction;
+    CCAction *laserWalkAction;
+    CCAction *shurikinWalkAction;
 }
 
 @property (nonatomic, retain) GameLayer *theGame;
@@ -87,15 +91,15 @@ typedef enum  {
 @property (nonatomic, retain) CCAction *machineGunWalkAction;
 @property (nonatomic, retain) CCAction *shotgunWalkAction;
 @property (nonatomic, retain) CCAction *phaserWalkAction;
-
-
 @property (nonatomic, retain) CCAction *rocketWalkAction;
 @property (nonatomic, retain) CCAction *revolverWalkAction;
 @property (nonatomic, retain) CCAction *flamethrowerWalkAction;
 @property (nonatomic, retain) CCAction *gattlingGunWalkAction;
 @property (nonatomic, retain) CCAction *grenadeLauncherWalkAction;
+@property (nonatomic, retain) CCAction *laserWalkAction;
+@property (nonatomic, retain) CCAction *shurikinWalkAction;
 
-
+-(id) initWithGame:(GameLayer *)game;
 /** Restore the default sprite
  */ 
 - (void)restoreDefaultSprite;
@@ -103,10 +107,6 @@ typedef enum  {
 /** Animate the player's movement
  */
 - (void)animateMove;
-
-/** Stop player animations
- */
-- (void)stopAnimations;
 
 /** Move the player along the X axis
  *  @param velocity_x velocity on the x-axis from the input layer

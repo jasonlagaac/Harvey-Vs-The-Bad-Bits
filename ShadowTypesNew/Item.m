@@ -78,7 +78,6 @@
 /* Load Sound */
 -(void) loadSound {
   [[SimpleAudioEngine sharedEngine] preloadEffect:@"CartridgePickup.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"WeaponPickup.m4a"];
 
 }
 
@@ -96,16 +95,8 @@
     newSpawnPoint = [[spawnPoints objectAtIndex:(arc4random() % totalSpawnPoints)] CGPointValue];
     
     // Determine if the current spawn point is equal to the new spawn point
-    if (CGPointEqualToPoint(newSpawnPoint, self.spawnPos) == NO) {
-      
-      // Determine the item type and make sure they dont have the same spawn position
-      if (self.item == kAmmoPack) {
-        if (CGPointEqualToPoint(newSpawnPoint, theGame.cartridge.spawnPos) == NO && (newSpawnPoint.y != self.spawnPos.y))
-          break;
-      } else if (self.item == kCartridge ) {
-        if (CGPointEqualToPoint(newSpawnPoint, theGame.ammoBox.spawnPos) == NO && (newSpawnPoint.y != self.spawnPos.y))
-          break;
-      }
+    if ((CGPointEqualToPoint(newSpawnPoint, self.spawnPos) == NO) && (newSpawnPoint.y != self.spawnPos.y)) {
+      break;
     }
   }
   
@@ -116,12 +107,8 @@
 - (void)setItemSprite {    
   switch (self.item) {
 		case kCartridge:
-      self.sprite = [CCSprite spriteWithSpriteFrameName:@"Cartridge2.png"];
+      self.sprite = [CCSprite spriteWithSpriteFrameName:@"Box.png"];
 			break;
-    case kAmmoPack:
-      self.sprite = [CCSprite spriteWithSpriteFrameName:@"AmmoBox.png"];
-			break;
-      break;
   }
   
   [self.theGame addChild:self.sprite z:5];
@@ -180,25 +167,12 @@
   
     
   if (ccpDistance(player.sprite.position, self.sprite.position) < 25) {
-    if (self.item == kAmmoPack) {
       [player changeWeapon];
-      [[SimpleAudioEngine sharedEngine]playEffect:@"WeaponPickup.m4a"];
-      /* Particle Effects */
-      CCParticleSystem *weaponPickup;
-      
-      weaponPickup = [CCParticleSystemPoint particleWithFile:@"WeaponPickup.plist"];
-      weaponPickup.autoRemoveOnFinish = YES;
-      
-      [self.theGame addChild:weaponPickup z:7];      
-      [weaponPickup setPosition:player.sprite.position];
-      
       [self weaponPickupFeedback];
-    } else {
       [[SimpleAudioEngine sharedEngine]playEffect:@"CartridgePickup.m4a"];
       [player addPoint];
-    }
     
-    [self reload];
+      [self reload];
   }
   
   if (self.sprite.position.y < -50) 
@@ -240,6 +214,14 @@
     case kPlayerWeaponRocket:
       [self displayText:@"Rocket\n\t\tLauncher"];
       break;
+      
+    case kPlayerWeaponLaser:
+      [self displayText:@"Laser Rifle"];
+      break;
+      
+    case kPlayerWeaponShurikin:
+      [self displayText:@"Shurikin"];
+      break;
 
     default:
       break;
@@ -255,6 +237,7 @@
   
   feedbackTxt = [CCLabelBMFont labelWithString:string fntFile:@"weaponFeedback.fnt"];
   [self.theGame addChild:feedbackTxt z:8];
+  [[feedbackTxt texture] setAliasTexParameters];
   [feedbackTxt setPosition:CGPointMake((screenSize.width / 2), (screenSize.height / 2))];
   
   

@@ -315,7 +315,6 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 
 /* Respawn the enemy object */
 - (void)respawn {
-  CGSize screenSize = [[CCDirector sharedDirector] winSize];
 
   
   // Randomly select new movement direction
@@ -327,8 +326,13 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
     self.direction = kEnemyMoveLeft;
   }
   
+  /*
   // Move the enemy object to the start
   self.body->p = CGPointMake(screenSize.width / 2, screenSize.height + 10);
+  self.prevPos_x = (int)sprite.position.x;
+  */
+  
+  self.body->p = [[theGame enemyCache] genRandPos];
   self.prevPos_x = (int)sprite.position.x;
   
   // Re-initialise

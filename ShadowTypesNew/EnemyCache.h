@@ -23,27 +23,19 @@
     /* Enemy array */
     CCArray *enemies;
     
-    /* Spawn points for enemies */
-    NSMutableArray *startPoints;
-  
     /* Game Level */
     int gameLevel;
 }
 
 @property (nonatomic, retain) GameLayer *theGame;
 @property (nonatomic, retain) CCArray *enemies;
-@property (nonatomic, retain) NSMutableArray *startPoints;
 @property (nonatomic, readwrite) int gameLevel;
 
 /** Initialise with game instance, level and specific spawn points
  *  @param game: Instance of game
- *  @param level: Stage loaded
- *  @param startPointList: List of spawn points
  *  @return
  */
--(id) initWithGame:(GameLayer *)game 
-         withLevel:(int)level 
-   withStartPoints:(NSMutableArray *)startPointList;
+-(id) initWithGame:(GameLayer *)game;
 
 /** Spawn an enemy from the cache 
  */
@@ -52,5 +44,8 @@
 /** Enemy Step actions
  */
 -(void) runEnemyActions;
+
+- (CGPoint)genRandPos;
+
 
 @end

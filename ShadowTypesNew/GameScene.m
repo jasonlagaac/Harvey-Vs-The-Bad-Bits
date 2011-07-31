@@ -173,7 +173,7 @@ static GameLayer* instanceOfGameLayer;
     
     [spawnPos addObject:[NSData dataWithBytes:&pos length:sizeof(CGPoint)]];
     
-    enemyCache = [[EnemyCache alloc] initWithGame:self withLevel:1 withStartPoints:spawnPos];
+    enemyCache = [[EnemyCache alloc] initWithGame:self];
     bulletCache = [[BulletCache alloc] initWithGame:self];
     explosionCache = [[ExplosionCache alloc] initWithGame:self];
     projectileCache = [[ProjectileCache alloc] initWithGame:self];

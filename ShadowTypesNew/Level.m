@@ -15,6 +15,8 @@
 @implementation Level
 @synthesize theGame;
 @synthesize itemSpawnPos;
+@synthesize enemySpawnPos;
+@synthesize playerSpawnPos;
 
 
 #pragma mark -
@@ -27,17 +29,12 @@
     // Save Instance of Game
     self.theGame = game;
     self.itemSpawnPos = [[NSMutableArray alloc] init];
+    self.enemySpawnPos = [[NSMutableArray alloc] init];
+    self.playerSpawnPos = [[NSMutableArray alloc] init];
     
     // Loading Tilemap
     CCTMXTiledMap *map = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"Level%d.tmx",levelNum]];
     [game addChild: map];
-    
-    CCTMXLayer *level = [map layerNamed:@"Level"];
-    [[level texture] setAliasTexParameters];
-  
-    [game reorderChild:level z:1];
-    
-    
     
     CCTMXObjectGroup *levelObj = [map objectGroupNamed:@"Object Layer"];
     
@@ -46,13 +43,32 @@
       [self loadLevelObjWith:pos height:[[d valueForKey:@"height"] floatValue] width: [[d valueForKey:@"width"] floatValue]];
     }
     
+    CCTMXLayer *enemySpawnPoints = [map layerNamed:@"Enemy Spawn"];        
+    CGSize s = [enemySpawnPoints layerSize];    
+        
+    for( int x = 0; x < s.width;x++) {
+      for( int y = 0; y < s.height; y++ ) {
+        if ([enemySpawnPoints tileAt:ccp(x,y)])
+          [enemySpawnPos addObject:[NSValue valueWithCGPoint:[enemySpawnPoints tileAt:ccp(x,y)].position]];
+      }
+    }
+        
     CCTMXLayer *itemSpawnPoints = [map layerNamed:@"Item Spawn"];        
-    CGSize s = [itemSpawnPoints layerSize];
+    s = [itemSpawnPoints layerSize];
     
     for( int x=0; x<s.width;x++) {
       for( int y=0; y< s.height; y++ ) 
         if ([itemSpawnPoints tileAt:ccp(x,y)])
           [itemSpawnPos addObject:[NSValue valueWithCGPoint:[itemSpawnPoints tileAt:ccp(x,y)].position]];
+    }
+    
+    CCTMXLayer *playerSpawnPoints = [map layerNamed:@"Player Spawn"];        
+    s = [playerSpawnPoints layerSize];
+    
+    for( int x=0; x<s.width;x++) {
+      for( int y=0; y< s.height; y++ ) 
+        if ([playerSpawnPoints tileAt:ccp(x,y)])
+          [playerSpawnPos addObject:[NSValue valueWithCGPoint:[playerSpawnPoints tileAt:ccp(x,y)].position]];
     }
   }
   

@@ -77,7 +77,6 @@
     
     
     CCMenu *menu  = [CCMenu menuWithItems:leftButton, rightButton, back, select, nil];
-    //CCMenu *menu  = [CCMenu menuWithItems:back, select, nil];
     [self addChild:menu z:0 tag:0];
     [menu setPosition:ccp(240,160)];
 
@@ -135,7 +134,6 @@
 
 -(void)levelSelected:(id)sender {
 	[[CCDirector sharedDirector]replaceScene:[GameLayer scene:levelSelect]];
-  //[[CCDirector sharedDirector]replaceScene:[GameLayer scene]];
 }
 
 -(void)dealloc {

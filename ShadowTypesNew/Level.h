@@ -13,12 +13,17 @@
 
 
 @interface Level : CCNode {
-    GameLayer *theGame;
-    NSMutableArray *itemSpawnPos;
+  GameLayer *theGame;
+  NSMutableArray *itemSpawnPos;
+  NSMutableArray *enemySpawnPos;
+  NSMutableArray *playerSpawnPos;
 }
 
 @property (nonatomic, retain) GameLayer *theGame;
 @property (nonatomic, retain) NSMutableArray  *itemSpawnPos;
+@property (nonatomic, retain) NSMutableArray  *enemySpawnPos;
+@property (nonatomic, retain) NSMutableArray  *playerSpawnPos;
+
 
 -(id)initWithLevel:(int)levelNum game:(GameLayer *)game;
 

@@ -31,7 +31,17 @@
  </objectgroup>
  <layer name="Item Spawn" width="24" height="16" opacity="0">
   <data encoding="base64" compression="zlib">
-   eJxjYBj+gBkHHikAl/8JhQO5+oYbGPX/aPoZrgAAotcAhQ==
+   eJxjYBgZgBkNjySA7ndSwoESvcMJjPp9NP0MRwAAUacAbQ==
+  </data>
+ </layer>
+ <layer name="Enemy Spawn" width="24" height="16" opacity="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAeMEPxKBgFo2AUjIKhDwAo7AAH
+  </data>
+ </layer>
+ <layer name="Player Spawn" width="24" height="16" opacity="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2B4AMaBdsAoGAVDDAAACTQAAg==
   </data>
  </layer>
 </map>

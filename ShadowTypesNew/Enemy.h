@@ -29,8 +29,6 @@ typedef enum {
   kNumEnemyMovements
 } EnemyMovement;
 
-@class GameLayer;
-
 /** Enemy Object Class
  */
 @interface Enemy : CCNode {

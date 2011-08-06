@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-#define NUM_OF_LEVELS 1
+#define NUM_OF_LEVELS 2
 
 @interface LevelSelectScene : CCScene {
   

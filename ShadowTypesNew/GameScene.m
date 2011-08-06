@@ -140,7 +140,7 @@ static GameLayer* instanceOfGameLayer;
     CCLayerColor *colorLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)];
     [self addChild:colorLayer z:0];
         
-    CCSprite *levelLayer= [CCSprite spriteWithFile:@"Level1Layer.png"];
+    CCSprite *levelLayer= [CCSprite spriteWithFile:[NSString stringWithFormat:@"Level%dLayer.png",levelSelected]];
     [self addChild:levelLayer z:6];
     
     levelLayer.position = CGPointMake(240, 160);
@@ -254,7 +254,7 @@ static GameLayer* instanceOfGameLayer;
   [InputLayer sharedInputLayer].visible = NO;
   
   PauseLayer *p = [[[PauseLayer alloc] init] autorelease];
-  [self addChild:p z:40];
+  [self addChild:p z:40 tag:42];
   
   if (![[AppDelegate get] paused]) {
     [AppDelegate get].paused = YES;

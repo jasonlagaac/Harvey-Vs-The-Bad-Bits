@@ -86,8 +86,12 @@
     [select setPosition:ccp(160, -120)];
      
     
-    [self addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"Level%dPreview.png", 1]] z:3 tag:1];
+    [self addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"Level%dPreview.png", 1]] z:2 tag:1];
     [[self getChildByTag:1] setPosition:ccp(240, 180)];
+    
+    [self addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"Level%dPreview.png", 2]] z:2 tag:2];
+    [[self getChildByTag:2] setPosition:ccp(240, 180)];
+    [[self getChildByTag:2] setVisible:NO];
 
    //[self loadLevelPreviews];
     
@@ -113,6 +117,8 @@
     levelSelect = 1;
   
   [[self getChildByTag:levelSelect] setVisible:YES];
+  NSLog(@"%d", levelSelect);
+
 }
 
 -(void)moveLeft:(id)sender {
@@ -125,6 +131,8 @@
     levelSelect = NUM_OF_LEVELS;
   
   [[self getChildByTag:levelSelect] setVisible:YES];
+  
+  NSLog(@"%d", levelSelect);
 
 }
 

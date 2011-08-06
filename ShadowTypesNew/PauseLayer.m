@@ -11,6 +11,11 @@
 #import "PauseLayer.h"
 #import "GameScene.h"
 
+@interface PauseLayer (Private)
+  -(void)resumeGame:(id)sender;
+  -(void)quitGame:(id)sender;
+@end
+
 
 @implementation PauseLayer
 
@@ -24,19 +29,22 @@
     [paused setPosition:ccp(screenSize.width / 2, ((screenSize.height / 2) + 50))];
     [[paused texture] setAliasTexParameters];
     
-    CCSprite *tapToResume = [CCSprite spriteWithSpriteFrameName:@"Resume.png"];
-    resumeButtonPos = ccp(screenSize.width / 2, ((screenSize.height / 2) - 10));
-    [tapToResume setPosition:ccp(screenSize.width / 2, ((screenSize.height / 2) - 10))];
-    [[tapToResume texture] setAliasTexParameters];
+    CCLabelBMFont * resumeLabel = [CCLabelBMFont labelWithString:@"Resume" fntFile:@"weaponFeedback.fnt"];
+    CCLabelBMFont * quitLabel = [CCLabelBMFont labelWithString:@"Quit" fntFile:@"weaponFeedback.fnt"];
     
-    CCSprite *tapToQuit = [CCSprite spriteWithSpriteFrameName:@"Quit.png"];
-    quitButtonPos = ccp(screenSize.width / 2, ((screenSize.height / 2) - 50));
-    [tapToQuit setPosition:quitButtonPos];
-    [[tapToQuit texture] setAliasTexParameters];
+    [[resumeLabel texture] setAliasTexParameters];
+    [[quitLabel texture] setAliasTexParameters];
+    
+    CCMenuItemLabel * resume = [CCMenuItemLabel itemWithLabel:resumeLabel target:self selector:@selector(resumeGame:)];
+		CCMenuItemLabel * quit = [CCMenuItemLabel itemWithLabel:quitLabel target:self selector:@selector(quitGame:)];
+    
+    CCMenu * menu = [CCMenu menuWithItems:resume, quit, nil];
+		[menu alignItemsVerticallyWithPadding:10];
+    [menu setPosition:ccp(screenSize.width / 2, ((screenSize.height / 2) + 70))];
     
     [self addChild:paused];
-    [self addChild:tapToResume];
-    [self addChild:tapToQuit];
+    [self addChild: menu];
+
     
     //[tapToResume runAction:[CCRepeatForever actionWithAction:[CCBlink actionWithDuration:1 blinks:1]]];
   }
@@ -44,23 +52,15 @@
   return self;
 }
 
+-(void)resumeGame:(id)sender {
+  GameLayer *game = [GameLayer sharedGameLayer];
+  [game resume];
+  [game removeChildByTag:42 cleanup:NO];
+}
 
--(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  NSLog(@"touched me");
-  for (UITouch *touch in touches) {
-    CGPoint location = [touch locationInView:[touch view]];
-    location = [[CCDirector sharedDirector] convertToGL:location];
-    
-    // Determine the location of the resume button touch
-    // and run resume action when touched.
-    if (location.x < (resumeButtonPos.x + 100) && location.x > (resumeButtonPos.x - 100) &&
-        location.y < (resumeButtonPos.y + 10) && location.y > (resumeButtonPos.y - 10)) {
-        GameLayer *game = [GameLayer sharedGameLayer];
-        [game resume];
-        [self.parent removeChild:self cleanup:YES];
-    }
-    
-  }
+-(void)quitGame:(id)sender {
+  
+  
 }
 
 -(void) dealloc {

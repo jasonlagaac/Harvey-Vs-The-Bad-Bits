@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="16" tilewidth="20" tileheight="20">
+ <tileset firstgid="1" name="Black &amp; White Tiles" tilewidth="20" tileheight="20" spacing="2" margin="2">
+  <image source="Tileset.png" width="64" height="64"/>
+ </tileset>
+ <layer name="Background" width="24" height="16" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYBrFo3gUj+JRPOIwAAyHAwE=
+  </data>
+ </layer>
+ <layer name="Level" width="24" height="16" visible="0" opacity="0">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYCQCowNi9ODSSy0waj51zCc33gaL+yk1n9z0O5r+UdWNph/alJ+0NB8AK9MAcw==
+  </data>
+ </layer>
+ <objectgroup name="Object Layer" width="24" height="16">
+  <object x="20" y="20" height="260"/>
+  <object x="20" y="280" width="357"/>
+  <object x="460" y="20" height="260"/>
+  <object x="81" y="21" width="379"/>
+  <object x="121" y="199" width="336"/>
+  <object x="21" y="100" width="338"/>
+ </objectgroup>
+ <layer name="Item Spawn" width="24" height="16" opacity="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgYEbCtACMFGJc5oyCwQGIjS9y430UDCygNB5H43PwAgAPKwBE
+  </data>
+ </layer>
+ <layer name="Enemy Spawn" width="24" height="16" opacity="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgYEbCo2AUjIJRMApGBgAAO7gACg==
+  </data>
+ </layer>
+ <layer name="Player Spawn" width="24" height="16" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2B4AMaBdsAoGAVDDAAACTQAAg==
+  </data>
+ </layer>
+</map>

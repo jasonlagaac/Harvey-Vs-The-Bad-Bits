@@ -20,6 +20,7 @@
 	{
     self.theGame = game;
     self.bullets = [CCArray arrayWithCapacity:MAX_NUM_BULLETS];
+    nextInactiveBullet = 0;
     
     // Load bullet instances into the cache
     for (int i = 0; i < MAX_NUM_BULLETS; i++) {
@@ -65,18 +66,18 @@
   switch (weapon) {
       
     case kPlayerWeaponShotgun:
-      // Shotgun - Fires five bullets at once
-      
-      if ((nextInactiveBullet + 5) >= [bullets count])
-        // If bullet count is greater than the total
-        // then start again from 0
-        nextInactiveBullet = 0;
       
       // Fire the next five bullets;
       for (int i = 0; i < 5; i++) {
-        bullet = [bullets objectAtIndex:nextInactiveBullet + i];
-        [bullet fire:startPosition direction:direction  frameName:frameName weaponType:weapon];
-        nextInactiveBullet++;
+        if ((nextInactiveBullet + i) < MAX_NUM_BULLETS) {
+          // Check if the next bullet is within the MAX limits.
+          bullet = [bullets objectAtIndex:nextInactiveBullet + i];
+          [bullet fire:startPosition direction:direction  frameName:frameName weaponType:weapon];
+          nextInactiveBullet++;
+        } else {
+          // Reset back to the first bullet
+          nextInactiveBullet = 0;
+        }
       }
       break;
 
@@ -87,7 +88,7 @@
       break;
   }
   
-	if (nextInactiveBullet >= [bullets count] || (nextInactiveBullet + 5) >= [bullets count])
+  if (nextInactiveBullet >= MAX_NUM_BULLETS)
 	{
 		nextInactiveBullet = 0;
 	}

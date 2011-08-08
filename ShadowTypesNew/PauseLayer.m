@@ -10,6 +10,7 @@
 
 #import "PauseLayer.h"
 #import "GameScene.h"
+#import "MainMenuScene.h"
 
 @interface PauseLayer (Private)
   -(void)resumeGame:(id)sender;
@@ -29,8 +30,8 @@
     [paused setPosition:ccp(screenSize.width / 2, ((screenSize.height / 2) + 50))];
     [[paused texture] setAliasTexParameters];
     
-    CCLabelBMFont * resumeLabel = [CCLabelBMFont labelWithString:@"Resume" fntFile:@"weaponFeedback.fnt"];
-    CCLabelBMFont * quitLabel = [CCLabelBMFont labelWithString:@"Quit" fntFile:@"weaponFeedback.fnt"];
+    CCLabelBMFont * resumeLabel = [CCLabelBMFont labelWithString:@"resume" fntFile:@"weaponFeedback.fnt"];
+    CCLabelBMFont * quitLabel = [CCLabelBMFont labelWithString:@"quit" fntFile:@"weaponFeedback.fnt"];
     
     [[resumeLabel texture] setAliasTexParameters];
     [[quitLabel texture] setAliasTexParameters];
@@ -40,7 +41,7 @@
     
     CCMenu * menu = [CCMenu menuWithItems:resume, quit, nil];
 		[menu alignItemsVerticallyWithPadding:10];
-    [menu setPosition:ccp(screenSize.width / 2, ((screenSize.height / 2) + 70))];
+    [menu setPosition:ccp(screenSize.width / 2, ((screenSize.height / 2) - 20))];
     
     [self addChild:paused];
     [self addChild: menu];
@@ -59,8 +60,9 @@
 }
 
 -(void)quitGame:(id)sender {
-  
-  
+  [[CCDirector sharedDirector] resume];
+  [[CCDirector sharedDirector] replaceScene:[MainMenuScene node]];
+
 }
 
 -(void) dealloc {

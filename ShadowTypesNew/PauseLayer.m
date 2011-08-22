@@ -11,6 +11,7 @@
 #import "PauseLayer.h"
 #import "GameScene.h"
 #import "MainMenuScene.h"
+#import "AppDelegate.h"
 
 @interface PauseLayer (Private)
   -(void)resumeGame:(id)sender;
@@ -26,7 +27,9 @@
     
   if ((self = [super initWithColor:c])) {
     self.isTouchEnabled = YES;
-    CCSprite *paused = [CCSprite spriteWithSpriteFrameName:@"Paused.png"];
+    CCLabelBMFont *paused = [CCLabelBMFont labelWithString:@"PAUSED" fntFile:@"weaponFeedbackLarge.fnt"];
+    [paused setColor:ccc3(219,58,81)];
+
     [paused setPosition:ccp(screenSize.width / 2, ((screenSize.height / 2) + 50))];
     [[paused texture] setAliasTexParameters];
     
@@ -60,6 +63,7 @@
 }
 
 -(void)quitGame:(id)sender {
+  [AppDelegate get].paused = NO;
   [[CCDirector sharedDirector] resume];
   [[CCDirector sharedDirector] replaceScene:[MainMenuScene node]];
 

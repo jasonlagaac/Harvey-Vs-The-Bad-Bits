@@ -99,26 +99,23 @@ static InputLayer* instanceOfInputLayer;
   
   
   
-  // Allocate and initialise the reloadbutton
-  pauseButton = [[[SneakyButton alloc] initWithRect:CGRectZero] autorelease];    
-  pauseButton.isHoldable = YES;
+    // Allocate and initialise the reloadbutton
+    pauseButton = [[[SneakyButton alloc] initWithRect:CGRectZero] autorelease];    
+    pauseButton.isHoldable = YES;
   
-  SneakyButtonSkinnedBase *skinPauseButton = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
-  skinPauseButton.position = CGPointMake(screenSize.width - 30, screenSize.height - 15);
+    SneakyButtonSkinnedBase *skinPauseButton = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
+    skinPauseButton.position = CGPointMake(screenSize.width - 30, screenSize.height - 15);
   
-  // Remember to load the sprite from the spritesheet
-  skinPauseButton.defaultSprite = [CCSprite spriteWithSpriteFrameName:@"PauseButton.png"];
-  skinPauseButton.pressSprite = [CCSprite spriteWithSpriteFrameName:@"PauseButton.png"];
+    // Remember to load the sprite from the spritesheet
+    skinPauseButton.defaultSprite = [CCSprite spriteWithSpriteFrameName:@"PauseButton.png"];
+    skinPauseButton.pressSprite = [CCSprite spriteWithSpriteFrameName:@"PauseButton.png"];
   
-  skinPauseButton.defaultSprite.opacity = 160;
+    skinPauseButton.defaultSprite.opacity = 160;
   
-  skinPauseButton.button = pauseButton;
+    skinPauseButton.button = pauseButton;
   
   
-  [self addChild:skinPauseButton];
-  
-
-   
+    [self addChild:skinPauseButton];
   
 }
 

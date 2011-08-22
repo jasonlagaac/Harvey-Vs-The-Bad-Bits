@@ -21,8 +21,7 @@
   return self;
 }
 
--(void)dealloc
-{
+-(void)dealloc {
 	[super dealloc];
 }
 
@@ -41,49 +40,47 @@
     
     levelSelect = 1;
     
-    CCSprite *leftButtonSprite = [CCSprite spriteWithSpriteFrameName:@"leftButton.png"];
-    CCSprite *leftButtonPressedSprite = [CCSprite spriteWithSpriteFrameName:@"leftButtonPressed.png"];
-    CCSprite *rightButtonSprite = [CCSprite spriteWithSpriteFrameName:@"rightButton.png"];
-    CCSprite *rightButtonPressedSprite = [CCSprite spriteWithSpriteFrameName:@"rightButtonPressed.png"];
-
-    [[leftButtonSprite texture] setAliasTexParameters];
-    [[leftButtonPressedSprite texture] setAliasTexParameters];
-    [[rightButtonSprite texture] setAliasTexParameters];
-    [[rightButtonPressedSprite texture] setAliasTexParameters];
-    
-    CCMenuItemImage *leftButton = [CCMenuItemImage itemFromNormalSprite:leftButtonSprite
-                                                         selectedSprite:leftButtonPressedSprite 
-                                                                 target:self 
-                                                               selector:@selector(moveLeft:)];
-    
-    CCMenuItemImage *rightButton = [CCMenuItemImage itemFromNormalSprite:rightButtonSprite 
-                                                          selectedSprite:rightButtonPressedSprite 
-                                                                  target:self 
-                                                                selector:@selector(moveRight:)];
-    
+    CCLabelBMFont *forwardArrowLbl = [CCLabelBMFont labelWithString:@">" fntFile:@"weaponFeedbackLarge.fnt"];
+    CCLabelBMFont *backArrowLbl = [CCLabelBMFont labelWithString:@"<" fntFile:@"weaponFeedbackLarge.fnt"];
     CCLabelBMFont * selectLabel = [CCLabelBMFont labelWithString:@"select" fntFile:@"weaponFeedback.fnt"];
     CCLabelBMFont * backLabel = [CCLabelBMFont labelWithString:@"back" fntFile:@"weaponFeedback.fnt"];
     
+    CCLabelBMFont *topScoreLbl = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"top score: %d", 0] 
+                                                        fntFile:@"weaponFeedback.fnt"];
     
+    
+    [forwardArrowLbl setColor:ccWHITE];
+    [backArrowLbl setColor:ccWHITE];
 		[selectLabel setColor:ccWHITE];
 		[backLabel setColor:ccWHITE];
     
+    [topScoreLbl setColor:ccWHITE];
+    
+    
     [[selectLabel texture] setAliasTexParameters];
     [[backLabel texture] setAliasTexParameters];
+    [[backArrowLbl texture] setAliasTexParameters];
+    [[forwardArrowLbl texture] setAliasTexParameters];
+    [[topScoreLbl texture] setAliasTexParameters];
     
     CCMenuItemLabel * select = [CCMenuItemLabel itemWithLabel:selectLabel target:self selector:@selector(levelSelected:)];
 		CCMenuItemLabel * back = [CCMenuItemLabel itemWithLabel:backLabel target:self selector:@selector(backToMenu:)];
+    CCMenuItemLabel * forwardArrow = [CCMenuItemLabel itemWithLabel:forwardArrowLbl target:self selector:@selector(moveRight:)];
+		CCMenuItemLabel * backArrow = [CCMenuItemLabel itemWithLabel:backArrowLbl target:self selector:@selector(moveLeft:)];
+
+  
     
-    
-    
-    CCMenu *menu  = [CCMenu menuWithItems:leftButton, rightButton, back, select, nil];
-    [self addChild:menu z:0 tag:0];
+    CCMenu *menu  = [CCMenu menuWithItems:forwardArrow, backArrow, back, select, nil];
+    [self addChild:menu z:0];
     [menu setPosition:ccp(240,160)];
 
-    [leftButton setPosition:ccp(-200, 0)];
-    [rightButton setPosition:ccp(200, 0)];
+    [backArrow setPosition:ccp(-200, 0)];
+    [forwardArrow setPosition:ccp(200, 0)];
     [back setPosition:ccp(-160, -120)];
     [select setPosition:ccp(160, -120)];
+    
+    [self addChild:topScoreLbl z:4];
+    [topScoreLbl setPosition:ccp(240,280)];
      
     
     [self addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"Level%dPreview.png", 1]] z:2 tag:1];

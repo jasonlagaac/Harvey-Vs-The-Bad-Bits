@@ -157,11 +157,12 @@ static GameLayer* instanceOfGameLayer;
     
     
     // Initialise the Score Label
-    CCLabelAtlas *scoreLabel = [CCLabelAtlas labelWithString:@"0" charMapFile:@"ScoreNumbers.png" itemWidth:25 itemHeight:23 startCharMap:'.'];
+    CCLabelBMFont *scoreLabel = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"%d", 0] 
+                                                       fntFile:@"scoreFeedback.fnt"];
     
     [self addChild:scoreLabel z:12 tag:K_ScoreLabel];
     [[scoreLabel texture] setAliasTexParameters];
-    [scoreLabel setPosition:CGPointMake((screenSize.width / 2), (screenSize.height - 30))];
+    [scoreLabel setPosition:CGPointMake((screenSize.width / 2), (screenSize.height - 40))];
     [scoreLabel setAnchorPoint:ccp(0.5,0)];
     
     
@@ -227,7 +228,7 @@ static GameLayer* instanceOfGameLayer;
 }
 
 - (void)updateScore {
-  CCLabelAtlas *l = (CCLabelAtlas *)[self getChildByTag:K_ScoreLabel];
+  CCLabelBMFont *l = (CCLabelBMFont *)[self getChildByTag:K_ScoreLabel];
   [l setString:[NSString stringWithFormat:@"%d", [player points]]];
 }
 

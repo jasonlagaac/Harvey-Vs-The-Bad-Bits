@@ -18,6 +18,8 @@
 
 @synthesize window;
 @synthesize paused;
+@synthesize gameSettings;
+@synthesize gameStat;
 
 +(AppDelegate *)get {
   return (AppDelegate *) [[UIApplication sharedApplication] delegate];
@@ -97,7 +99,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0/60];
-	[director setDisplayFPS:YES];
+	[director setDisplayFPS:NO];
 	
 	
 	// make the OpenGLView a child of the view controller
@@ -116,6 +118,9 @@
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
+  
+  gameSettings = [[GameSettings alloc] init];
+  gameStats = [[GameStats alloc] init];
 	
 	// Run the intro Scene
   [[CCDirector sharedDirector] runWithScene: [MainMenuScene node]];
@@ -129,8 +134,10 @@
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-  [[GameLayer sharedGameLayer] pauseGame];
-	[[CCDirector sharedDirector] pause];
+  if (!self.paused) {
+    [[GameLayer sharedGameLayer] pauseGame];
+    [[CCDirector sharedDirector] pause];
+  }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

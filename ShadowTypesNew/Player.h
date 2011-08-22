@@ -60,7 +60,6 @@ typedef enum  {
     BOOL changeWeapon;
     
     /* Animation Actions */
-    CCAction *knifeWalkAction;    
     CCAction *pistolWalkAction;
     CCAction *machineGunWalkAction;
     CCAction *shotgunWalkAction;
@@ -86,7 +85,6 @@ typedef enum  {
 @property (nonatomic, readwrite) cpShape *shape;
 
 
-@property (nonatomic, retain) CCAction *knifeWalkAction;
 @property (nonatomic, retain) CCAction *pistolWalkAction;
 @property (nonatomic, retain) CCAction *machineGunWalkAction;
 @property (nonatomic, retain) CCAction *shotgunWalkAction;

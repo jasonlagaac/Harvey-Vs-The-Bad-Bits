@@ -36,13 +36,12 @@
 @synthesize weapon;                     @synthesize direction;
 @synthesize playerAttacking;            @synthesize playerJumping;
 @synthesize body;                       @synthesize shape;
-@synthesize knifeWalkAction;            @synthesize pistolWalkAction;
-@synthesize machineGunWalkAction;       @synthesize shotgunWalkAction;
+@synthesize pistolWalkAction;           @synthesize machineGunWalkAction;       
 @synthesize phaserWalkAction;           @synthesize points;
 @synthesize rocketWalkAction;           @synthesize revolverWalkAction;
 @synthesize flamethrowerWalkAction;     @synthesize gattlingGunWalkAction;
 @synthesize grenadeLauncherWalkAction;  @synthesize laserWalkAction;
-@synthesize shurikinWalkAction;
+@synthesize shurikinWalkAction;         @synthesize shotgunWalkAction;
 
 
 
@@ -631,7 +630,7 @@
     if (chosenWeapon != self.weapon) 
       break;
   }
-  [[self sprite] stopAllActions];\
+  [[self sprite] stopAllActions];
   
   
   

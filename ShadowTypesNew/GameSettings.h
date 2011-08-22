@@ -9,16 +9,33 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-  dpad,
-  tilt
-} controlSettings;
+  kGameControlDpad = 0,
+  kGameControlTilt
+} ControlSettings;
 
 @interface GameSettings : NSObject {
-  BOOL soundOn;
-  controlSettings controls;
+  NSMutableDictionary *gameSettings;
 }
 
+/** Save Game Settings
+ */
+-(void) saveGameSettings;
 
+/** Change Game Controls
+ */
+-(ControlSettings) changeControls;
+
+/** Get the current game controls
+ */
+-(ControlSettings) currentGameControls;
+
+/** Change audio (On / Off)
+ */
+-(BOOL) toggleAudio;
+
+/** Get the current audio state
+ */
+-(BOOL) currentAudio;
 
 
 @end

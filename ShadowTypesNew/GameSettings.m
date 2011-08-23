@@ -51,11 +51,11 @@
 #pragma mark Sound Control Functions
 -(BOOL) toggleAudio {
   NSNumber *audioControl = [gameSettings objectForKey:@"Audio"];
-  if ([audioControl boolValue])
+  if ([audioControl boolValue]) {
     [gameSettings setValue:[NSNumber numberWithBool:NO] forKey:@"Audio"];
-  else 
+  } else {
     [gameSettings setValue:[NSNumber numberWithBool:YES] forKey:@"Audio"];
-
+  }
   return [audioControl boolValue];
 }
 

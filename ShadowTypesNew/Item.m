@@ -183,6 +183,10 @@
   Player *player = theGame.player;
 
   switch (player.weapon) {
+    case kPlayerWeaponPistol:
+      [self displayText:@"Pistol"];
+      break;
+      
     case kPlayerWeaponMachineGun:
       [self displayText:@"Machine\n  Gun"];
       break;

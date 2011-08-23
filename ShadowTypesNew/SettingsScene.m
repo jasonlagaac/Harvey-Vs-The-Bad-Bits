@@ -7,8 +7,8 @@
 //
 
 #import "SettingsScene.h"
-#import "AppDelegate.h"
 #import "MainMenuScene.h"
+#import "AppDelegate.h"
 
 @implementation SettingsScene
 
@@ -92,6 +92,7 @@
   CCLabelBMFont *controlLabel = nil;
     
   if ([[[AppDelegate get] gameSettings] currentGameControls]) 
+
     controlLabel = [CCLabelBMFont labelWithString:@"control: tilt" fntFile:@"weaponFeedback.fnt"];
   else 
     controlLabel = [CCLabelBMFont labelWithString:@"control: dpad" fntFile:@"weaponFeedback.fnt"];
@@ -106,10 +107,13 @@
   
   CCLabelBMFont *soundLabel = nil;
     
-  if ([[[AppDelegate get] gameSettings] currentAudio]) 
+  if ([[[AppDelegate get] gameSettings] currentAudio]) {
+    [[AppDelegate get] enableAudio];
     soundLabel = [CCLabelBMFont labelWithString:@"sound: on" fntFile:@"weaponFeedback.fnt"];
-  else 
+  } else {
+    [[AppDelegate get] disableAudio];    
     soundLabel = [CCLabelBMFont labelWithString:@"sound: off" fntFile:@"weaponFeedback.fnt"];
+  }
   
   [[soundLabel texture] setAliasTexParameters];
   [soundSetting setLabel:soundLabel];

@@ -48,7 +48,6 @@
     for (int j = 0; i < MAX_NUM_BULLETS; j++) {
       Bullet *bullet = [bullets objectAtIndex:j];
       if (ccpDistance(bullet.position, enemy.sprite.position) < 70) {
-        NSLog(@"Hit");
         [enemy damage:bullet.damage];
         [bullet reinit];
       }

@@ -374,8 +374,7 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 - (void)damage:(int)damage {
   
   self.health -= damage;
-  [[self sprite] runAction:[CCTintBy actionWithDuration:0.07 red:255 green:255 blue:255]];
-  sprite.opacity = 255;
+  [[self sprite] setColor:ccc3(255,255,255)];
   self.sprite.visible = YES;
   [[SimpleAudioEngine sharedEngine]playEffect:@"EnemyHit.m4a"];
   

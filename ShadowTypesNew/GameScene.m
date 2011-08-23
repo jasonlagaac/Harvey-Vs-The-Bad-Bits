@@ -224,6 +224,8 @@ static GameLayer* instanceOfGameLayer;
   [[SimpleAudioEngine sharedEngine] preloadEffect:@"ShotgunReload.m4a"];
   [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayerJump.m4a"];
   [[SimpleAudioEngine sharedEngine] preloadEffect:@"Explosion.m4a"];
+  
+  [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.5];
 
 }
 

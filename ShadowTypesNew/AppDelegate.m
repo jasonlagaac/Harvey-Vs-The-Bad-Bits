@@ -47,6 +47,7 @@
 	
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
+
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
 	// Init the window
@@ -54,7 +55,7 @@
 	
 	// Try to use CADisplayLink director
 	// if it fails (SDK < 3.1) use the default director
-	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
+	if(![CCDirector setDirectorType:kCCDirectorTypeDisplayLink])
 		[CCDirector setDirectorType:kCCDirectorTypeDefault];
 	
 	
@@ -114,7 +115,6 @@
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
-    [[CCTextureCache sharedTextureCache] addImageAsync:[NSString stringWithFormat:@"ShadowTypes.png"] target:self selector:@selector(imageLoaded:)];
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
@@ -124,12 +124,6 @@
 	
 	// Run the intro Scene
   [[CCDirector sharedDirector] runWithScene: [MainMenuScene node]];
-	//[[CCDirector sharedDirector] runWithScene: [GameLayer scene]];
-}
-
--(void)imageLoaded:(CCTexture2D *)texture
-{
-	NSLog(@"ShadowTypes.png Loaded!");
 }
 
 
@@ -171,6 +165,14 @@
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
+- (void)enableAudio {
+  [CDAudioManager sharedManager].mute = NO;
+}
+
+- (void)disableAudio {
+  [CDAudioManager sharedManager].mute = YES;
 }
 
 - (void)dealloc {

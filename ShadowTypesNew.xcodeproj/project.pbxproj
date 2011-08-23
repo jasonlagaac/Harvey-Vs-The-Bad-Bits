@@ -194,8 +194,6 @@
 		59E96D71137A8274008CA66D /* ScoreNumbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E96D70137A8274008CA66D /* ScoreNumbers.png */; };
 		59FC4A031393970F00AF3697 /* Tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 59FC4A021393970F00AF3697 /* Tileset.png */; };
 		59FC4A0A13969E1A00AF3697 /* ProjectileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59FC4A0913969E1A00AF3697 /* ProjectileCache.m */; };
-		B801802613E433A10037444C /* ShadowTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B801802413E433A10037444C /* ShadowTypes.plist */; };
-		B801802713E433A10037444C /* ShadowTypes.png in Resources */ = {isa = PBXBuildFile; fileRef = B801802513E433A10037444C /* ShadowTypes.png */; };
 		B801802913E45EE50037444C /* Level1Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B801802813E45EE50037444C /* Level1Preview.png */; };
 		B801802D13E667700037444C /* Level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B801802C13E667700037444C /* Level2.tmx */; };
 		B829428613E6729E0047EDB7 /* Level2Layer.png in Resources */ = {isa = PBXBuildFile; fileRef = B829428513E6729E0047EDB7 /* Level2Layer.png */; };
@@ -207,6 +205,10 @@
 		B849F7C614024EDA00675957 /* weaponFeedbackLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = B849F7C414024EDA00675957 /* weaponFeedbackLarge.png */; };
 		B849F7D1140259A900675957 /* scoreFeedback.fnt in Resources */ = {isa = PBXBuildFile; fileRef = B849F7CF140259A900675957 /* scoreFeedback.fnt */; };
 		B849F7D2140259A900675957 /* scoreFeedback.png in Resources */ = {isa = PBXBuildFile; fileRef = B849F7D0140259A900675957 /* scoreFeedback.png */; };
+		B849F7D5140363B300675957 /* ShadowTypesSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = B849F7D3140363B200675957 /* ShadowTypesSimple.png */; };
+		B849F7D6140363B300675957 /* ShadowTypesSimple.plist in Resources */ = {isa = PBXBuildFile; fileRef = B849F7D4140363B200675957 /* ShadowTypesSimple.plist */; };
+		B849F7D9140365C600675957 /* tiltJumpButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B849F7D7140365C600675957 /* tiltJumpButton.png */; };
+		B849F7DA140365C600675957 /* tiltShootButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B849F7D8140365C600675957 /* tiltShootButton.png */; };
 		B850F89A13DE93CB00C62FC8 /* EnemyExplode.plist in Resources */ = {isa = PBXBuildFile; fileRef = B850F89913DE93CB00C62FC8 /* EnemyExplode.plist */; };
 		B85C8FC113E2802C00722698 /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FC013E2802C00722698 /* LevelSelectScene.m */; };
 		B871D72213F398A600E63C64 /* GameSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B871D72113F398A600E63C64 /* GameSettings.plist */; };
@@ -573,8 +575,6 @@
 		59FC4A021393970F00AF3697 /* Tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tileset.png; sourceTree = "<group>"; };
 		59FC4A0813969E1900AF3697 /* ProjectileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectileCache.h; sourceTree = "<group>"; };
 		59FC4A0913969E1A00AF3697 /* ProjectileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectileCache.m; sourceTree = "<group>"; };
-		B801802413E433A10037444C /* ShadowTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypes.plist; sourceTree = "<group>"; };
-		B801802513E433A10037444C /* ShadowTypes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypes.png; sourceTree = "<group>"; };
 		B801802813E45EE50037444C /* Level1Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1Preview.png; sourceTree = "<group>"; };
 		B801802C13E667700037444C /* Level2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level2.tmx; sourceTree = "<group>"; };
 		B829428513E6729E0047EDB7 /* Level2Layer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level2Layer.png; sourceTree = "<group>"; };
@@ -586,6 +586,10 @@
 		B849F7C414024EDA00675957 /* weaponFeedbackLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weaponFeedbackLarge.png; sourceTree = "<group>"; };
 		B849F7CF140259A900675957 /* scoreFeedback.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scoreFeedback.fnt; sourceTree = "<group>"; };
 		B849F7D0140259A900675957 /* scoreFeedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scoreFeedback.png; sourceTree = "<group>"; };
+		B849F7D3140363B200675957 /* ShadowTypesSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowTypesSimple.png; sourceTree = "<group>"; };
+		B849F7D4140363B200675957 /* ShadowTypesSimple.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShadowTypesSimple.plist; sourceTree = "<group>"; };
+		B849F7D7140365C600675957 /* tiltJumpButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiltJumpButton.png; sourceTree = "<group>"; };
+		B849F7D8140365C600675957 /* tiltShootButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiltShootButton.png; sourceTree = "<group>"; };
 		B850F89913DE93CB00C62FC8 /* EnemyExplode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnemyExplode.plist; sourceTree = "<group>"; };
 		B85C8FBF13E2802C00722698 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectScene.h; sourceTree = "<group>"; };
 		B85C8FC013E2802C00722698 /* LevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectScene.m; sourceTree = "<group>"; };
@@ -649,6 +653,8 @@
 		594965E61383B05A00C1B064 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				B849F7D7140365C600675957 /* tiltJumpButton.png */,
+				B849F7D8140365C600675957 /* tiltShootButton.png */,
 				59E96D70137A8274008CA66D /* ScoreNumbers.png */,
 				5903754313D9AC9500B127BF /* reloadButtonUnpressed.png */,
 				5903754413D9AC9500B127BF /* reloadButtonPressed.png */,
@@ -662,10 +668,10 @@
 		594965E71383B07B00C1B064 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				B849F7D3140363B200675957 /* ShadowTypesSimple.png */,
+				B849F7D4140363B200675957 /* ShadowTypesSimple.plist */,
 				B849F7B4140234CB00675957 /* settingsBackground.png */,
 				B8B7B0A613E1618D0008FE49 /* menuBackground.png */,
-				B801802413E433A10037444C /* ShadowTypes.plist */,
-				B801802513E433A10037444C /* ShadowTypes.png */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -1089,7 +1095,7 @@
 				59847E0713717E23007C301E /* Cache Classes */,
 				599DE3B31361315E00FD2E2E /* Game Classes */,
 				599DE3B21361314E00FD2E2E /* Protocols */,
-				599DE3B11361313D00FD2E2E /* Layers */,
+				599DE3B11361313D00FD2E2E /* Layers and Scenes */,
 				599DE3B01361312F00FD2E2E /* SneakyInput */,
 			);
 			name = Classes;
@@ -1112,7 +1118,7 @@
 			name = SneakyInput;
 			sourceTree = "<group>";
 		};
-		599DE3B11361313D00FD2E2E /* Layers */ = {
+		599DE3B11361313D00FD2E2E /* Layers and Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				599DE43713614D9900FD2E2E /* GameScene.h */,
@@ -1128,7 +1134,7 @@
 				5969AAC513A34E3C00243DB5 /* PauseLayer.h */,
 				5969AAC613A34E3C00243DB5 /* PauseLayer.m */,
 			);
-			name = Layers;
+			name = "Layers and Scenes";
 			sourceTree = "<group>";
 		};
 		599DE3B21361314E00FD2E2E /* Protocols */ = {
@@ -1298,8 +1304,6 @@
 				5903754613D9AC9500B127BF /* reloadButtonPressed.png in Resources */,
 				B850F89A13DE93CB00C62FC8 /* EnemyExplode.plist in Resources */,
 				B8B7B0A713E1618D0008FE49 /* menuBackground.png in Resources */,
-				B801802613E433A10037444C /* ShadowTypes.plist in Resources */,
-				B801802713E433A10037444C /* ShadowTypes.png in Resources */,
 				B801802913E45EE50037444C /* Level1Preview.png in Resources */,
 				B801802D13E667700037444C /* Level2.tmx in Resources */,
 				B829428613E6729E0047EDB7 /* Level2Layer.png in Resources */,
@@ -1313,6 +1317,10 @@
 				B849F7C614024EDA00675957 /* weaponFeedbackLarge.png in Resources */,
 				B849F7D1140259A900675957 /* scoreFeedback.fnt in Resources */,
 				B849F7D2140259A900675957 /* scoreFeedback.png in Resources */,
+				B849F7D5140363B300675957 /* ShadowTypesSimple.png in Resources */,
+				B849F7D6140363B300675957 /* ShadowTypesSimple.plist in Resources */,
+				B849F7D9140365C600675957 /* tiltJumpButton.png in Resources */,
+				B849F7DA140365C600675957 /* tiltShootButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

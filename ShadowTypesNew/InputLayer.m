@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "Player.h"
 #import "BulletCache.h"
+#import "AppDelegate.h"
 
 @interface InputLayer (PrivateMethods)
 -(void) addButtons;
@@ -31,17 +32,22 @@ static InputLayer* instanceOfInputLayer;
 {
 	if ((self = [super init]))
 	{
-    
       jumpButtonActiveCount = 0;
       [self addButtons];
-      [self addJoystick];
+    
+      if ([[AppDelegate get] gameSettings].currentGameControls == kGameControlDpad)
+        [self addJoystick];
+      else {
+        self.isAccelerometerEnabled = YES;
+        [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/30];
+      }
+    
       [self scheduleUpdate];
 
       playerAttacked = NO;
     
       instanceOfInputLayer = self;
     }
-	
 	return self;
 }
 
@@ -54,23 +60,32 @@ static InputLayer* instanceOfInputLayer;
     float buttonRadius = 50.0;
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
+    
     // Allocate and initialise the firebutton
     fireButton = [[[SneakyButton alloc] initWithRect:CGRectZero] autorelease];    
     fireButton.isHoldable = YES;
     
     SneakyButtonSkinnedBase *skinFireButton = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
-    skinFireButton.position = CGPointMake(screenSize.width - buttonRadius * 0.8f, buttonRadius * 1.0f);
 
-    
     // Remember to load the sprite from the spritesheet
-    skinFireButton.defaultSprite = [CCSprite spriteWithFile:@"fireButtonUnpressed.png"];
-    skinFireButton.pressSprite = [CCSprite spriteWithFile:@"fireButtonPressed.png"];
+    if ([[AppDelegate get] gameSettings].currentGameControls == kGameControlDpad) {
+      skinFireButton.defaultSprite = [CCSprite spriteWithFile:@"fireButtonUnpressed.png"];
+      skinFireButton.pressSprite = [CCSprite spriteWithFile:@"fireButtonPressed.png"];
+      skinFireButton.position = CGPointMake(screenSize.width - buttonRadius * 0.8f, buttonRadius * 1.0f);
+      skinFireButton.defaultSprite.opacity = 128;
+    } else {
+      skinFireButton.defaultSprite = [CCSprite spriteWithFile:@"tiltShootButton.png"];
+      skinFireButton.pressSprite = [CCSprite spriteWithFile:@"tiltShootButton.png"];
+      skinFireButton.position = CGPointMake(screenSize.width - 110.0f, 150.0f);
+      [skinFireButton.pressSprite runAction:[CCFadeOut actionWithDuration:3.0f]];
+      [skinFireButton.defaultSprite runAction:[CCFadeOut actionWithDuration:3.0f]];
+
+    }
 
     // Turn of anti-aliasing on the unpressed and pressed sprite
     [[skinFireButton.defaultSprite texture] setAliasTexParameters]; 
     [[skinFireButton.pressSprite texture] setAliasTexParameters];
     
-    skinFireButton.defaultSprite.opacity = 128;
     
     skinFireButton.button = fireButton;
     
@@ -81,17 +96,26 @@ static InputLayer* instanceOfInputLayer;
     reloadButton.isHoldable = YES;
     
     SneakyButtonSkinnedBase *skinReloadButton = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
-    skinReloadButton.position = CGPointMake(screenSize.width - buttonRadius * 2.2f, buttonRadius * 1.0f);
     
     // Remember to load the sprite from the spritesheet
-    skinReloadButton.defaultSprite = [CCSprite spriteWithFile:@"reloadButtonUnpressed.png"];
-    skinReloadButton.pressSprite = [CCSprite spriteWithFile:@"reloadButtonPressed.png"];
+    if ([[AppDelegate get] gameSettings].currentGameControls == kGameControlDpad) {
+      skinReloadButton.defaultSprite = [CCSprite spriteWithFile:@"reloadButtonUnpressed.png"];
+      skinReloadButton.pressSprite = [CCSprite spriteWithFile:@"reloadButtonPressed.png"];
+      skinReloadButton.position = CGPointMake(screenSize.width - buttonRadius * 2.2f, buttonRadius * 1.0f);
+      skinReloadButton.defaultSprite.opacity = 128;
+    } else {
+      skinReloadButton.defaultSprite = [CCSprite spriteWithFile:@"tiltJumpButton.png"];
+      skinReloadButton.pressSprite = [CCSprite spriteWithFile:@"tiltJumpButton.png"];
+      skinReloadButton.position = CGPointMake(110.0f, 150.0f);
+      [skinReloadButton.pressSprite runAction:[CCFadeOut actionWithDuration:3.0f]];
+      [skinReloadButton.defaultSprite runAction:[CCFadeOut actionWithDuration:3.0f]];
+      
+    }
     
     // Turn of anti-aliasing on the unpressed and pressed sprite
     [[skinReloadButton.defaultSprite texture] setAliasTexParameters]; 
     [[skinReloadButton.pressSprite texture] setAliasTexParameters];
     
-    skinReloadButton.defaultSprite.opacity = 128;
     
     skinReloadButton.button = reloadButton;
     
@@ -99,7 +123,7 @@ static InputLayer* instanceOfInputLayer;
   
   
   
-    // Allocate and initialise the reloadbutton
+    // Allocate and initialise the pausebutton
     pauseButton = [[[SneakyButton alloc] initWithRect:CGRectZero] autorelease];    
     pauseButton.isHoldable = YES;
   
@@ -143,6 +167,18 @@ static InputLayer* instanceOfInputLayer;
     [self addChild:skinJoystick];
 }
 
+- (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration{
+  CGPoint velocity = ccp(0, 0);
+  Player *player = [[GameLayer sharedGameLayer] player];
+
+  if (acceleration.y >= 0.15 || acceleration.y <= -0.15) {
+    velocity = ccpMult(ccp((-acceleration.y * 100), 0) , 200);
+  }
+  
+  [player move:velocity.x activeFireButton:fireButton.active];
+
+}
+
 - (void)update:(ccTime)delta {   
 
     if (pauseButton.active) {
@@ -154,15 +190,16 @@ static InputLayer* instanceOfInputLayer;
     Player *player = [game player];
     
     totalTime += delta;
-        
-    CGPoint velocity = ccpMult(joystick.velocity, 200);
+  
+    if ([[AppDelegate get] gameSettings].currentGameControls == kGameControlDpad) {
+        CGPoint velocity = ccpMult(joystick.velocity, 200);
     
-    // Flip and change the direction when the joystick is moved
-    // in that specific direction
+      // Flip and change the direction when the joystick is moved
+      // in that specific direction
     
-    // Player movement in the x-axis
-    [player move:velocity.x activeFireButton:fireButton.active];
-
+      // Player movement in the x-axis
+      [player move:velocity.x activeFireButton:fireButton.active];
+    }
     
     // Jumping action
     if (reloadButton.active && jumpButtonActiveCount < MAX_JUMP_COUNT) {
@@ -175,11 +212,6 @@ static InputLayer* instanceOfInputLayer;
         
     // Determine the player's shooting position and direction and the proper shot origin
     [player attack:fireButton.active nextShotTime:&nextShotTime totalTime:totalTime];
-    
-    //NSLog(@"velocity x: %f  y: %f", p.sprite.position.x, p.sprite.position.y);
-    
-    //[game release];
-  
 }
 
 @end

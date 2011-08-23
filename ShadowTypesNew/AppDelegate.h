@@ -27,6 +27,8 @@
 @property (nonatomic, retain) GameSettings *gameSettings;
 @property (nonatomic, retain) GameStats *gameStat;
 
-+(AppDelegate *)get;
++ (AppDelegate *)get;
+- (void)enableAudio;
+- (void)disableAudio;
 
 @end

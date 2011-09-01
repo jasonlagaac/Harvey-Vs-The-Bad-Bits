@@ -70,11 +70,11 @@
 	</dict>
 	<key>Enemy</key>
 	<dict>
-		<key>Walkers</key>
+		<key>Shadow</key>
 		<integer>0</integer>
-		<key>Juggernaut </key>
+		<key>Juggernaut</key>
 		<integer>0</integer>
-		<key>Exploders</key>
+		<key>Exploder</key>
 		<integer>0</integer>
 	</dict>
 	<key>Score</key>

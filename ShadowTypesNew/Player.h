@@ -51,13 +51,13 @@ typedef enum  {
     /* Player Attributes */
     CCSprite *sprite;      
     PlayerWeapon weapon;   
-    int points;            
     
     /* Movement values */
     PlayerMovement direction;   // Direction of movment by player
     BOOL playerAttacking;       // Determine if the player is in attack mode
     BOOL playerJumping;         // Determine if the player is jumping
     BOOL changeWeapon;
+    BOOL playerDead;
     
     /* Animation Actions */
     CCAction *pistolWalkAction;
@@ -79,7 +79,7 @@ typedef enum  {
 @property (nonatomic, readwrite) PlayerMovement direction;
 @property (nonatomic, readwrite) BOOL playerAttacking;
 @property (nonatomic, readwrite) BOOL playerJumping;
-@property (nonatomic, readwrite) int points;
+@property (nonatomic, readwrite) BOOL playerDead;
 
 @property (nonatomic, readwrite) cpBody  *body;
 @property (nonatomic, readwrite) cpShape *shape;
@@ -106,6 +106,8 @@ typedef enum  {
  */
 - (void)animateMove;
 
+-(void)killedEnemy;
+
 /** Move the player along the X axis
  *  @param velocity_x velocity on the x-axis from the input layer
  *  @param fireButtonActive;
@@ -121,8 +123,5 @@ typedef enum  {
 - (void)land;
 - (void)checkEnemyCollision;
 - (void)changeWeapon;
-
-- (void)addPoint;
-
 
 @end

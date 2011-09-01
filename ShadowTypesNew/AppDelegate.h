@@ -25,7 +25,7 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, readwrite) bool paused;
 @property (nonatomic, retain) GameSettings *gameSettings;
-@property (nonatomic, retain) GameStats *gameStat;
+@property (nonatomic, retain) GameStats *gameStats;
 
 + (AppDelegate *)get;
 - (void)enableAudio;

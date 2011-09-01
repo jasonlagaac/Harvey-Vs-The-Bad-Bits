@@ -7,7 +7,7 @@
 //
 
 #import "Item.h"
-
+#import "AppDelegate.h"
 
 @interface Item (private) 
 /** Generate random position for spawn
@@ -170,8 +170,10 @@
       [player changeWeapon];
       [self weaponPickupFeedback];
       [[SimpleAudioEngine sharedEngine]playEffect:@"CartridgePickup.m4a"];
-      [player addPoint];
+      
+      [[[AppDelegate get]gameStats] addPoint];
     
+      [theGame updateScore];
       [self reload];
   }
   

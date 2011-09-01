@@ -19,7 +19,7 @@
 @synthesize window;
 @synthesize paused;
 @synthesize gameSettings;
-@synthesize gameStat;
+@synthesize gameStats;
 
 +(AppDelegate *)get {
   return (AppDelegate *) [[UIApplication sharedApplication] delegate];

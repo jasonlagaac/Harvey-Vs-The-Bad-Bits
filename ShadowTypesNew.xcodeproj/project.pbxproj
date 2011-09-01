@@ -216,6 +216,7 @@
 		B871D72A13F3B9B500E63C64 /* GameStats.m in Sources */ = {isa = PBXBuildFile; fileRef = B871D72913F3B9B500E63C64 /* GameStats.m */; };
 		B87EDB0C140202EB00A751ED /* SettingsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B87EDB0B140202EB00A751ED /* SettingsScene.m */; };
 		B8B7B0A713E1618D0008FE49 /* menuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B7B0A613E1618D0008FE49 /* menuBackground.png */; };
+		B8DB9278140C547D00284B19 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B8DB9277140C547D00284B19 /* GameOverLayer.m */; };
 		B8EC4A2613E6CED2008994DC /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EC4A2513E6CED2008994DC /* GameSettings.m */; };
 /* End PBXBuildFile section */
 
@@ -600,6 +601,8 @@
 		B87EDB0A140202EB00A751ED /* SettingsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsScene.h; sourceTree = "<group>"; };
 		B87EDB0B140202EB00A751ED /* SettingsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsScene.m; sourceTree = "<group>"; };
 		B8B7B0A613E1618D0008FE49 /* menuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBackground.png; sourceTree = "<group>"; };
+		B8DB9276140C547D00284B19 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		B8DB9277140C547D00284B19 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		B8EC4A2413E6CED2008994DC /* GameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
 		B8EC4A2513E6CED2008994DC /* GameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1133,6 +1136,8 @@
 				599DE43B13614DCE00FD2E2E /* InputLayer.m */,
 				5969AAC513A34E3C00243DB5 /* PauseLayer.h */,
 				5969AAC613A34E3C00243DB5 /* PauseLayer.m */,
+				B8DB9276140C547D00284B19 /* GameOverLayer.h */,
+				B8DB9277140C547D00284B19 /* GameOverLayer.m */,
 			);
 			name = "Layers and Scenes";
 			sourceTree = "<group>";
@@ -1481,6 +1486,7 @@
 				B8EC4A2613E6CED2008994DC /* GameSettings.m in Sources */,
 				B871D72A13F3B9B500E63C64 /* GameStats.m in Sources */,
 				B87EDB0C140202EB00A751ED /* SettingsScene.m in Sources */,
+				B8DB9278140C547D00284B19 /* GameOverLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

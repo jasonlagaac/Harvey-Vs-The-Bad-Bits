@@ -20,4 +20,5 @@
   CCMenuItemLabel * controlSetting;
   CCMenuItemLabel * soundSetting;
 }
+
 @end

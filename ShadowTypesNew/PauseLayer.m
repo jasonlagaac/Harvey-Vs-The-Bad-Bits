@@ -48,9 +48,6 @@
     
     [self addChild:paused];
     [self addChild: menu];
-
-    
-    //[tapToResume runAction:[CCRepeatForever actionWithAction:[CCBlink actionWithDuration:1 blinks:1]]];
   }
   
   return self;

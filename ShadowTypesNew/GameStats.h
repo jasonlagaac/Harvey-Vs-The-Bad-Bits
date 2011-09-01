@@ -11,14 +11,31 @@
 @interface GameStats : NSObject {
   NSMutableDictionary *gameStatDict;
   
-  NSDictionary *weaponStats;
-  NSDictionary *enemyStats;
-  NSDictionary *scoreStats;
+  NSMutableDictionary *weaponStats;
+  NSMutableDictionary *enemyStats;
+  NSMutableDictionary *scoreStats;
+  
+  int  currentLevel;
+  int  currentGameScore;
+  bool newTopScore;
+  
+  NSMutableDictionary *currentWeaponKills;
+  NSMutableDictionary *currentEnemyKills;
+
 }
+
+@property (nonatomic, readwrite) NSInteger currentGameScore;
+
+
+/** Initialise game stats
+ */
+-(void) initialiseCurrentGameStats:(int)level;
 
 /** Save game statistics
  */
 -(void) saveGameStats;
+
+-(void) gameOverActions;
 
 /** Add a kill point to a specific weapon
  *  @param Name of the weapon
@@ -33,11 +50,7 @@
 /** Enable a weapon for usage in-game
  *  @param Name of the weapon
  */
--(void) unlockWeapon:(NSString *)weapon;
-
-/** Obtain a list of weapons
- */
--(NSMutableArray *) unlockedWeaponList;
+-(NSMutableArray *) unlockWeapons;
 
 /** Add a kill point based on enemy type
  * @param Name of enemy type
@@ -50,11 +63,15 @@
  */
 -(int) enemyKillCount:(NSString *)enemyType;
 
-/** Add top score for the completion of a level
+/** Add point to score
+ */
+-(void) addPoint;
+
+/** Set top score for the completion of a level
  * @param Level number
  * @param Level Score
  */
--(void) addTopScore:(int)level score:(int)score;
+-(BOOL) setTopScore:(int)level score:(int)score ;
 
 /** Obtain top score for a level
  * @param Level number

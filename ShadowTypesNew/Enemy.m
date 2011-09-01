@@ -7,6 +7,7 @@
 //
 
 #import "Enemy.h"
+#import "AppDelegate.h"
 
 /*  
     Cocos2d unloading function to cleanup bodies and shapes
@@ -359,9 +360,24 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
   
   [[SimpleAudioEngine sharedEngine]playEffect:@"EnemyDeath.m4a"];
   
+  [[self.theGame player] killedEnemy];
+  
   /* Particle Effects */
   if (enemyType == kEnemyExploder) {
     [[theGame explosionCache] blastAt:self.sprite.position explosionType:kExplosionEnemy];
+  }
+  
+  switch (enemyType) {
+    case kEnemySmall:
+      [[[AppDelegate get] gameStats] addEnemyKill:@"Shadow"];
+      break;
+    
+    case kEnemyJuggernaut:
+      [[[AppDelegate get] gameStats] addEnemyKill:@"Juggernaut"];
+      break;
+      
+    case kEnemyExploder:
+      [[[AppDelegate get] gameStats] addEnemyKill:@"Exploder"];
   }
   
   // Cocos2d must run this after the step that all bodies are accounted for

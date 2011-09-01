@@ -94,6 +94,7 @@ typedef enum {
 -(void) updateScore;
 -(void) shakeScreen;
 -(void) restoreScreen;
+-(void) gameOver;
 -(void) pauseGame;
 -(void) resume;
 

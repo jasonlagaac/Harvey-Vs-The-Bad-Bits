@@ -175,8 +175,8 @@ static InputLayer* instanceOfInputLayer;
     velocity = ccpMult(ccp((-acceleration.y * 100), 0) , 200);
   }
   
-  [player move:velocity.x activeFireButton:fireButton.active];
-
+  if (player.playerDead == NO) 
+    [player move:velocity.x activeFireButton:fireButton.active];
 }
 
 - (void)update:(ccTime)delta {   
@@ -191,27 +191,29 @@ static InputLayer* instanceOfInputLayer;
     
     totalTime += delta;
   
-    if ([[AppDelegate get] gameSettings].currentGameControls == kGameControlDpad) {
-        CGPoint velocity = ccpMult(joystick.velocity, 200);
-    
-      // Flip and change the direction when the joystick is moved
-      // in that specific direction
-    
-      // Player movement in the x-axis
-      [player move:velocity.x activeFireButton:fireButton.active];
+    if (player.playerDead == NO) {
+      if ([[AppDelegate get] gameSettings].currentGameControls == kGameControlDpad) {
+          CGPoint velocity = ccpMult(joystick.velocity, 200);
+      
+        // Flip and change the direction when the joystick is moved
+        // in that specific direction
+      
+        // Player movement in the x-axis
+        [player move:velocity.x activeFireButton:fireButton.active];
+      }
+      
+      // Jumping action
+      if (reloadButton.active && jumpButtonActiveCount < MAX_JUMP_COUNT) {
+          jumpButtonActiveCount++;
+          [player jump];
+      } else if (!reloadButton.active && player.body->v.y == 0) {
+          jumpButtonActiveCount = 0;
+          [player land];
+      }
+          
+      // Determine the player's shooting position and direction and the proper shot origin
+      [player attack:fireButton.active nextShotTime:&nextShotTime totalTime:totalTime];
     }
-    
-    // Jumping action
-    if (reloadButton.active && jumpButtonActiveCount < MAX_JUMP_COUNT) {
-        jumpButtonActiveCount++;
-        [player jump];
-    } else if (!reloadButton.active && player.body->v.y == 0) {
-        jumpButtonActiveCount = 0;
-        [player land];
-    }
-        
-    // Determine the player's shooting position and direction and the proper shot origin
-    [player attack:fireButton.active nextShotTime:&nextShotTime totalTime:totalTime];
 }
 
 @end

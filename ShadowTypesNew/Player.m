@@ -9,6 +9,7 @@
 #import "Player.h"
 #import "BulletCache.h"
 #import "ProjectileCache.h"
+#import "AppDelegate.h"
 
 @interface Player (private)
 // Player Initialisation
@@ -28,6 +29,9 @@
 - (void)attack:(bool)fireButtonActive 
   nextShotTime:(float*)nextShotTime 
      totalTime:(float)totalTime;
+
+-(void) death;
+
 @end
 
 @implementation Player
@@ -37,7 +41,7 @@
 @synthesize playerAttacking;            @synthesize playerJumping;
 @synthesize body;                       @synthesize shape;
 @synthesize pistolWalkAction;           @synthesize machineGunWalkAction;       
-@synthesize phaserWalkAction;           @synthesize points;
+@synthesize phaserWalkAction;           @synthesize playerDead;
 @synthesize rocketWalkAction;           @synthesize revolverWalkAction;
 @synthesize flamethrowerWalkAction;     @synthesize gattlingGunWalkAction;
 @synthesize grenadeLauncherWalkAction;  @synthesize laserWalkAction;
@@ -190,6 +194,7 @@
     self.playerAttacking = NO;
     self.playerJumping = NO;
     changeWeapon = NO;
+    self.playerDead = NO;
     
     [self loadSprites];
     [self loadAnimations];
@@ -639,6 +644,58 @@
   
 }
 
+-(void)killedEnemy {
+  NSString *weaponName;
+  
+  switch (self.weapon) {
+    case kPlayerWeaponPistol:
+      weaponName = @"Pistol";
+      break;
+      
+    case kPlayerWeaponRevolver:
+      weaponName = @"Revolver";
+      break;
+      
+    case kPlayerWeaponShotgun:
+      weaponName = @"Shotgun";
+      break;
+      
+    case kPlayerWeaponFlamethrower:
+      weaponName = @"Flamethrower";
+      break;
+      
+    case kPlayerWeaponMachineGun:
+      weaponName = @"Machine Gun";
+      break;
+      
+    case kPlayerWeaponGattlingGun:
+      weaponName = @"Gattling Gun";
+      break;
+      
+    case kPlayerWeaponPhaser:
+      weaponName = @"Phaser";
+      break;
+      
+    case kPlayerWeaponLaser:
+      weaponName = @"Laser Rifle";
+      break;
+      
+    case kPlayerWeaponShurikin:
+      weaponName = @"Shurikin";
+      break;
+      
+    case kPlayerWeaponGrenadeLauncher:
+      weaponName = @"Grenade Launcher";
+      break;
+      
+    case kPlayerWeaponRocket:
+      weaponName = @"Rocket";
+      break;
+  }
+  
+  [[[AppDelegate get] gameStats] addWeaponKill:weaponName];
+}
+
 -(void) checkEnemyCollision {
   EnemyCache *ec = [self.theGame enemyCache];
   
@@ -646,21 +703,23 @@
     Enemy *e = [[ec enemies] objectAtIndex:i];
     if ([e activeInGame]) {
       if (ccpDistance(self.sprite.position, e.sprite.position) < 10) {
-        self.points = 0;
-        [theGame updateScore];
         // Player death action should happen here
+        [self death];
       }
     }
   }
 }
 
-
-# pragma mark -
-# pragma mark Player Statistics Actions
-
--(void) addPoint {
-  self.points++;
-  [theGame updateScore];
+-(void) death { 
+  
+  if (!playerDead) {
+    playerDead = YES;
+    [self.theGame gameOver];
+  }
+  
+  [[[AppDelegate get] gameStats] gameOverActions];
+  
+  [self.sprite stopAllActions];
 }
 
 #pragma mark -

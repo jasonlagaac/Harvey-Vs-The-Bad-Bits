@@ -17,6 +17,7 @@
 #import "ProjectileCache.h"
 #import "Bullet.h"
 #import "Enemy.h"
+#import "GameOverLayer.h"
 #import "AppDelegate.h"
 
 
@@ -155,6 +156,8 @@ static GameLayer* instanceOfGameLayer;
     self.playerLevel = 0; // Assign the player game level
     self.remainingTime = 75; // remaining time in seconds
     
+    // Initialise game statistics
+    [[[AppDelegate get] gameStats] initialiseCurrentGameStats:levelSelected];
     
     // Initialise the Score Label
     CCLabelBMFont *scoreLabel = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"%d", 0] 
@@ -178,6 +181,8 @@ static GameLayer* instanceOfGameLayer;
     bulletCache = [[BulletCache alloc] initWithGame:self];
     explosionCache = [[ExplosionCache alloc] initWithGame:self];
     projectileCache = [[ProjectileCache alloc] initWithGame:self];
+    
+    
     
     [self schedule: @selector(step:)];
   }
@@ -206,12 +211,17 @@ static GameLayer* instanceOfGameLayer;
   
   [self addChild:effect z:7];
   
+  effect = [CCParticleSystemPoint particleWithFile:@"PlayerExplode.plist"];
+  effect.autoRemoveOnFinish = YES;
+  [effect setPosition:CGPointMake(-2000, -2000)];
+  
+  [self addChild:effect z:7];
+  
   effect = [CCParticleSystemPoint particleWithFile:@"WeaponPickup.plist"];
   effect.autoRemoveOnFinish = YES;
   [effect setPosition:CGPointMake(-2000, -2000)];
 
   [self addChild:effect z:7];
-  
 }
 
 -(void) loadSound {
@@ -231,7 +241,8 @@ static GameLayer* instanceOfGameLayer;
 
 - (void)updateScore {
   CCLabelBMFont *l = (CCLabelBMFont *)[self getChildByTag:K_ScoreLabel];
-  [l setString:[NSString stringWithFormat:@"%d", [player points]]];
+  int gameScore = [[[AppDelegate get] gameStats] currentGameScore];
+  [l setString:[NSString stringWithFormat:@"%d", gameScore]];
 }
 
 - (void)spawnEnemy {
@@ -263,6 +274,13 @@ static GameLayer* instanceOfGameLayer;
     [AppDelegate get].paused = YES;
     [[CCDirector sharedDirector] pause];
   }
+}
+
+-(void) gameOver {
+    [InputLayer sharedInputLayer].visible = NO;
+  
+    GameOverLayer *g = [[[GameOverLayer alloc] init] autorelease];
+    [self addChild:g z:40 tag:42];
 }
 
 -(void) resume {

@@ -19,6 +19,8 @@
 
 @interface LevelSelectLayer : CCLayer {
   int levelSelect;
+  
+  CCLabelBMFont *topScoreLbl;
 }
 
 @end

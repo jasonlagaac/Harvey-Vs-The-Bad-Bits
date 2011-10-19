@@ -30,7 +30,6 @@
   nextShotTime:(float*)nextShotTime 
      totalTime:(float)totalTime;
 
--(void) death;
 
 @end
 
@@ -199,6 +198,9 @@
     [self loadSprites];
     [self loadAnimations];
     [self loadPhysics];
+    
+    available_weapons = [[[AppDelegate get] gameStats] enabledWeapons];
+    [available_weapons retain];
     
     [game addChild:self z:9];
     
@@ -628,73 +630,23 @@
 
 -(void) changeWeapon {
   PlayerWeapon chosenWeapon = kPlayerWeaponPistol;
+  NSLog(@"%@", available_weapons);
   
   while (true) {
-    chosenWeapon = (arc4random() % kPlayerWeaponCount);
+    chosenWeapon = (arc4random() % [available_weapons count]);
+    chosenWeapon = [[available_weapons objectAtIndex:chosenWeapon] intValue];
     
     if (chosenWeapon != self.weapon) 
       break;
   }
+  
   [[self sprite] stopAllActions];
-  
-  
   
   self.weapon = chosenWeapon;
   self.playerAttacking = NO;
   
 }
 
--(void)killedEnemy {
-  NSString *weaponName;
-  
-  switch (self.weapon) {
-    case kPlayerWeaponPistol:
-      weaponName = @"Pistol";
-      break;
-      
-    case kPlayerWeaponRevolver:
-      weaponName = @"Revolver";
-      break;
-      
-    case kPlayerWeaponShotgun:
-      weaponName = @"Shotgun";
-      break;
-      
-    case kPlayerWeaponFlamethrower:
-      weaponName = @"Flamethrower";
-      break;
-      
-    case kPlayerWeaponMachineGun:
-      weaponName = @"Machine Gun";
-      break;
-      
-    case kPlayerWeaponGattlingGun:
-      weaponName = @"Gattling Gun";
-      break;
-      
-    case kPlayerWeaponPhaser:
-      weaponName = @"Phaser";
-      break;
-      
-    case kPlayerWeaponLaser:
-      weaponName = @"Laser Rifle";
-      break;
-      
-    case kPlayerWeaponShurikin:
-      weaponName = @"Shurikin";
-      break;
-      
-    case kPlayerWeaponGrenadeLauncher:
-      weaponName = @"Grenade Launcher";
-      break;
-      
-    case kPlayerWeaponRocket:
-      weaponName = @"Rocket";
-      break;
-  }
-  
-  [[[AppDelegate get] gameStats] addWeaponKill:weaponName];
-}
 
 -(void) checkEnemyCollision {
   EnemyCache *ec = [self.theGame enemyCache];
@@ -716,9 +668,7 @@
     playerDead = YES;
     [self.theGame gameOver];
   }
-  
-  [[[AppDelegate get] gameStats] gameOverActions];
-  
+    
   [self.sprite stopAllActions];
 }
 

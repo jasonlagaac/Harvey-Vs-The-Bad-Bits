@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+
+
 @interface GameOverLayer : CCLayerColor {
+  int selectedLayer;
+  
   CCLayer *scoreLayer;
-  CCLayer *killsLayer;
-  CCLayer *achievementsLayer;
+  CCLayer *statsLayer;
 }
 
 @end

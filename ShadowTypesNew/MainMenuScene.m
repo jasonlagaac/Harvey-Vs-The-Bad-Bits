@@ -41,7 +41,7 @@
     
     //game = [[GameLayer scene] retain];
     // Load the items and images into the framecache
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ShadowTypes.plist"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ShadowTypesSimple.plist"];
     
     self.isTouchEnabled = YES;
     

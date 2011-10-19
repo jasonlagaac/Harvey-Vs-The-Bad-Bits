@@ -157,7 +157,7 @@ static GameLayer* instanceOfGameLayer;
     self.remainingTime = 75; // remaining time in seconds
     
     // Initialise game statistics
-    [[[AppDelegate get] gameStats] initialiseCurrentGameStats:levelSelected];
+    [[[AppDelegate get] gameStats] initCurrentGameStats:levelSelected];
     
     // Initialise the Score Label
     CCLabelBMFont *scoreLabel = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"%d", 0] 
@@ -211,11 +211,6 @@ static GameLayer* instanceOfGameLayer;
   
   [self addChild:effect z:7];
   
-  effect = [CCParticleSystemPoint particleWithFile:@"PlayerExplode.plist"];
-  effect.autoRemoveOnFinish = YES;
-  [effect setPosition:CGPointMake(-2000, -2000)];
-  
-  [self addChild:effect z:7];
   
   effect = [CCParticleSystemPoint particleWithFile:@"WeaponPickup.plist"];
   effect.autoRemoveOnFinish = YES;
@@ -277,10 +272,11 @@ static GameLayer* instanceOfGameLayer;
 }
 
 -(void) gameOver {
-    [InputLayer sharedInputLayer].visible = NO;
+  [InputLayer sharedInputLayer].visible = NO;
+  [[[AppDelegate get] gameStats] gameOverActions];
   
-    GameOverLayer *g = [[[GameOverLayer alloc] init] autorelease];
-    [self addChild:g z:40 tag:42];
+  GameOverLayer *g = [[GameOverLayer alloc] init];
+  [self addChild:g z:40 tag:42];
 }
 
 -(void) resume {

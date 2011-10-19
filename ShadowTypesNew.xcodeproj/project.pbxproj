@@ -196,6 +196,7 @@
 		59FC4A0A13969E1A00AF3697 /* ProjectileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59FC4A0913969E1A00AF3697 /* ProjectileCache.m */; };
 		B801802913E45EE50037444C /* Level1Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B801802813E45EE50037444C /* Level1Preview.png */; };
 		B801802D13E667700037444C /* Level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B801802C13E667700037444C /* Level2.tmx */; };
+		B816297F141D98D700D1E923 /* atari800.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B816297E141D98D700D1E923 /* atari800.ttf */; };
 		B829428613E6729E0047EDB7 /* Level2Layer.png in Resources */ = {isa = PBXBuildFile; fileRef = B829428513E6729E0047EDB7 /* Level2Layer.png */; };
 		B829428813E6733D0047EDB7 /* Level2Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B829428713E6733D0047EDB7 /* Level2Preview.png */; };
 		B849F7B5140234CB00675957 /* settingsBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B849F7B4140234CB00675957 /* settingsBackground.png */; };
@@ -216,6 +217,9 @@
 		B871D72A13F3B9B500E63C64 /* GameStats.m in Sources */ = {isa = PBXBuildFile; fileRef = B871D72913F3B9B500E63C64 /* GameStats.m */; };
 		B87EDB0C140202EB00A751ED /* SettingsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B87EDB0B140202EB00A751ED /* SettingsScene.m */; };
 		B8B7B0A713E1618D0008FE49 /* menuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B7B0A613E1618D0008FE49 /* menuBackground.png */; };
+		B8D03E33143C467900899BB7 /* CCLabelBMFontMultiline.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D03E32143C467900899BB7 /* CCLabelBMFontMultiline.m */; };
+		B8D03E3F143C498100899BB7 /* weaponFeedbackSmall.fnt in Resources */ = {isa = PBXBuildFile; fileRef = B8D03E3D143C498100899BB7 /* weaponFeedbackSmall.fnt */; };
+		B8D03E40143C498100899BB7 /* weaponFeedbackSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B8D03E3E143C498100899BB7 /* weaponFeedbackSmall.png */; };
 		B8DB9278140C547D00284B19 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B8DB9277140C547D00284B19 /* GameOverLayer.m */; };
 		B8EC4A2613E6CED2008994DC /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EC4A2513E6CED2008994DC /* GameSettings.m */; };
 /* End PBXBuildFile section */
@@ -578,6 +582,7 @@
 		59FC4A0913969E1A00AF3697 /* ProjectileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectileCache.m; sourceTree = "<group>"; };
 		B801802813E45EE50037444C /* Level1Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1Preview.png; sourceTree = "<group>"; };
 		B801802C13E667700037444C /* Level2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level2.tmx; sourceTree = "<group>"; };
+		B816297E141D98D700D1E923 /* atari800.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = atari800.ttf; sourceTree = "<group>"; };
 		B829428513E6729E0047EDB7 /* Level2Layer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level2Layer.png; sourceTree = "<group>"; };
 		B829428713E6733D0047EDB7 /* Level2Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level2Preview.png; sourceTree = "<group>"; };
 		B849F7B4140234CB00675957 /* settingsBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsBackground.png; sourceTree = "<group>"; };
@@ -601,6 +606,10 @@
 		B87EDB0A140202EB00A751ED /* SettingsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsScene.h; sourceTree = "<group>"; };
 		B87EDB0B140202EB00A751ED /* SettingsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsScene.m; sourceTree = "<group>"; };
 		B8B7B0A613E1618D0008FE49 /* menuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBackground.png; sourceTree = "<group>"; };
+		B8D03E31143C467900899BB7 /* CCLabelBMFontMultiline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLabelBMFontMultiline.h; sourceTree = "<group>"; };
+		B8D03E32143C467900899BB7 /* CCLabelBMFontMultiline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLabelBMFontMultiline.m; sourceTree = "<group>"; };
+		B8D03E3D143C498100899BB7 /* weaponFeedbackSmall.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = weaponFeedbackSmall.fnt; sourceTree = "<group>"; };
+		B8D03E3E143C498100899BB7 /* weaponFeedbackSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weaponFeedbackSmall.png; sourceTree = "<group>"; };
 		B8DB9276140C547D00284B19 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
 		B8DB9277140C547D00284B19 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		B8EC4A2413E6CED2008994DC /* GameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
@@ -629,6 +638,9 @@
 		593D68E01386384800C6BDA0 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				B8D03E3D143C498100899BB7 /* weaponFeedbackSmall.fnt */,
+				B8D03E3E143C498100899BB7 /* weaponFeedbackSmall.png */,
+				B816297E141D98D700D1E923 /* atari800.ttf */,
 				B849F7CF140259A900675957 /* scoreFeedback.fnt */,
 				B849F7D0140259A900675957 /* scoreFeedback.png */,
 				B849F7C314024EDA00675957 /* weaponFeedbackLarge.fnt */,
@@ -1200,6 +1212,8 @@
 		59D7E7AF13B2ED250004F5A5 /* Misc Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B8D03E31143C467900899BB7 /* CCLabelBMFontMultiline.h */,
+				B8D03E32143C467900899BB7 /* CCLabelBMFontMultiline.m */,
 			);
 			name = "Misc Classes";
 			sourceTree = "<group>";
@@ -1326,6 +1340,9 @@
 				B849F7D6140363B300675957 /* ShadowTypesSimple.plist in Resources */,
 				B849F7D9140365C600675957 /* tiltJumpButton.png in Resources */,
 				B849F7DA140365C600675957 /* tiltShootButton.png in Resources */,
+				B816297F141D98D700D1E923 /* atari800.ttf in Resources */,
+				B8D03E3F143C498100899BB7 /* weaponFeedbackSmall.fnt in Resources */,
+				B8D03E40143C498100899BB7 /* weaponFeedbackSmall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1487,6 +1504,7 @@
 				B871D72A13F3B9B500E63C64 /* GameStats.m in Sources */,
 				B87EDB0C140202EB00A751ED /* SettingsScene.m in Sources */,
 				B8DB9278140C547D00284B19 /* GameOverLayer.m in Sources */,
+				B8D03E33143C467900899BB7 /* CCLabelBMFontMultiline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

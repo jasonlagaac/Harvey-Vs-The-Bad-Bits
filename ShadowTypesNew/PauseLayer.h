@@ -10,8 +10,7 @@
 #import "cocos2d.h"
 
 @interface PauseLayer : CCLayerColor {
-    CGPoint resumeButtonPos;
-    CGPoint quitButtonPos;
+  
 }
 
 @end

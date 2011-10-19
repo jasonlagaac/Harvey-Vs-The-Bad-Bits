@@ -51,6 +51,7 @@ typedef enum  {
     /* Player Attributes */
     CCSprite *sprite;      
     PlayerWeapon weapon;   
+    NSMutableArray *available_weapons;
     
     /* Movement values */
     PlayerMovement direction;   // Direction of movment by player
@@ -100,28 +101,28 @@ typedef enum  {
 -(id) initWithGame:(GameLayer *)game;
 /** Restore the default sprite
  */ 
-- (void)restoreDefaultSprite;
+-(void) restoreDefaultSprite;
 
 /** Animate the player's movement
  */
-- (void)animateMove;
-
--(void)killedEnemy;
+-(void) animateMove;
 
 /** Move the player along the X axis
  *  @param velocity_x velocity on the x-axis from the input layer
  *  @param fireButtonActive;
  */
-- (void)move:(float)velocity_x activeFireButton:(bool)fireButtonActive;
+-(void) move:(float)velocity_x activeFireButton:(bool)fireButtonActive;
 
 
-- (void)attack:(bool)fireButtonActive 
+-(void) attack:(bool)fireButtonActive 
   nextShotTime:(float*)nextShotTime 
      totalTime:(float)totalTime;
 
-- (void)jump;
-- (void)land;
-- (void)checkEnemyCollision;
-- (void)changeWeapon;
+-(void) jump;
+-(void)land;
+-(void)checkEnemyCollision;
+-(void)changeWeapon;
+-(void) death;
+
 
 @end

@@ -121,6 +121,11 @@
   
   gameSettings = [[GameSettings alloc] init];
   gameStats = [[GameStats alloc] init];
+  
+  if ([gameSettings currentAudio] == YES)
+    [self enableAudio];
+  else
+    [self disableAudio];
 	
 	// Run the intro Scene
   [[CCDirector sharedDirector] runWithScene: [MainMenuScene node]];

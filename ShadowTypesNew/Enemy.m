@@ -359,12 +359,13 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
   [explosion setPosition:self.sprite.position];
   
   [[SimpleAudioEngine sharedEngine]playEffect:@"EnemyDeath.m4a"];
-  
-  [[self.theGame player] killedEnemy];
-  
+    
   /* Particle Effects */
   if (enemyType == kEnemyExploder) {
     [[theGame explosionCache] blastAt:self.sprite.position explosionType:kExplosionEnemy];
+    if (ccpDistance(self.sprite.position, theGame.player.sprite.position) < 80) {
+      [theGame.player death];
+    }
   }
   
   switch (enemyType) {
@@ -379,6 +380,9 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
     case kEnemyExploder:
       [[[AppDelegate get] gameStats] addEnemyKill:@"Exploder"];
   }
+  
+  [[[AppDelegate get] gameStats] addWeaponKill:[self.theGame player].weapon];
+  
   
   // Cocos2d must run this after the step that all bodies are accounted for
   // and that they are all cleaned up

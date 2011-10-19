@@ -9,6 +9,7 @@
 #import "LevelSelectScene.h"
 #import "MainMenuScene.h"
 #import "GameScene.h"
+#import "AppDelegate.h"
 
 @implementation LevelSelectScene
 
@@ -30,6 +31,7 @@
 
 @interface LevelSelectLayer (Private)
   -(void)loadLevelPreviews;
+  -(void) updateScoreLabel;
 @end
 
 
@@ -45,7 +47,7 @@
     CCLabelBMFont * selectLabel = [CCLabelBMFont labelWithString:@"select" fntFile:@"weaponFeedback.fnt"];
     CCLabelBMFont * backLabel = [CCLabelBMFont labelWithString:@"back" fntFile:@"weaponFeedback.fnt"];
     
-    CCLabelBMFont *topScoreLbl = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"top score: %d", 0] 
+    topScoreLbl = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"top score: %d", 0] 
                                                         fntFile:@"weaponFeedback.fnt"];
     
     
@@ -68,7 +70,6 @@
     CCMenuItemLabel * forwardArrow = [CCMenuItemLabel itemWithLabel:forwardArrowLbl target:self selector:@selector(moveRight:)];
 		CCMenuItemLabel * backArrow = [CCMenuItemLabel itemWithLabel:backArrowLbl target:self selector:@selector(moveLeft:)];
 
-  
     
     CCMenu *menu  = [CCMenu menuWithItems:forwardArrow, backArrow, back, select, nil];
     [self addChild:menu z:0];
@@ -90,6 +91,7 @@
     [[self getChildByTag:2] setPosition:ccp(240, 180)];
     [[self getChildByTag:2] setVisible:NO];
 
+    [self updateScoreLabel];
    //[self loadLevelPreviews];
     
   }
@@ -114,8 +116,7 @@
     levelSelect = 1;
   
   [[self getChildByTag:levelSelect] setVisible:YES];
-  NSLog(@"%d", levelSelect);
-
+  [self updateScoreLabel];
 }
 
 -(void)moveLeft:(id)sender {
@@ -128,8 +129,7 @@
     levelSelect = NUM_OF_LEVELS;
   
   [[self getChildByTag:levelSelect] setVisible:YES];
-  
-  NSLog(@"%d", levelSelect);
+  [self updateScoreLabel];
 
 }
 
@@ -139,6 +139,12 @@
 
 -(void)levelSelected:(id)sender {
 	[[CCDirector sharedDirector]replaceScene:[GameLayer scene:levelSelect]];
+}
+
+-(void) updateScoreLabel {
+  GameStats *gs = [[AppDelegate get] gameStats];
+  [topScoreLbl setString:[NSString stringWithFormat:@"top score: %d",[gs levelTopScore:levelSelect]]];
+  NSLog(@"top score: %d", [gs levelTopScore:levelSelect]);
 }
 
 -(void)dealloc {

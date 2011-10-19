@@ -4,8 +4,28 @@
 <dict>
 	<key>Weapon</key>
 	<dict>
+		<key>Rocket Launcher</key>
+		<dict>
+			<key>id</key>
+			<integer>4</integer>
+			<key>Kills</key>
+			<integer>0</integer>
+			<key>Enabled</key>
+			<false/>
+		</dict>
+		<key>Flamethrower</key>
+		<dict>
+			<key>id</key>
+			<integer>6</integer>
+			<key>Kills</key>
+			<integer>0</integer>
+			<key>Enabled</key>
+			<false/>
+		</dict>
 		<key>Pistol</key>
 		<dict>
+			<key>id</key>
+			<integer>0</integer>
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
@@ -13,6 +33,8 @@
 		</dict>
 		<key>Revolver</key>
 		<dict>
+			<key>id</key>
+			<integer>5</integer>
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
@@ -20,6 +42,8 @@
 		</dict>
 		<key>Shotgun</key>
 		<dict>
+			<key>id</key>
+			<integer>2</integer>
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
@@ -27,6 +51,8 @@
 		</dict>
 		<key>Machine Gun</key>
 		<dict>
+			<key>id</key>
+			<integer>1</integer>
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
@@ -34,6 +60,8 @@
 		</dict>
 		<key>Gattling Gun</key>
 		<dict>
+			<key>id</key>
+			<integer>7</integer>
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
@@ -41,6 +69,8 @@
 		</dict>
 		<key>Phaser</key>
 		<dict>
+			<key>id</key>
+			<integer>3</integer>
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
@@ -48,6 +78,8 @@
 		</dict>
 		<key>Laser Rifle</key>
 		<dict>
+			<key>id</key>
+			<integer>9</integer>
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
@@ -55,6 +87,8 @@
 		</dict>
 		<key>Shurikin</key>
 		<dict>
+			<key>id</key>
+			<integer>10</integer>
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
@@ -62,6 +96,8 @@
 		</dict>
 		<key>Grenade Launcher</key>
 		<dict>
+			<key>id</key>
+			<integer>8</integer>
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>

@@ -14,8 +14,16 @@
 {
   self = [super init];
   if (self) {
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
-    gameSettings = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) 
+                               objectAtIndex:0];
+    NSString* plistPath = [documentsPath stringByAppendingPathComponent:@"GameSettings.plist"];
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+      plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+      gameSettings = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    } else {
+      gameSettings = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    }
   }
   
   return self;
@@ -24,7 +32,9 @@
 #pragma mark -
 #pragma mark GameSettings Plist File Actions
 -(void) saveGameSettings {
-  NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+  NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+  NSString* plistPath = [documentsPath stringByAppendingPathComponent:@"GameSettings.plist"];
+                        
   [gameSettings writeToFile:plistPath atomically:YES];
 }
 

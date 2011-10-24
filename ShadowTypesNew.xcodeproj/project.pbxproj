@@ -196,6 +196,7 @@
 		59FC4A0A13969E1A00AF3697 /* ProjectileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 59FC4A0913969E1A00AF3697 /* ProjectileCache.m */; };
 		B801802913E45EE50037444C /* Level1Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B801802813E45EE50037444C /* Level1Preview.png */; };
 		B801802D13E667700037444C /* Level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B801802C13E667700037444C /* Level2.tmx */; };
+		B81575FD1451285800F00200 /* StatsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B81575FC1451285700F00200 /* StatsScene.m */; };
 		B816297F141D98D700D1E923 /* atari800.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B816297E141D98D700D1E923 /* atari800.ttf */; };
 		B829428613E6729E0047EDB7 /* Level2Layer.png in Resources */ = {isa = PBXBuildFile; fileRef = B829428513E6729E0047EDB7 /* Level2Layer.png */; };
 		B829428813E6733D0047EDB7 /* Level2Preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B829428713E6733D0047EDB7 /* Level2Preview.png */; };
@@ -213,15 +214,21 @@
 		B850F89A13DE93CB00C62FC8 /* EnemyExplode.plist in Resources */ = {isa = PBXBuildFile; fileRef = B850F89913DE93CB00C62FC8 /* EnemyExplode.plist */; };
 		B85C8FC113E2802C00722698 /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FC013E2802C00722698 /* LevelSelectScene.m */; };
 		B871D72213F398A600E63C64 /* GameSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B871D72113F398A600E63C64 /* GameSettings.plist */; };
-		B871D72613F3B0C200E63C64 /* GameStats.plist in Resources */ = {isa = PBXBuildFile; fileRef = B871D72513F3B0C200E63C64 /* GameStats.plist */; };
 		B871D72A13F3B9B500E63C64 /* GameStats.m in Sources */ = {isa = PBXBuildFile; fileRef = B871D72913F3B9B500E63C64 /* GameStats.m */; };
 		B87EDB0C140202EB00A751ED /* SettingsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B87EDB0B140202EB00A751ED /* SettingsScene.m */; };
+		B8A8166C145321480049CBC0 /* GameStats.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8A8166B145321480049CBC0 /* GameStats.plist */; };
+		B8A8166F145328670049CBC0 /* CreditScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A8166E145328670049CBC0 /* CreditScene.m */; };
 		B8B7B0A713E1618D0008FE49 /* menuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B8B7B0A613E1618D0008FE49 /* menuBackground.png */; };
 		B8D03E33143C467900899BB7 /* CCLabelBMFontMultiline.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D03E32143C467900899BB7 /* CCLabelBMFontMultiline.m */; };
 		B8D03E3F143C498100899BB7 /* weaponFeedbackSmall.fnt in Resources */ = {isa = PBXBuildFile; fileRef = B8D03E3D143C498100899BB7 /* weaponFeedbackSmall.fnt */; };
 		B8D03E40143C498100899BB7 /* weaponFeedbackSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B8D03E3E143C498100899BB7 /* weaponFeedbackSmall.png */; };
 		B8DB9278140C547D00284B19 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B8DB9277140C547D00284B19 /* GameOverLayer.m */; };
 		B8EC4A2613E6CED2008994DC /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EC4A2513E6CED2008994DC /* GameSettings.m */; };
+		B8F88EE41455178C005B5F2A /* LaserRifle.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B8F88EE31455178C005B5F2A /* LaserRifle.m4a */; };
+		B8F88EE814551CDB005B5F2A /* GrenadeLauncher.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B8F88EE614551CDA005B5F2A /* GrenadeLauncher.m4a */; };
+		B8F88EE914551CDB005B5F2A /* Rocket.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B8F88EE714551CDB005B5F2A /* Rocket.m4a */; };
+		B8F88EEC1455273B005B5F2A /* Flamethrower.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B8F88EEA1455273B005B5F2A /* Flamethrower.m4a */; };
+		B8F88EED1455273B005B5F2A /* Shurikin.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B8F88EEB1455273B005B5F2A /* Shurikin.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -582,6 +589,8 @@
 		59FC4A0913969E1A00AF3697 /* ProjectileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectileCache.m; sourceTree = "<group>"; };
 		B801802813E45EE50037444C /* Level1Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level1Preview.png; sourceTree = "<group>"; };
 		B801802C13E667700037444C /* Level2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level2.tmx; sourceTree = "<group>"; };
+		B81575FB1451285600F00200 /* StatsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsScene.h; sourceTree = "<group>"; };
+		B81575FC1451285700F00200 /* StatsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsScene.m; sourceTree = "<group>"; };
 		B816297E141D98D700D1E923 /* atari800.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = atari800.ttf; sourceTree = "<group>"; };
 		B829428513E6729E0047EDB7 /* Level2Layer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level2Layer.png; sourceTree = "<group>"; };
 		B829428713E6733D0047EDB7 /* Level2Preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level2Preview.png; sourceTree = "<group>"; };
@@ -600,11 +609,13 @@
 		B85C8FBF13E2802C00722698 /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectScene.h; sourceTree = "<group>"; };
 		B85C8FC013E2802C00722698 /* LevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectScene.m; sourceTree = "<group>"; };
 		B871D72113F398A600E63C64 /* GameSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameSettings.plist; sourceTree = "<group>"; };
-		B871D72513F3B0C200E63C64 /* GameStats.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameStats.plist; sourceTree = "<group>"; };
 		B871D72813F3B9B500E63C64 /* GameStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStats.h; sourceTree = "<group>"; };
 		B871D72913F3B9B500E63C64 /* GameStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStats.m; sourceTree = "<group>"; };
 		B87EDB0A140202EB00A751ED /* SettingsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsScene.h; sourceTree = "<group>"; };
 		B87EDB0B140202EB00A751ED /* SettingsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsScene.m; sourceTree = "<group>"; };
+		B8A8166B145321480049CBC0 /* GameStats.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameStats.plist; sourceTree = "<group>"; };
+		B8A8166D145328670049CBC0 /* CreditScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditScene.h; sourceTree = "<group>"; };
+		B8A8166E145328670049CBC0 /* CreditScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditScene.m; sourceTree = "<group>"; };
 		B8B7B0A613E1618D0008FE49 /* menuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBackground.png; sourceTree = "<group>"; };
 		B8D03E31143C467900899BB7 /* CCLabelBMFontMultiline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLabelBMFontMultiline.h; sourceTree = "<group>"; };
 		B8D03E32143C467900899BB7 /* CCLabelBMFontMultiline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLabelBMFontMultiline.m; sourceTree = "<group>"; };
@@ -614,6 +625,11 @@
 		B8DB9277140C547D00284B19 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		B8EC4A2413E6CED2008994DC /* GameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
 		B8EC4A2513E6CED2008994DC /* GameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettings.m; sourceTree = "<group>"; };
+		B8F88EE31455178C005B5F2A /* LaserRifle.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = LaserRifle.m4a; sourceTree = "<group>"; };
+		B8F88EE614551CDA005B5F2A /* GrenadeLauncher.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = GrenadeLauncher.m4a; sourceTree = "<group>"; };
+		B8F88EE714551CDB005B5F2A /* Rocket.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rocket.m4a; sourceTree = "<group>"; };
+		B8F88EEA1455273B005B5F2A /* Flamethrower.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Flamethrower.m4a; sourceTree = "<group>"; };
+		B8F88EEB1455273B005B5F2A /* Shurikin.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Shurikin.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -694,9 +710,13 @@
 		594965E81383B08F00C1B064 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				B8F88EE614551CDA005B5F2A /* GrenadeLauncher.m4a */,
+				B8F88EE714551CDB005B5F2A /* Rocket.m4a */,
 				5919A181138DF6B0004CF76C /* Explosion.m4a */,
 				598D54D013856307008F2FEF /* CartridgePickup.m4a */,
 				598D54D113856307008F2FEF /* WeaponPickup.m4a */,
+				B8F88EEA1455273B005B5F2A /* Flamethrower.m4a */,
+				B8F88EEB1455273B005B5F2A /* Shurikin.m4a */,
 				598D54CE13855F0A008F2FEF /* EnemyDeath.m4a */,
 				598D54CC13855E80008F2FEF /* EnemyHit.m4a */,
 				59244F981393847700B6EAF6 /* Revolver.m4a */,
@@ -705,6 +725,7 @@
 				5919A17D138DF4B3004CF76C /* ShotgunReload.m4a */,
 				594965EF1383B5AB00C1B064 /* Pistol.m4a */,
 				594965EB1383B38800C1B064 /* Phaser.m4a */,
+				B8F88EE31455178C005B5F2A /* LaserRifle.m4a */,
 				594965E91383B0AB00C1B064 /* MachineGun.m4a */,
 			);
 			name = Sounds;
@@ -1136,6 +1157,8 @@
 		599DE3B11361313D00FD2E2E /* Layers and Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B8A8166D145328670049CBC0 /* CreditScene.h */,
+				B8A8166E145328670049CBC0 /* CreditScene.m */,
 				599DE43713614D9900FD2E2E /* GameScene.h */,
 				599DE43813614D9900FD2E2E /* GameScene.m */,
 				59B4DB8F13B765CE007BA3B2 /* MainMenuScene.h */,
@@ -1144,6 +1167,8 @@
 				B85C8FC013E2802C00722698 /* LevelSelectScene.m */,
 				B87EDB0A140202EB00A751ED /* SettingsScene.h */,
 				B87EDB0B140202EB00A751ED /* SettingsScene.m */,
+				B81575FB1451285600F00200 /* StatsScene.h */,
+				B81575FC1451285700F00200 /* StatsScene.m */,
 				599DE43A13614DCE00FD2E2E /* InputLayer.h */,
 				599DE43B13614DCE00FD2E2E /* InputLayer.m */,
 				5969AAC513A34E3C00243DB5 /* PauseLayer.h */,
@@ -1221,8 +1246,8 @@
 		B871D71F13F3984600E63C64 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B8A8166B145321480049CBC0 /* GameStats.plist */,
 				B871D72113F398A600E63C64 /* GameSettings.plist */,
-				B871D72513F3B0C200E63C64 /* GameStats.plist */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1328,7 +1353,6 @@
 				B829428613E6729E0047EDB7 /* Level2Layer.png in Resources */,
 				B829428813E6733D0047EDB7 /* Level2Preview.png in Resources */,
 				B871D72213F398A600E63C64 /* GameSettings.plist in Resources */,
-				B871D72613F3B0C200E63C64 /* GameStats.plist in Resources */,
 				B849F7B5140234CB00675957 /* settingsBackground.png in Resources */,
 				B849F7BD140247CC00675957 /* weaponFeedback.fnt in Resources */,
 				B849F7BE140247CC00675957 /* weaponFeedback.png in Resources */,
@@ -1343,6 +1367,12 @@
 				B816297F141D98D700D1E923 /* atari800.ttf in Resources */,
 				B8D03E3F143C498100899BB7 /* weaponFeedbackSmall.fnt in Resources */,
 				B8D03E40143C498100899BB7 /* weaponFeedbackSmall.png in Resources */,
+				B8A8166C145321480049CBC0 /* GameStats.plist in Resources */,
+				B8F88EE41455178C005B5F2A /* LaserRifle.m4a in Resources */,
+				B8F88EE814551CDB005B5F2A /* GrenadeLauncher.m4a in Resources */,
+				B8F88EE914551CDB005B5F2A /* Rocket.m4a in Resources */,
+				B8F88EEC1455273B005B5F2A /* Flamethrower.m4a in Resources */,
+				B8F88EED1455273B005B5F2A /* Shurikin.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,6 +1535,8 @@
 				B87EDB0C140202EB00A751ED /* SettingsScene.m in Sources */,
 				B8DB9278140C547D00284B19 /* GameOverLayer.m in Sources */,
 				B8D03E33143C467900899BB7 /* CCLabelBMFontMultiline.m in Sources */,
+				B81575FD1451285800F00200 /* StatsScene.m in Sources */,
+				B8A8166F145328670049CBC0 /* CreditScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

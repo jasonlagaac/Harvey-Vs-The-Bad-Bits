@@ -191,6 +191,11 @@
   return [enemyKills intValue];
 }
 
+-(int) totalEnemyKilled:(NSString *)enemyType {
+  NSNumber *enemyKills = (NSNumber*)[enemyStats objectForKey: enemyType];
+  return [enemyKills intValue];
+}
+
 #pragma mark -
 #pragma mark Score Actions
 -(void) addPoint {
@@ -223,7 +228,7 @@
   for (id key in weaponStats) {
     int weaponKillCount = [[[weaponStats objectForKey:key] objectForKey:@"Kills"] intValue];
     
-    if ( weaponKillCount > 5) {
+    if ( weaponKillCount > 100) {
       int weapon_id = [[[weaponStats objectForKey:key] objectForKey:@"id"] intValue];
 
       switch (weapon_id) {
@@ -322,5 +327,19 @@
   return unlockedWeaponList;
 }
 
+-(NSMutableArray *) enabledWeaponsList {
+  NSMutableArray *unlockedWeaponList = [[[NSMutableArray alloc] init] autorelease];
+  
+  for (id key in weaponStats) {
+    BOOL weaponEnabledStatus = [[[weaponStats objectForKey:key] objectForKey:@"Enabled"] boolValue];
+    
+    if (weaponEnabledStatus == YES) {
+      NSLog(@"%@", weaponEnabledStatus ? @"YES" : @"NO" );
+      [unlockedWeaponList addObject:key];
+    }
+  }
+  
+  return unlockedWeaponList;
+}
 
 @end

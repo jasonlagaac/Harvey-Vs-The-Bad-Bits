@@ -226,9 +226,14 @@ static GameLayer* instanceOfGameLayer;
   [[SimpleAudioEngine sharedEngine] preloadEffect:@"Shotgun.m4a"];
   [[SimpleAudioEngine sharedEngine] preloadEffect:@"Revolver.m4a"];
 
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"ShotgunReload.m4a"];
   [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayerJump.m4a"];
   [[SimpleAudioEngine sharedEngine] preloadEffect:@"Explosion.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"LaserRifle.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Rocket.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"GrenadeLauncher.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Flamethrower.m4a"];
+  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Shurikin.m4a"];
+
   
   [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.5];
 

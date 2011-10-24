@@ -165,20 +165,22 @@
 - (void)checkItemCollision {
   Player *player = theGame.player;
   
+  if (!player.playerDead) {
+    if (ccpDistance(player.sprite.position, self.sprite.position) < 25) {
+        [player changeWeapon];
+        [self weaponPickupFeedback];
+        [[SimpleAudioEngine sharedEngine]playEffect:@"CartridgePickup.m4a"];
+        
+        [[[AppDelegate get]gameStats] addPoint];
     
-  if (ccpDistance(player.sprite.position, self.sprite.position) < 25) {
-      [player changeWeapon];
-      [self weaponPickupFeedback];
-      [[SimpleAudioEngine sharedEngine]playEffect:@"CartridgePickup.m4a"];
-      
-      [[[AppDelegate get]gameStats] addPoint];
+        [theGame updateScore];
+        [self reload];
+    }
     
-      [theGame updateScore];
+  
+    if (self.sprite.position.y < -50) 
       [self reload];
   }
-  
-  if (self.sprite.position.y < -50) 
-    [self reload];
 }
 
 - (void)weaponPickupFeedback {

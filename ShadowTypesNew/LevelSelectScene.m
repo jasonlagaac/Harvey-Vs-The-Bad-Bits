@@ -77,19 +77,23 @@
 
     [backArrow setPosition:ccp(-200, 0)];
     [forwardArrow setPosition:ccp(200, 0)];
-    [back setPosition:ccp(-160, -120)];
-    [select setPosition:ccp(160, -120)];
+    [back setPosition:ccp(-160, -130)];
+    [select setPosition:ccp(160, -130)];
     
     [self addChild:topScoreLbl z:4];
     [topScoreLbl setPosition:ccp(240,280)];
      
-    
-    [self addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"Level%dPreview.png", 1]] z:2 tag:1];
+    CCSprite *lvl1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"Level%dPreview.png", 1]];
+    [[lvl1 texture] setAliasTexParameters];
+    [self addChild:lvl1 z:2 tag:1];
     [[self getChildByTag:1] setPosition:ccp(240, 180)];
     
-    [self addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"Level%dPreview.png", 2]] z:2 tag:2];
+    CCSprite *lvl2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"Level%dPreview.png", 2]];
+    [[lvl2 texture] setAliasTexParameters];
+    [self addChild:lvl2 z:2 tag:2];
     [[self getChildByTag:2] setPosition:ccp(240, 180)];
     [[self getChildByTag:2] setVisible:NO];
+
 
     [self updateScoreLabel];
    //[self loadLevelPreviews];

@@ -62,6 +62,8 @@
  */
 -(NSMutableArray *) enabledWeapons;
 
+-(NSMutableArray *) enabledWeaponsList;
+
 
 /** Add a kill point based on enemy type
  * @param Name of enemy type
@@ -74,6 +76,7 @@
  */
 -(int) enemyKillCount:(NSString *)enemyType;
 
+-(int) totalEnemyKilled:(NSString *)enemyType;
 /** Add point to score
  */
 -(void) addPoint;

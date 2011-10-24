@@ -74,7 +74,7 @@
     [menu alignItemsVerticallyWithPadding:10.0f];
     [self addChild:menu];
     [menu setPosition:ccp(250,120)];
-    [backButton setPosition:ccp(-160, -80)];
+    [backButton setPosition:ccp(-160, -90)];
 
     
     [controlSetting runAction:[CCSequence actions: [CCEaseOut actionWithAction:[CCMoveBy actionWithDuration:1 position:ccp(0,0)]  rate:2], nil]];

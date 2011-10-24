@@ -519,6 +519,8 @@
         playerAttacking = YES;
         ProjectileCache *projCache = [theGame projectileCache];
         
+        [[SimpleAudioEngine sharedEngine]playEffect:@"GrenadeLauncher.m4a"];
+        
         [projCache fireFrom:shotPos direction:self.direction];
         
       } else if (!fireButtonActive && playerAttacking == YES) {
@@ -535,6 +537,8 @@
         
         playerAttacking = YES;
         ProjectileCache *projCache = [theGame projectileCache];
+        [[SimpleAudioEngine sharedEngine]playEffect:@"Flamethrower.m4a"];
+
         
         [projCache fireFrom:shotPos direction:self.direction];
         
@@ -556,8 +560,9 @@
         [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
                            frameName:@"BulletLarge.png" weaponType:self.weapon];
         
-        //[[SimpleAudioEngine sharedEngine]playEffect:@"Shotgun.m4a"];
-        
+        [[SimpleAudioEngine sharedEngine]playEffect:@"Rocket.m4a"];
+
+                
       } else if (!fireButtonActive && playerAttacking == YES) {
         playerAttacking = NO;
       }
@@ -575,7 +580,8 @@
         [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
                            frameName:@"Laser.png" weaponType:self.weapon];
         
-        //[[SimpleAudioEngine sharedEngine]playEffect:@"Shotgun.m4a"];
+        [[SimpleAudioEngine sharedEngine]playEffect:@"LaserRifle.m4a"];
+
         
       } else if (!fireButtonActive && playerAttacking == YES) {
         playerAttacking = NO;
@@ -591,7 +597,9 @@
         [bulletCache shootBulletFrom:shotPos playerDirection:self.direction 
                            frameName:@"Shurikin.png" weaponType:self.weapon];
         
-        //[[SimpleAudioEngine sharedEngine]playEffect:@"Revolver.m4a"];        
+        [[SimpleAudioEngine sharedEngine]playEffect:@"Shurikin.m4a"];
+
+
       } else if (!fireButtonActive && playerAttacking) {
         playerAttacking = NO;
       } 
@@ -666,6 +674,7 @@
   
   if (!playerDead) {
     playerDead = YES;
+    [self setVisible:NO];
     [self.theGame gameOver];
   }
     

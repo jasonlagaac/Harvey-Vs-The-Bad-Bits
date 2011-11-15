@@ -43,7 +43,6 @@ eachShape(void *ptr, void* unused)
 - (void)updateScore;
 - (void)spawnEnemy;
 - (void)loadParticleEffects;
-- (void)loadSound;
 -(id) initWithLevel:(int)levelSelected;
 @end
 
@@ -109,6 +108,8 @@ static GameLayer* instanceOfGameLayer;
   return instanceOfGameLayer;
 }
 
+
+
 #pragma mark -
 #pragma mark Alloc / Dealloc
 
@@ -151,7 +152,6 @@ static GameLayer* instanceOfGameLayer;
     level = [[Level alloc] initWithLevel:levelSelected game:self];
     
     [self loadParticleEffects];
-    [self loadSound];
     
     self.playerLevel = 0; // Assign the player game level
     self.remainingTime = 75; // remaining time in seconds
@@ -172,17 +172,18 @@ static GameLayer* instanceOfGameLayer;
     cartridge = [[Item alloc] initWithGame:self withType:kCartridge];
     player = [[Player alloc] initWithGame:self];
     
-    NSMutableArray *spawnPos = [[NSMutableArray alloc] init];
-    CGPoint pos = CGPointMake(240.0f, 340.0f);
+    //NSMutableArray *spawnPos = [[NSMutableArray alloc] init];
+    //CGPoint pos = CGPointMake(240.0f, 340.0f);
     
-    [spawnPos addObject:[NSData dataWithBytes:&pos length:sizeof(CGPoint)]];
+    //[spawnPos addObject:[NSData dataWithBytes:&pos length:sizeof(CGPoint)]];
     
     enemyCache = [[EnemyCache alloc] initWithGame:self];
     bulletCache = [[BulletCache alloc] initWithGame:self];
     explosionCache = [[ExplosionCache alloc] initWithGame:self];
     projectileCache = [[ProjectileCache alloc] initWithGame:self];
     
-    
+      NSLog(@"Game Retain 3: %d", [self retainCount]);
+
     
     [self schedule: @selector(step:)];
   }
@@ -191,7 +192,22 @@ static GameLayer* instanceOfGameLayer;
 
 // on "dealloc" you need to release all your retained objects
 - (void)dealloc {	
+ NSLog(@"Game Over Retain 2: %d", [self retainCount]);
+    
 	// don't forget to call "super dealloc"
+  NSLog(@"%d",[enemyCache retainCount]);
+  [enemyCache release];
+  enemyCache = nil;
+    
+  [projectileCache release];
+  projectileCache = nil;
+    
+  [bulletCache release];
+  bulletCache = nil;
+    
+  [explosionCache release];
+  explosionCache = nil;
+    
   cpSpaceFree(space);
 	[super dealloc];
 }
@@ -219,25 +235,7 @@ static GameLayer* instanceOfGameLayer;
   [self addChild:effect z:7];
 }
 
--(void) loadSound {
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Pistol.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"MachineGun.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Phaser.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Shotgun.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Revolver.m4a"];
 
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayerJump.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Explosion.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"LaserRifle.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Rocket.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"GrenadeLauncher.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Flamethrower.m4a"];
-  [[SimpleAudioEngine sharedEngine] preloadEffect:@"Shurikin.m4a"];
-
-  
-  [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.5];
-
-}
 
 - (void)updateScore {
   CCLabelBMFont *l = (CCLabelBMFont *)[self getChildByTag:K_ScoreLabel];
@@ -279,7 +277,7 @@ static GameLayer* instanceOfGameLayer;
 -(void) gameOver {
   [InputLayer sharedInputLayer].visible = NO;
   [[[AppDelegate get] gameStats] gameOverActions];
-  
+    NSLog(@"Game Over Retain 1: %d", [self retainCount]);
   GameOverLayer *g = [[GameOverLayer alloc] init];
   [self addChild:g z:40 tag:42];
 }

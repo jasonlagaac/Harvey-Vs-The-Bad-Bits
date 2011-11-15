@@ -11,7 +11,7 @@
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>Flamethrower</key>
 		<dict>
@@ -83,7 +83,7 @@
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>Shurikin</key>
 		<dict>
@@ -92,7 +92,7 @@
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>Grenade Launcher</key>
 		<dict>
@@ -101,7 +101,7 @@
 			<key>Kills</key>
 			<integer>0</integer>
 			<key>Enabled</key>
-			<true/>
+			<false/>
 		</dict>
 	</dict>
 	<key>Enemy</key>

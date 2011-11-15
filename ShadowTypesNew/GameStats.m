@@ -167,9 +167,6 @@
   NSNumber *numKills = (NSNumber*)[currentWeaponKills objectForKey: weaponName];
   [currentWeaponKills setValue:[NSNumber numberWithInt:([numKills intValue] + 1)] forKey:weaponName];
   NSLog(@"%@",currentWeaponKills);
-    
-  [weaponName release];
-  weaponName = nil;
 }
 
 -(int) weaponKillCount:(NSString *)weapon {

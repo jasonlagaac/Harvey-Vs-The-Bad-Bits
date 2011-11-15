@@ -14,6 +14,12 @@
 #import "MainMenuScene.h"
 #import "RootViewController.h"
 
+@interface AppDelegate (PrivateMethods)
+- (void)loadAudio;
+@end
+
+
+
 @implementation AppDelegate
 
 @synthesize window;
@@ -126,17 +132,24 @@
     [self enableAudio];
   else
     [self disableAudio];
-	
+    
+  [self loadAudio];
+  
+  //[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ShadowTypesSimple.plist"];
+   // [[CCSpriteFrameCache sharedSpriteFrameCache] retain];
+    
 	// Run the intro Scene
   [[CCDirector sharedDirector] runWithScene: [MainMenuScene node]];
 }
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-  if (!self.paused) {
-    [[GameLayer sharedGameLayer] pauseGame];
-    [[CCDirector sharedDirector] pause];
-  }
+    if (![[GameLayer sharedGameLayer]player].playerDead) {
+        if (!self.paused) {
+            [[GameLayer sharedGameLayer] pauseGame];
+            [[CCDirector sharedDirector] pause];
+        }
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -178,6 +191,26 @@
 
 - (void)disableAudio {
   [CDAudioManager sharedManager].mute = YES;
+}
+
+-(void)loadAudio {
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Pistol.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"MachineGun.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Phaser.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Shotgun.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Revolver.m4a"];
+    
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayerJump.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Explosion.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"LaserRifle.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Rocket.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"GrenadeLauncher.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Flamethrower.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Shurikin.m4a"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"death.m4a"];
+    
+    
+    [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.5];
 }
 
 - (void)dealloc {

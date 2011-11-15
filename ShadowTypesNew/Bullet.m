@@ -36,7 +36,9 @@
 
 /* Deallocate object */
 -(void) dealloc {	
-	[super dealloc];
+   GameLayer *game = [GameLayer sharedGameLayer];
+   [game removeChild:self cleanup:YES];
+   [super dealloc];
 }
 
 

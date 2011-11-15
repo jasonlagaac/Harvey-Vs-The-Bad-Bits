@@ -212,11 +212,57 @@
 
 -(void) dealloc
 {
-	// don't forget to call "super dealloc"
-  cpBodyFree(body);
+  cpSpaceRemoveBody(theGame.space, shape->body);
+  cpBodyFree(shape->body);
+  cpSpaceRemoveShape(theGame.space, shape);
   cpShapeFree(shape);
+  shape = nil; // Found this to free all the memory - useful?
+  
+  [available_weapons release];
+  available_weapons = nil;
+    
+    
+    /* Animation Actions */
+    [pistolWalkAction release];
+    pistolWalkAction = nil;
+
+    [machineGunWalkAction release];
+    machineGunWalkAction = nil;
+
+    [shotgunWalkAction release];
+    shotgunWalkAction = nil;
+
+    [phaserWalkAction release];
+    phaserWalkAction = nil;
+
+    [rocketWalkAction release];
+    rocketWalkAction = nil;
+
+    [revolverWalkAction release];
+    revolverWalkAction = nil;
+
+    [flamethrowerWalkAction release];
+    flamethrowerWalkAction = nil;
+
+    [gattlingGunWalkAction release];
+    gattlingGunWalkAction = nil;
+
+    [grenadeLauncherWalkAction release];
+    grenadeLauncherWalkAction = nil;
+
+    [laserWalkAction release];
+    laserWalkAction = nil;
+
+    [shurikinWalkAction release];
+    shurikinWalkAction = nil;
+    
+  [[self sprite]  release];
+  self.sprite = nil;
+  
   [theGame release];
-	[super dealloc];
+  theGame = nil;
+	
+  [super dealloc];
 }
 
 
@@ -343,7 +389,7 @@
 #pragma mark - 
 #pragma mark Player Movement Actions
 
--(void) move:(float)velocity_x activeFireButton:(bool)fireButtonActive {
+- (void)move:(float)velocity_x activeFireButton:(bool)fireButtonActive {
   int recoil = 0;
   
   if (fireButtonActive)
@@ -364,7 +410,7 @@
   }
 }
 
--(void) facingDirection:(float)velocity_x {
+- (void)facingDirection:(float)velocity_x {
   if (velocity_x  < -10 && self.direction == kPlayerMoveRight ) {
     self.sprite.flipX = YES;
     self.direction = kPlayerMoveLeft;
@@ -374,7 +420,7 @@
   }
 }
 
--(void) animateMovement:(float)velocity_x {  
+- (void)animateMovement:(float)velocity_x {  
   // Movement in the horizontal direction
   if ((velocity_x < -50 || velocity_x > 50)) {
     [self animateMove];
@@ -636,7 +682,7 @@
   body->p = CGPointMake(screenSize.width / 2, screenSize.height +10);
 }
 
--(void) changeWeapon {
+- (void)changeWeapon {
   PlayerWeapon chosenWeapon = kPlayerWeaponPistol;
   NSLog(@"%@", available_weapons);
   
@@ -670,11 +716,13 @@
   }
 }
 
--(void) death { 
+- (void)death { 
   
   if (!playerDead) {
-    playerDead = YES;
-    [self setVisible:NO];
+    self.playerDead = YES;
+    [self.sprite setVisible:NO];
+    [[SimpleAudioEngine sharedEngine]playEffect:@"death.m4a"];
+
     [self.theGame gameOver];
   }
     
@@ -684,7 +732,7 @@
 #pragma mark -
 #pragma mark Update actions
 
--(void)update:(ccTime)delta {    
+- (void)update:(ccTime)delta {    
   CGSize screenSize = [[CCDirector sharedDirector] winSize];
 
   if (self.sprite.position.y > (screenSize.height + 5)) {
@@ -692,7 +740,7 @@
   }
   
   if (self.sprite.position.y < -30.0f) {
-    [self respawn];
+    [self death];
   }
   
   if (changeWeapon) {

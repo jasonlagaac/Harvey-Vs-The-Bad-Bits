@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <iAd/iAd.h>
 #import "cocos2d.h"
 
 @class GameLayer;
@@ -17,8 +18,9 @@
 @end
 
 
-@interface MainMenuLayer : CCLayer {
+@interface MainMenuLayer : CCLayer <ADBannerViewDelegate> {
   GameLayer *game;
+  ADBannerView *adView;
 }
 
 @end

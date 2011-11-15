@@ -62,24 +62,31 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
 #pragma mark Inititialisation / Deallocation / Singleton
 
 /* Enemy singleton */
-+(id)enemy {
++ (id)enemy {
   return [[[self alloc] init] autorelease];
 }
 
 /* Initialisation */
--(id) init {
+- (id) init {
 	if ((self = [super init])) {
     
 	}	
+    
 	return self;
 }
 
 /* Deallocation */
--(void) dealloc {
+- (void)dealloc {
 	// don't forget to call "super dealloc"
-  cpBodyFree(body);
+  cpSpaceRemoveBody(theGame.space, shape->body);
+  cpBodyFree(shape->body);
+  cpSpaceRemoveShape(theGame.space, shape);
   cpShapeFree(shape);
+  shape = nil; // Found this to free all the memory - useful?
+    
   [theGame release];
+  theGame = nil;
+
 	[super dealloc];
 }
 
@@ -169,14 +176,14 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
   shape->collision_type = 0;
   cpBodySetMoment(shape->body, INFINITY);
   cpSpaceAddShape(theGame.space, shape);
-  
+    
+  free(verts);
 }
 
 /* Load the sound files */
 - (void)loadSound {
   [[SimpleAudioEngine sharedEngine] preloadEffect:@"EnemyHit.m4a"];
   [[SimpleAudioEngine sharedEngine] preloadEffect:@"EnemyDeath.m4a"];
-
 }
 
 
@@ -210,7 +217,6 @@ static void enemyUnload (cpSpace *space, cpShape *shape, void *unused) {
   [self loadDefaultSprite];
   [self loadAnimations];
   [self loadPhysics];
-  
   
   // Start running actions
   switch (enemyType) {

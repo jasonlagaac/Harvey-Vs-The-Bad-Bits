@@ -76,7 +76,7 @@
     CCMenu * menu = [CCMenu menuWithItems:newgame,options,stats,credits,nil];
     [menu alignItemsVerticallyWithPadding:10.0f];
     [self addChild:menu];
-    [menu setPosition:ccp(250,100)];
+    [menu setPosition:ccp(250,120)];
     
     [newgame runAction:[CCSequence actions: [CCEaseOut actionWithAction:[CCMoveBy actionWithDuration:1 position:ccp(0,0)]  rate:2], nil]];
     [options runAction:[CCSequence actions: [CCEaseOut actionWithAction:[CCMoveBy actionWithDuration:1 position:ccp(0,0)]  rate:2], nil]];
@@ -112,4 +112,39 @@
 {
 	[super dealloc];
 }
+
+-(void)onEnter {
+  [super onEnter];
+  adView = [[ADBannerView alloc] init];
+  [adView setDelegate:self];
+  adView.requiredContentSizeIdentifiers = [NSSet setWithObjects:ADBannerContentSizeIdentifier480x32, nil];
+  adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier480x32;
+  [[[CCDirector sharedDirector] openGLView] addSubview:adView];
+
+  CGSize windowSize = [[CCDirector sharedDirector] winSize];
+  adView.backgroundColor = [UIColor blackColor];
+  adView.transform = CGAffineTransformMakeRotation(CC_DEGREES_TO_RADIANS(90));
+  adView.center = CGPointMake(adView.frame.size.width / 2 , windowSize.height / 2 + 80);
+  adView.hidden = NO;
+}
+
+-(void)onExit {
+    adView.delegate = nil;
+    [adView removeFromSuperview];
+    [adView release];
+    adView = nil;
+    [super onExit];
+}
+
+# pragma mark - iAd Delegates
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    adView.hidden = NO;
+}
+
+
+-(BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    return YES;
+}
+
+
 @end

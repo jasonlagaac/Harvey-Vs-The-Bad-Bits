@@ -37,7 +37,12 @@
 }
 
 - (void)dealloc {
+  [enemies release];
+  enemies = nil;
+    
   [theGame release];
+  theGame = nil;
+    
   [super dealloc];
 }
 

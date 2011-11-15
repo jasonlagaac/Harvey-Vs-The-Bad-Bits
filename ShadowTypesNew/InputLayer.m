@@ -180,10 +180,11 @@ static InputLayer* instanceOfInputLayer;
 }
 
 - (void)update:(ccTime)delta {   
-
-    if (pauseButton.active) {
-      [[GameLayer sharedGameLayer] pauseGame];
-      return;
+    if (![[GameLayer sharedGameLayer] player].playerDead) {
+        if (pauseButton.active) {
+            [[GameLayer sharedGameLayer] pauseGame];
+            return;
+        }
     }
     
     GameLayer *game = [GameLayer sharedGameLayer];

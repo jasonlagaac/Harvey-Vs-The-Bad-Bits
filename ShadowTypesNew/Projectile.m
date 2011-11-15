@@ -52,10 +52,14 @@ static void projUnload (cpSpace *space, cpShape *shape, void *unused) {
 }
 
 - (void)dealloc {
+  [flameAction release];
+  flameAction = nil;
+  
   GameLayer *game = [GameLayer sharedGameLayer];
   [game removeChild:self cleanup:YES];
   [super dealloc];
 }
+
 #pragma mark - Load Attribute Functions 
 
 

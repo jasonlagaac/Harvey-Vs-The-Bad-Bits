@@ -68,6 +68,10 @@
 {
   cpBodyFree(body);
   cpShapeFree(shape);
+  
+  [[self sprite]  release];
+  self.sprite = nil;
+    
   [theGame release];
 	[super dealloc];
 }

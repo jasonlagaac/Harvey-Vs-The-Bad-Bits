@@ -28,6 +28,16 @@
   return self;
 }
 
+- (void)dealloc {
+    [projectiles release];
+    projectiles = nil;
+    
+    [theGame release];
+    theGame = nil;
+    
+    [super dealloc];
+}
+
 
 -(void)fireFrom:(CGPoint)pos direction:(PlayerMovement)dir {
   if (nextInactiveProjectile >= [projectiles count]) {

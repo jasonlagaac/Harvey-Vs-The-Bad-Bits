@@ -45,7 +45,12 @@
   self.visible = NO;
 }
 
--(void) dealloc {
+-(void) dealloc { 
+  [explosionAnimation release];
+  explosionAnimation = nil;
+
+  GameLayer *game = [GameLayer sharedGameLayer];
+  [game removeChild:self cleanup:YES];
   [super dealloc];
 }
 

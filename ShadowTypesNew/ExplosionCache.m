@@ -30,7 +30,12 @@
 }
 
 - (void)dealloc {
+  [explosions release];
+  explosions = nil;
+  
   [theGame release];
+  theGame = nil;
+    
   [super dealloc];
 }
 

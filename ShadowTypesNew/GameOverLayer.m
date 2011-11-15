@@ -63,6 +63,16 @@
   return self;
 }
 
+-(void)dealloc {
+    [scoreLayer release];
+    scoreLayer = nil;
+    
+    [statsLayer release];
+    statsLayer = nil;
+    
+    [super dealloc];
+}
+
 -(void) initScoreLayer {
   CGSize screenSize = [[CCDirector sharedDirector] winSize];
   scoreLayer = [[[CCLayer alloc] init] autorelease];
@@ -93,8 +103,10 @@
   }
   
   
-  CCLabelBMFont *gameScore = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"score: %d", [gameStats currentGameScore]] 
-                                                    fntFile:@"weaponFeedback.fnt"];
+  CCLabelBMFontMultiline *gameScore = [CCLabelBMFontMultiline labelWithString:[NSString stringWithFormat:@"SCORE\n%d", [gameStats currentGameScore]] 
+                                                                      fntFile:@"weaponFeedbackLarge.fnt" 
+                                                                        width:420 
+                                                                    alignment:CenterAlignment];
   gameScore.position = scorePos;
   [scoreLayer addChild:gameScore z:1 tag:3];
   
@@ -182,9 +194,6 @@
                                                                         alignment:LeftAlignment];
   }
   
-  [unlockedWeapons release];
-  unlockedWeapons = nil;
-  
   unlockedTxt.position = CGPointMake((screenSize.width / 2), ((screenSize.height /2) - 60));
   [statsLayer addChild:unlockedTxt z:1];
   
@@ -195,6 +204,9 @@
 -(void) backToMenu:(id)sender {
     [AppDelegate get].paused = NO;
     [[CCDirector sharedDirector] resume];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
+    [[CCTextureCache sharedTextureCache] removeAllTextures];
+
     [[CCDirector sharedDirector] replaceScene:[MainMenuScene node]];
 }
 

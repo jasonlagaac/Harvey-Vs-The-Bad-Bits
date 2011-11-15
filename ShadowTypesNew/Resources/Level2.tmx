@@ -14,12 +14,13 @@
   </data>
  </layer>
  <objectgroup name="Object Layer" width="24" height="16">
-  <object x="20" y="20" height="260"/>
+  <object x="19" y="2" height="283"/>
   <object x="20" y="280" width="357"/>
   <object x="460" y="20" height="260"/>
   <object x="81" y="21" width="379"/>
   <object x="121" y="199" width="336"/>
   <object x="21" y="100" width="338"/>
+  <object x="82" y="0" height="19"/>
  </objectgroup>
  <layer name="Item Spawn" width="24" height="16" opacity="0">
   <data encoding="base64" compression="zlib">

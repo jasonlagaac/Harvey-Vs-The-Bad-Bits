@@ -36,6 +36,7 @@
     CCTMXTiledMap *map = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"Level%d.tmx",levelNum]];
     [game addChild: map];
     
+    
     CCTMXObjectGroup *levelObj = [map objectGroupNamed:@"Object Layer"];
     
     for (NSMutableDictionary *d in [levelObj objects]) {
@@ -78,7 +79,19 @@
 - (void)dealloc
 {
 	// don't forget to call "super dealloc"
+  [playerSpawnPos release];
+  playerSpawnPos = nil;
+  
+  [enemySpawnPos release];
+  enemySpawnPos = nil;
+    
+  [itemSpawnPos release];
+  itemSpawnPos = nil;
+
+    
   [theGame release];
+  theGame = nil;
+    
 	[super dealloc];
 }
 

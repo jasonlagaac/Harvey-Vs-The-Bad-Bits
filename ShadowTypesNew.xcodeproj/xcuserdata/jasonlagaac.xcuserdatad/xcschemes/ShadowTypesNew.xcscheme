@@ -14,8 +14,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "599DE1E913612D0600FD2E2E"
-               BuildableName = "ShadowTypesNew.app"
-               BlueprintName = "ShadowTypesNew"
+               BuildableName = "HvBB.app"
+               BlueprintName = "HvBB"
                ReferencedContainer = "container:ShadowTypesNew.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,6 +28,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "599DE1E913612D0600FD2E2E"
+            BuildableName = "HvBB.app"
+            BlueprintName = "HvBB"
+            ReferencedContainer = "container:ShadowTypesNew.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
@@ -36,13 +45,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
       debugDocumentVersioning = "YES"
+      enablesOpenGLESFrameCapture = "YES"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "599DE1E913612D0600FD2E2E"
-            BuildableName = "ShadowTypesNew.app"
-            BlueprintName = "ShadowTypesNew"
+            BuildableName = "HvBB.app"
+            BlueprintName = "HvBB"
             ReferencedContainer = "container:ShadowTypesNew.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -59,8 +69,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "599DE1E913612D0600FD2E2E"
-            BuildableName = "ShadowTypesNew.app"
-            BlueprintName = "ShadowTypesNew"
+            BuildableName = "HvBB.app"
+            BlueprintName = "HvBB"
             ReferencedContainer = "container:ShadowTypesNew.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
